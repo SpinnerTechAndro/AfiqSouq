@@ -94,8 +94,13 @@
 
     <RatingBar
         android:id="@+id/ratingbar_shopfr_rating"
-        android:layout_width="match_parent"
-        android:layout_height="20dp"
+        android:layout_width="170dp"
+        android:layout_height="40dp"
+        android:progressBackgroundTint="@color/cyan"
+        android:progressTint="@color/white"
+        android:scaleX="0.5"
+        android:scaleY="0.5"
+        android:max="5"
         />
 
 </LinearLayout>
