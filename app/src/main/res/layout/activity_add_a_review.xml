@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/toolbarRL"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_margin="@dimen/_2sdp"
+        >
+
+        <ImageButton
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_back_accent"
+            android:background="@null"
+            android:layout_centerVertical="true"
+            android:id="@+id/backIB"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add a Review"
+            android:textSize="@dimen/_16sdp"
+            android:textStyle="bold"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/colorBlack"
+            android:layout_centerVertical="true"
+            />
+
+        <RelativeLayout
+            android:layout_width="@dimen/_60sdp"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            >
+
+            <ImageButton
+                android:id="@+id/addTocartIB"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:src="@drawable/cart_icon"
+                android:layout_centerVertical="true"
+                android:background="@null"
+                />
+            <TextView
+                android:layout_marginStart="@dimen/_25sdp"
+                android:id="@+id/countCartItemIV"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:text="1"
+                android:gravity="center"
+                android:textColor="@color/colorWhite"
+                android:background="@drawable/circleable_background"
+
+                />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <view
+        android:id="@+id/view_ID"
+        android:layout_below="@id/toolbarRL"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1sdp"
+        android:background="@color/colorGray01"
+        android:layout_marginBottom="@dimen/_10sdp"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_10sdp"
+        android:layout_below="@id/view_ID"
+        android:orientation="vertical"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp">
+
+            <TextView
+                android:textSize="@dimen/_15sdp"
+                android:textColor="@color/colorBlack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Your rating"
+                android:layout_marginEnd="@dimen/_3sdp"
+                android:layout_centerVertical="true"
+                android:id="@+id/your_rating_TV"
+                />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/circle_star"
+                android:layout_width="@dimen/_10sdp"
+                android:layout_height="@dimen/_10sdp"
+                android:layout_toEndOf="@id/your_rating_TV"
+                android:src="@drawable/ic_rating_accent_full"
+                android:layout_marginTop="@dimen/_5sdp"
+                />
+
+            <RatingBar
+                android:id="@+id/rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:numStars="5"
+                android:stepSize="0.1"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:rating="3.5"
+                android:backgroundTint="@color/colorAccent"
+                android:layout_toEndOf="@id/circle_star"
+                android:isIndicator="true" />
+
+        </RelativeLayout>
+
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_height="@dimen/_40sdp">
+
+            <TextView
+                android:textSize="@dimen/_15sdp"
+                android:textColor="@color/colorBlack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Your review"
+                android:layout_marginEnd="@dimen/_3sdp"
+                android:layout_centerVertical="true"
+                android:id="@+id/your_review_TV"
+                />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/circle_star_2"
+                android:layout_width="@dimen/_10sdp"
+                android:layout_height="@dimen/_10sdp"
+                android:layout_toEndOf="@id/your_review_TV"
+                android:src="@drawable/ic_rating_accent_full"
+                android:layout_marginTop="@dimen/_5sdp"
+                />
+
+
+
+        </RelativeLayout>
+
+
+        <EditText
+            android:id="@+id/review_et"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_95sdp"
+            android:inputType="textMultiLine"
+            android:background="@drawable/review_et_background_shape"
+            />
+
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_height="@dimen/_40sdp">
+
+            <TextView
+                android:textSize="@dimen/_15sdp"
+                android:textColor="@color/colorBlack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Name"
+                android:layout_marginEnd="@dimen/_3sdp"
+                android:layout_centerVertical="true"
+                android:id="@+id/name_TV"
+                />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/name_star"
+                android:layout_width="@dimen/_10sdp"
+                android:layout_height="@dimen/_10sdp"
+                android:layout_toEndOf="@id/name_TV"
+                android:src="@drawable/ic_rating_accent_full"
+                android:layout_marginTop="@dimen/_5sdp"
+                />
+
+
+
+        </RelativeLayout>
+
+
+        <EditText
+            android:id="@+id/name_et"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_35sdp"
+            android:inputType="textPersonName"
+            android:padding="@dimen/_5sdp"
+            android:background="@drawable/round_gray_background"
+            />
+
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_height="@dimen/_40sdp">
+
+            <TextView
+                android:textSize="@dimen/_15sdp"
+                android:textColor="@color/colorBlack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Email"
+                android:layout_marginEnd="@dimen/_3sdp"
+                android:layout_centerVertical="true"
+                android:id="@+id/email_TV"
+                />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/email_star"
+                android:layout_width="@dimen/_10sdp"
+                android:layout_height="@dimen/_10sdp"
+                android:layout_toEndOf="@id/email_TV"
+                android:src="@drawable/ic_rating_accent_full"
+                android:layout_marginTop="@dimen/_5sdp"
+                />
+
+
+
+        </RelativeLayout>
+
+
+
+
+
+        <EditText
+            android:id="@+id/email_et"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_weight="2"
+            android:inputType="textEmailAddress"
+            android:padding="@dimen/_5sdp"
+            android:background="@drawable/round_gray_background"
+            />
+
+
+
+        <RelativeLayout
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <CheckBox
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:id="@+id/save_name_email_CB"
+                android:layout_alignParentTop="true"
+                />
+
+            <TextView
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@id/save_name_email_CB"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_7sdp"
+                android:text="Save my name,email,and website in this browser for  the next time I comment"
+                android:maxLines="2"
+                android:textSize="@dimen/_10sdp"
+                android:textColor="@color/colorBlack"
+
+                />
+
+
+        </RelativeLayout>
+
+
+
+        <Button
+            android:layout_marginTop="@dimen/_5sdp"
+            android:id="@+id/submit_Btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Submit"
+            android:textAllCaps="false"
+            android:textColor="@color/colorWhite"
+            android:background="@drawable/round_button_accent_color_background"
+            />
+
+    </LinearLayout>
+
+
+
+
+
+
+
+
+
+
+</RelativeLayout>

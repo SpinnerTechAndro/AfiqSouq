@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray1"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="470dp"
+        android:background="@drawable/shape_signup"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_margin="@dimen/_12sdp"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/textView_signup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center_vertical"
+                android:text="Sign in"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/editText_Name"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:paddingLeft="@dimen/_8sdp"
+                android:layout_marginTop="20dp"
+                android:drawablePadding="@dimen/_5sdp"
+                android:background="@drawable/sign_in_white_background"
+                android:ems="10"
+                android:textColorHint="@color/colorBlack"
+                android:inputType="textPersonName"
+                android:hint="Your Name"
+                android:textSize="@dimen/_14sdp"
+                android:drawableLeft="@drawable/icon_user"
+                android:textColor="@color/gray4" />
+
+
+            <EditText
+                android:id="@+id/editText_Password"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:drawablePadding="@dimen/_5sdp"
+                android:background="@drawable/sign_in_white_background"
+                android:ems="10"
+                android:hint="Password"
+                android:textColorHint="@color/colorBlack"
+                android:textSize="@dimen/_14sdp"
+                android:paddingLeft="@dimen/_8sdp"
+                android:textColor="@color/gray4"
+                android:drawableLeft="@drawable/lock"
+                android:drawableRight="@drawable/eye_view"
+                android:paddingRight="@dimen/_5sdp"
+                />
+
+
+
+            <Button
+                android:id="@+id/button_signin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/round_button_accent_color_background"
+                android:text="Sign in"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_17sdp"
+                android:textAllCaps="false"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+
+                android:layout_marginTop="@dimen/_10sdp">
+
+                <CheckBox
+                    android:layout_width="@dimen/_15sdp"
+                    android:layout_height="@dimen/_15sdp"
+                    android:id="@+id/remember_me_cb"
+                    android:button="@null"
+                    android:background="@drawable/shape_rect_checkbox"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Remember me"
+                    android:layout_toRightOf="@id/remember_me_cb"
+                    android:textSize="@dimen/_12sdp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:layout_marginLeft="10dp"/>
+                <TextView
+                    android:id="@+id/forget_password_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Forget Password?"
+                    android:textSize="@dimen/_12sdp"
+                    android:textStyle="bold"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:textColor="@color/colorAccent01"
+                    android:layout_marginLeft="10dp"/>
+
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Or Sign In with"
+                android:textColor="@color/colorWhite"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:textSize="@dimen/_15sdp"
+                android:textStyle="bold"
+                />
+
+            <LinearLayout
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_width="match_parent"
+                android:weightSum="2"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/facebook_singin_button"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:text="Facebook"
+                    android:textSize="@dimen/_15sdp"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:background="@drawable/facebook_button_background"
+                    />
+
+                <Button
+                    android:id="@+id/twitter_singin_button"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="Twitter"
+                    android:textSize="@dimen/_15sdp"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:background="@drawable/twitter_button_background"
+                    />
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/no_account_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:text="Don't have an account?Sign up"
+                android:textColor="@color/white"
+                />
+
+            <View
+
+                android:layout_width="130dp"
+                android:layout_height="4dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:background="#e2e2e2"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

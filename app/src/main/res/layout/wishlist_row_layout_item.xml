@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/wishList_card_background_color"
+    app:cardCornerRadius="@dimen/_2sdp"
+    android:layout_margin="@dimen/_5sdp"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:padding="@dimen/_3sdp"
+        android:layout_height="@dimen/_95sdp">
+
+
+        <ImageView
+            android:id="@+id/prodct_image_id"
+            android:layout_width="@dimen/_70sdp"
+            android:layout_height="@dimen/_80sdp"
+            android:background="@drawable/roundable_image_background_01"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/profile_image"
+            android:layout_width="@dimen/_22sdp"
+            android:layout_height="@dimen/_22sdp"
+            android:src="@drawable/btn_close_black"
+            />
+        
+        <LinearLayout
+            android:layout_toEndOf="@id/prodct_image_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            >
+            
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/_13sdp"
+                android:textColor="@color/colorBlack"
+                android:id="@+id/title_TV"
+                android:textStyle="bold"
+                android:text="Blue silk flare sleeved top"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:id="@+id/price_TV"
+                android:text="$150.00"
+                android:textStyle="bold"
+                android:textColor="@color/colorAccent01"
+                android:textSize="@dimen/_14sdp"
+                />
+
+            <RelativeLayout
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/add_to_cart_black_background"
+                >
+
+                <ImageView
+                    android:id="@+id/addTocartIcon_Iv"
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:src="@drawable/cart_icon_white"
+                    android:padding="@dimen/_5sdp"
+                    />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/addTocartIcon_Iv"
+                android:layout_marginStart="@dimen/_3sdp"
+                android:padding="@dimen/_5sdp"
+                android:text="add to cart"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_5sdp"
+                />
+
+            </RelativeLayout>
+            
+        </LinearLayout>
+        
+        
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

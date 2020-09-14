@@ -1,0 +1,455 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/toolbarRL"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_margin="@dimen/_2sdp"
+        >
+
+        <ImageButton
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_back_accent"
+            android:background="@null"
+            android:layout_centerVertical="true"
+            android:id="@+id/backIB"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Checkout"
+            android:textSize="@dimen/_17sdp"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/colorBlack"
+            android:layout_centerVertical="true"
+            />
+
+        <RelativeLayout
+            android:layout_width="@dimen/_60sdp"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            >
+
+            <ImageButton
+                android:id="@+id/addTocartIB"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:src="@drawable/cart_icon"
+                android:layout_centerVertical="true"
+                android:background="@null"
+                />
+            <TextView
+                android:layout_marginStart="@dimen/_25sdp"
+                android:id="@+id/countCartItemIV"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:text="1"
+                android:gravity="center"
+                android:textColor="@color/colorWhite"
+                android:background="@drawable/circleable_background"
+
+                />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_below="@id/toolbarRL"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="@dimen/_5sdp"
+        android:layout_marginRight="@dimen/_5sdp"
+        android:layout_height="wrap_content">
+
+
+
+
+        <RelativeLayout
+
+            android:id="@+id/shipping_RL"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Shipping to"
+                android:textSize="@dimen/_16sdp"
+                android:layout_centerVertical="true"
+                android:textColor="@color/colorBlack"
+                />
+
+            <ImageButton
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/_3sdp"
+                android:src="@drawable/ic_expand_accent"
+                android:background="@null"
+                android:scaleType="fitXY"
+                />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_marginTop="@dimen/_10sdp"
+            android:id="@+id/person_information_RL"
+            android:layout_below="@id/shipping_RL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/active_status_IV"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:src="@mipmap/ic_launcher_round"
+                app:civ_border_width="2dp"
+                app:civ_border_color="@color/colorWhite"/>
+
+
+            <ImageButton
+                android:id="@+id/delete_IB"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:src="@drawable/icon_trash"
+                android:background="@null"
+               android:layout_alignParentEnd="true"
+                android:layout_marginRight="@dimen/_3sdp"
+
+                />
+
+            <ImageButton
+                android:id="@+id/edit_IB"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:src="@drawable/icon_edit"
+                android:background="@null"
+                android:layout_toLeftOf="@id/delete_IB"
+
+                android:layout_marginEnd="@dimen/_10sdp"
+
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/active_status_IV"
+                android:layout_marginStart="@dimen/_3sdp"
+                android:orientation="vertical"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Fariha Anjum"
+                    android:id="@+id/name_TV"
+                    android:layout_centerVertical="true"
+                    android:textSize="@dimen/_18sdp"
+                    android:layout_toRightOf="@id/active_status_IV"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:textColor="@color/colorBlack"
+                    />
+
+
+                <TextView
+                    android:id="@+id/street_address_TV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:text="East kazipare,mirpur dhos"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/_14sdp"
+                    />
+                <TextView
+                    android:id="@+id/postal_address_TV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:text="Begom rokeya avenue 1206,Dhaka"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/_14sdp"
+                    />
+
+                <TextView
+                    android:id="@+id/phone_number_tv_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="01912938283"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/_14sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    />
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/add_a_new_address_Btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bank_transfer_card_background"
+            android:layout_below="@id/person_information_RL"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:text="+\t\tAdd a New Address"
+            android:textColor="@color/cyan"
+            android:textAllCaps="false"
+            android:textSize="@dimen/_14sdp"
+            />
+
+        <RelativeLayout
+
+            android:id="@+id/add_payment_text_RL"
+            android:layout_below="@id/add_a_new_address_Btn"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Select Payment Methode"
+                android:textSize="@dimen/_16sdp"
+                android:layout_centerVertical="true"
+                android:textColor="@color/colorBlack"
+                />
+
+            <ImageButton
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/_3sdp"
+                android:src="@drawable/ic_expand_accent"
+                android:background="@null"
+                android:scaleType="fitXY"
+                />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_below="@id/add_payment_text_RL"
+            android:layout_width="match_parent"
+            android:id="@+id/select_payment_methode"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:weightSum="2"
+                android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:background="@drawable/bank_transfer_card_background"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/bank_image"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:src="@drawable/icon_bank"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_below="@id/bank_image"
+                        android:gravity="center"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:layout_width="@dimen/_25sdp"
+                            android:layout_height="@dimen/_25sdp"
+                            android:layout_gravity="center_vertical"
+                            android:src="@drawable/ic_check_color_accent"
+                            />
+                        <TextView
+                            android:layout_marginStart="@dimen/_5sdp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Bank transfer"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="@dimen/_14sdp"
+                            />
+
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:background="@drawable/cash_on_delivery_card_background"
+                    android:layout_height="wrap_content">
+
+
+                    <ImageView
+                        android:id="@+id/cash_on_delivery_image"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:src="@drawable/icon_cash"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_below="@id/cash_on_delivery_image"
+                        android:gravity="center"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:layout_width="@dimen/_25sdp"
+                            android:layout_height="@dimen/_25sdp"
+                            android:layout_gravity="center_vertical"
+                            android:src="@drawable/ic_check_gray"
+                            />
+                        <TextView
+                            android:layout_marginStart="@dimen/_5sdp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Cash On Delivery"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="@dimen/_14sdp"
+                            />
+
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:weightSum="2"
+                android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:background="@drawable/paypal_card_background"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/paypal_image"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:src="@drawable/paypal"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_below="@id/paypal_image"
+                        android:gravity="center"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:layout_width="@dimen/_25sdp"
+                            android:layout_height="@dimen/_25sdp"
+                            android:layout_gravity="center_vertical"
+                            android:src="@drawable/ic_check_color_accent"
+                            />
+                        <TextView
+                            android:layout_marginStart="@dimen/_5sdp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="PayPal"
+                            android:layout_marginRight="@dimen/_5sdp"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="@dimen/_14sdp"
+                            />
+
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:background="@drawable/master_card_background"
+                    android:layout_height="wrap_content">
+
+
+                    <ImageView
+                        android:id="@+id/master_card_image"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:src="@drawable/icon_card"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_below="@id/master_card_image"
+                        android:gravity="center"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:layout_width="@dimen/_25sdp"
+                            android:layout_height="@dimen/_25sdp"
+                            android:layout_gravity="center_vertical"
+                            android:src="@drawable/ic_check_gray"
+                            />
+                        <TextView
+                            android:layout_marginStart="@dimen/_5sdp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Master Card"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="@dimen/_14sdp"
+                            />
+
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/place_order_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Place Order"
+            android:padding="@dimen/_12sdp"
+            android:layout_below="@id/select_payment_methode"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:textColor="@color/colorWhite"
+            android:textAllCaps="false"
+            android:textSize="@dimen/_16sdp"
+            android:background="@drawable/round_button_accent_color_background"
+            />
+
+        <meow.bottomnavigation.MeowBottomNavigation
+            android:id="@+id/bottomNavigation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            />
+    </RelativeLayout>
+</RelativeLayout>

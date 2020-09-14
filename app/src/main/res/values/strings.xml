@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">dev.spinnertech.AfiqSouq</string>
+    <string name="view_all">view all</string>
+    <string name="women_s_collections">Women\'s Collections</string>
 </resources>

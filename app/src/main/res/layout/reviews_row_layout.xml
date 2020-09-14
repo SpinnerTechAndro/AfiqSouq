@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        >
+
+        <ImageView
+            android:id="@+id/prodct_image_id"
+            android:layout_width="@dimen/_70sdp"
+            android:layout_height="@dimen/_80sdp"
+            android:background="@drawable/roundable_image_background_01"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            />
+
+        <LinearLayout
+            android:id="@+id/details_LL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/prodct_image_id"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:orientation="vertical"
+            android:layout_marginStart="@dimen/_8sdp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/_15sdp"
+                    android:text="NM Kawcher-"
+                    android:layout_gravity="center_vertical"
+                    android:id="@+id/rater_person_name_tv"
+                    />
+
+                <TextView
+                    android:id="@+id/date_TV"
+                    android:layout_gravity="center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:text="18 may,2017"
+                    android:layout_toEndOf="@id/rater_person_name_tv"
+                    />
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_height="wrap_content">
+
+
+
+                <TextView
+                    android:id="@+id/avg_rating_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="@dimen/_95sdp"
+                    android:text="(4.5)"
+                    android:textColor="@color/colorBlack"
+                    android:textStyle="bold"
+                    android:layout_centerVertical="true"
+                    android:textSize="@dimen/_15sdp"/>
+
+                <RatingBar
+                    android:id="@+id/rating"
+                    style="@android:style/Widget.Holo.Light.RatingBar.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/colorGray02"
+                    android:max="5"
+                    android:numStars="5"
+                    android:progressTint="@color/colorAccent01"
+                    android:rating="3"
+                    android:scaleX="1.5"
+                    android:scaleY="1.5"
+                    android:transformPivotX="0dp" />
+
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/review_text_TV"
+                android:layout_marginTop="@dimen/_3sdp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorBlack"
+                android:text="this is dummy review this is dummy review this is dummy review reviewthis is dummy reviewthis is dummy reviewthis is dummy reviewthis is dummy review "
+                />
+        </LinearLayout>
+
+
+        <View
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"
+            android:background="@color/colorGray01"
+            android:layout_below="@id/details_LL"
+            />
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>
