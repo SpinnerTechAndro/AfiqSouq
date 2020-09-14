@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ShoppingCart"
+    android:background="@color/deep_blue">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/deep_blue">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/imageview_shoppingcart_back"
+                    android:layout_width="16dp"
+                    android:layout_height="22dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:src="@drawable/btn_back_1"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias=".9" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:text="@string/shopping_cart"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="17sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.4"
+                    app:layout_constraintStart_toEndOf="@+id/imageview_shoppingcart_back"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.882" />
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.917"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:srcCompat="@drawable/cart_icon_1"
+                    tools:layout_editor_absoluteY="18dp"
+                    tools:ignore="MissingConstraints,VectorDrawableCompat" />
+
+                <TextView
+                    android:id="@+id/textview_shoppingcart_cartNumber"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:background="@drawable/shape_round_cyan"
+                    android:text="3"
+                    android:textSize="10sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView_shoppingcart"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.94"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <LinearLayout
+        android:layout_width="355dp"
+        android:layout_height="45dp"
+        android:orientation="horizontal"
+        android:background="@drawable/shape_rect_gray"
+        android:layout_margin="20dp">
+
+        <TextView
+            android:id="@+id/textview_shoppingcart_couponNo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="WIN2020"
+            android:textColor="@color/light_green"
+            android:textSize="17sp"
+            android:layout_marginLeft="20dp"
+            />
+
+        <Button
+            android:id="@+id/button_shoppingcart_applyCoupon"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_btn_applycoupon"
+            android:layout_marginLeft="133.27dp"
+            android:text="@string/apply_coupon"
+            android:textAllCaps="false"
+            android:textColor="@color/white"/>
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview_shoppingcart_cartItem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+    <View
+        android:layout_width="340dp"
+        android:layout_height="1dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="55dp"
+        android:background="@color/gray3"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="140dp">
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="@string/subtotal"
+            android:textColor="@color/white"
+            android:textAllCaps="true"/>
+
+        <TextView
+            android:id="@+id/textview_shoppingcart_subtotal_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="$450.00"
+            android:textColor="@color/white"
+            android:textAllCaps="true"
+            android:layout_marginLeft="73dp"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="140dp">
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="@string/shipping_fee"
+            android:textColor="@color/white"/>
+
+        <TextView
+            android:id="@+id/textview_shoppingcart_shippingfee_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="$20.00"
+            android:textColor="@color/white"
+            android:textAllCaps="true"
+            android:layout_marginLeft="73dp"/>
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="222dp"
+        android:layout_height="1dp"
+        android:layout_gravity="end"
+        android:layout_marginEnd="30dp"
+        android:layout_marginTop="12dp"
+        android:background="@color/gray3"
+        android:layout_marginRight="20dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="140dp">
+
+        <TextView
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:text="@string/total"
+            android:textAllCaps="false"
+            android:textColor="@color/cyan" />
+
+        <TextView
+            android:id="@+id/textview_shoppingcart_total_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="$470.00"
+            android:textColor="@color/cyan"
+            android:textAllCaps="true"
+            android:layout_marginLeft="112dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="140dp">
+
+        <TextView
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:text="@string/discount"
+            android:textColor="@color/white"/>
+
+        <TextView
+            android:id="@+id/textview_shoppingcart_discount_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="$15.00"
+            android:textColor="@color/white"
+            android:textAllCaps="true"
+            android:layout_marginLeft="112dp"/>
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="222dp"
+        android:layout_height="1dp"
+        android:layout_gravity="end"
+        android:layout_marginEnd="30dp"
+        android:layout_marginTop="12dp"
+        android:background="@color/gray3"
+        android:layout_marginRight="20dp" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="140dp">
+
+        <TextView
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:text="@string/total"
+            android:textColor="@color/cyan"
+            android:textAllCaps="false"/>
+
+        <TextView
+            android:id="@+id/textview_shoppingcart_tobe_paid_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="$455.00"
+            android:textColor="@color/cyan"
+            android:textAllCaps="true"
+            android:layout_marginLeft="112dp"/>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/button_shoppingcart_checkoutd"
+        android:layout_width="350dp"
+        android:layout_height="45dp"
+        android:text="@string/checkout"
+        android:textAllCaps="false"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:background="@drawable/resetpass_btn_rect"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"/>
+
+    <com.etebarian.meowbottomnavigation.MeowBottomNavigation
+        android:id="@+id/bottomNavigation_shopping_cart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        app:mbn_backgroundBottomColor="@color/white"
+        app:mbn_circleColor="@color/cyan" />
+
+
+</LinearLayout>

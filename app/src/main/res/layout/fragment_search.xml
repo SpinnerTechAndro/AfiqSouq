@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/deep_blue">
+
+    <RelativeLayout
+        android:layout_width="160dp"
+        android:layout_height="200dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/shape_rect_gray"
+        tools:ignore="MissingConstraints">
+
+        <ImageView
+            android:id="@+id/imageview_search_favourite"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/btn_back" />
+
+        <TextView
+            android:id="@+id/textview_search_status"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="9dp"
+            android:layout_marginRight="9dp"
+            android:background="@color/cyan"
+            android:gravity="center"
+            android:text="@string/nw"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="10sp" />
+
+        <TextView
+            android:id="@+id/textview_search_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="14dp"
+            android:layout_marginLeft="14dp"
+            android:layout_marginTop="148dp"
+            android:layout_marginEnd="84dp"
+            android:layout_marginRight="84dp"
+            android:layout_marginBottom="29dp"
+            android:text="$150.00"
+            android:textColor="@color/cyan"
+            android:textSize="17sp"
+            android:textStyle="bold"/>
+
+        <ImageView
+            android:id="@+id/imageview_search_cart_fr"
+            android:layout_width="27dp"
+            android:layout_height="27dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="14dp"
+            android:layout_marginRight="14dp"
+            android:layout_marginBottom="29dp"
+            android:background="@drawable/shape_round_white"
+            android:src="@drawable/cart_icon" />
+
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/imageview_search_cancel"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginLeft="158dp"
+        android:layout_marginTop="-3dp"
+        android:src="@drawable/btn_close_trns" />
+
+
+
+</RelativeLayout>

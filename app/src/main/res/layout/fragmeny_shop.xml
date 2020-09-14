@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/deep_blue">
+
+        <RelativeLayout
+            android:layout_width="160dp"
+            android:layout_height="200dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/shape_rect_gray">
+
+            <ImageView
+                android:id="@+id/imageview_shopfr_favourite"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/heart_icon_outline" />
+
+            <TextView
+                android:id="@+id/textview_shopfr_status"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginEnd="9dp"
+                android:layout_marginRight="9dp"
+                android:background="@color/cyan"
+                android:gravity="center"
+                android:text="@string/nw"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="10sp" />
+
+            <ImageView
+                android:id="@+id/imageview_shopfr_arrow"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="53dp"
+                android:layout_marginLeft="53dp"
+                android:layout_marginTop="59dp"
+                android:layout_marginEnd="57dp"
+                android:layout_marginRight="57dp"
+                android:layout_marginBottom="91dp"
+                android:src="@drawable/right_arrow"
+                android:background="@drawable/shape_round_white"/>
+
+            <TextView
+                android:id="@+id/textview_shopfr_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="14dp"
+                android:layout_marginLeft="14dp"
+                android:layout_marginTop="148dp"
+                android:layout_marginBottom="29dp"
+                android:text="$150.00"
+                android:textColor="@color/cyan"
+                android:textSize="17sp"
+                android:textStyle="bold"/>
+
+            <ImageView
+                android:id="@+id/imageview_shopfr_cart"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="14dp"
+                android:layout_marginRight="14dp"
+                android:layout_marginBottom="29dp"
+                android:background="@drawable/shape_round_white"
+                android:src="@drawable/cart_icon" />
+
+        </RelativeLayout>
+
+    <TextView
+        android:id="@+id/textview_shopfr_itemName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Blue silk flare\nSleeved top"
+        android:textColor="@color/white"
+        android:layout_marginLeft="10dp"/>
+
+    <RatingBar
+        android:id="@+id/ratingbar_shopfr_rating"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        />
+
+</LinearLayout>
