@@ -43,7 +43,7 @@
                 android:src="@drawable/cart_icon" />
 
             <TextView
-                android:id="@+id/countCartItemIV"
+                android:id="@+id/countCartItemTV"
                 android:layout_width="@dimen/_20sdp"
                 android:layout_height="@dimen/_20sdp"
                 android:layout_marginStart="@dimen/_25sdp"
@@ -77,7 +77,7 @@
         android:layout_marginStart="@dimen/_10sdp">
 
         <TextView
-            android:id="@+id/ratingView"
+            android:id="@+id/averageRating_TV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -90,10 +90,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_15sdp"
-            android:layout_toEndOf="@id/ratingView">
+            android:layout_toEndOf="@id/averageRating_TV">
 
             <RatingBar
-                android:id="@+id/ratingbar_avg_vendor_rating"
+                android:id="@+id/averageViewRatingBar"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/_35sdp"
                 android:backgroundTint="@color/colorAccent"
@@ -106,7 +106,7 @@
                 android:id="@+id/total_review_count_TV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/ratingbar_avg_vendor_rating"
+                android:layout_below="@id/averageViewRatingBar"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:text="Based on 246 reviews"
                 android:textColor="@color/colorBlack"
@@ -169,18 +169,17 @@
                 android:layout_centerVertical="true"
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="@dimen/_10sdp"
-                android:layout_toStartOf="@id/textview_five_star_progress_count"
+                android:layout_toStartOf="@+id/five_star_count_textview"
                 android:layout_toEndOf="@id/imageView1"
                 android:progress="0"
                 android:progressDrawable="@drawable/layesrlist_progressbar"
                 android:scaleY=".3" />
 
             <TextView
-                android:id="@+id/textview_five_star_progress_count"
+                android:id="@+id/five_star_count_textview"
                 android:layout_width="@dimen/_20sdp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
                 android:text="5"
                 android:textAlignment="center"
                 android:textSize="@dimen/_15sdp"
@@ -221,18 +220,17 @@
                 android:layout_centerVertical="true"
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="@dimen/_10sdp"
-                android:layout_toStartOf="@id/textview_four_star_progress_count"
+                android:layout_toStartOf="@+id/four_star_count_textview"
                 android:layout_toEndOf="@id/imageView2"
                 android:progress="0"
                 android:progressDrawable="@drawable/layesrlist_progressbar"
                 android:scaleY=".3" />
 
             <TextView
-                android:id="@+id/textview_four_star_progress_count"
+                android:id="@+id/four_star_count_textview"
                 android:layout_width="@dimen/_20sdp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
                 android:text="4"
                 android:textAlignment="center"
                 android:textSize="@dimen/_15sdp"
@@ -273,14 +271,14 @@
                 android:layout_centerVertical="true"
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="@dimen/_10sdp"
-                android:layout_toStartOf="@id/textview_three_star_progress_count"
+                android:layout_toStartOf="@+id/three_star_count_textview"
                 android:layout_toEndOf="@id/imageView3"
                 android:progress="0"
                 android:progressDrawable="@drawable/layesrlist_progressbar"
                 android:scaleY=".3" />
 
             <TextView
-                android:id="@+id/textview_three_star_progress_count"
+                android:id="@+id/three_star_count_textview"
                 android:layout_width="@dimen/_20sdp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
@@ -325,14 +323,14 @@
                 android:layout_centerVertical="true"
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="@dimen/_10sdp"
-                android:layout_toStartOf="@id/textview_two_star_progress_count"
+                android:layout_toStartOf="@+id/two_star_count_textview"
                 android:layout_toEndOf="@id/imageView4"
                 android:progress="0"
                 android:progressDrawable="@drawable/layesrlist_progressbar"
                 android:scaleY=".3" />
 
             <TextView
-                android:id="@+id/textview_two_star_progress_count"
+                android:id="@+id/two_star_count_textview"
                 android:layout_width="@dimen/_20sdp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
@@ -377,14 +375,14 @@
                 android:layout_centerVertical="true"
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="@dimen/_10sdp"
-                android:layout_toStartOf="@id/textview_one_star_progress_count"
+                android:layout_toStartOf="@+id/one_star_count_textview"
                 android:layout_toEndOf="@id/imageView5"
                 android:progress="0"
                 android:progressDrawable="@drawable/layesrlist_progressbar"
                 android:scaleY=".3" />
 
             <TextView
-                android:id="@+id/textview_one_star_progress_count"
+                android:id="@+id/one_star_count_textview"
                 android:layout_width="@dimen/_20sdp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
@@ -406,7 +404,7 @@
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rating_RV"
+        android:id="@+id/reviews_RV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/rating_LL"
@@ -417,7 +415,7 @@
         android:id="@+id/add_a_review_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/rating_RV"
+        android:layout_below="@id/reviews_RV"
         android:layout_margin="@dimen/_5sdp"
         android:background="@drawable/round_button_accent_color_background"
         android:text="+\t\t Add a Review"

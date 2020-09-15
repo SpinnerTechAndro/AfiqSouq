@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/colorWhite"
+    android:orientation="vertical"
     tools:context=".CollectionsActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -25,52 +25,48 @@
                 android:id="@+id/toolbarRL"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40sdp"
-                android:layout_margin="@dimen/_2sdp"
-                >
+                android:layout_margin="@dimen/_2sdp">
 
                 <ImageButton
+                    android:id="@+id/backIB"
                     android:layout_width="@dimen/_30sdp"
                     android:layout_height="@dimen/_30sdp"
-                    android:src="@drawable/ic_back_accent"
-                    android:background="@null"
                     android:layout_centerVertical="true"
-                    android:id="@+id/backIB"
-                    />
+                    android:background="@null"
+                    android:src="@drawable/ic_back_accent" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/women_s_collections"
-                    android:textSize="@dimen/_15sdp"
-                    android:textStyle="bold"
                     android:layout_centerHorizontal="true"
-                    android:textColor="@color/colorBlack"
                     android:layout_centerVertical="true"
-                    />
+                    android:text="@string/women_s_collections"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/_15sdp"
+                    android:textStyle="bold" />
 
                 <RelativeLayout
                     android:layout_width="@dimen/_60sdp"
                     android:layout_height="match_parent"
-                    android:layout_alignParentEnd="true"
-                    >
+                    android:layout_alignParentEnd="true">
 
                     <ImageButton
                         android:id="@+id/addTocartIB"
                         android:layout_width="@dimen/_30sdp"
                         android:layout_height="@dimen/_30sdp"
-                        android:src="@drawable/cart_icon"
                         android:layout_centerVertical="true"
                         android:background="@null"
-                        />
+                        android:src="@drawable/cart_icon" />
+
                     <TextView
-                        android:layout_marginStart="@dimen/_25sdp"
-                        android:id="@+id/countCartItemIV"
+                        android:id="@+id/countCartItemTV"
                         android:layout_width="@dimen/_20sdp"
                         android:layout_height="@dimen/_20sdp"
-                        android:text="1"
-                        android:gravity="center"
-                        android:textColor="@color/colorWhite"
+                        android:layout_marginStart="@dimen/_25sdp"
                         android:background="@drawable/circleable_background"
+                        android:gravity="center"
+                        android:text="1"
+                        android:textColor="@color/colorWhite"
 
                         />
 
@@ -89,14 +85,14 @@
         android:orientation="vertical">
 
 
-<!-- tools:listitem="@layout/average_row_women_layout"-->
+        <!-- tools:listitem="@layout/average_row_women_layout"-->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/average_product_RV"
-            android:layout_marginTop="@dimen/_3sdp"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
 
-            android:scrollbars="horizontal"
-            android:layout_height="wrap_content"/>
+            android:layout_marginTop="@dimen/_3sdp"
+            android:scrollbars="horizontal" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -106,24 +102,24 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
                 android:text="Featured"
                 android:textColor="@color/colorBlack"
                 android:textSize="20sp"
-                android:textStyle="bold"
-                android:layout_marginTop="5dp"/>
+                android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/textview_viewall_featured"
+                android:id="@+id/viewall_featured_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="225dp"
+                android:layout_marginTop="5dp"
+                android:drawableRight="@drawable/ic_expand_accent"
                 android:text="@string/view_all"
                 android:textColor="@color/colorAccent01"
                 android:textSize="@dimen/_12sdp"
-                android:layout_gravity="center_vertical"
-                android:textStyle="bold"
-                android:layout_marginLeft="225dp"
-                android:layout_marginTop="5dp"
-                android:drawableRight="@drawable/ic_expand_accent" />
+                android:textStyle="bold" />
 
         </LinearLayout>
 
@@ -141,24 +137,24 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
                 android:text="New Arrivals"
                 android:textColor="@color/colorBlack"
                 android:textSize="20sp"
-                android:textStyle="bold"
 
-                android:layout_marginTop="5dp"/>
+                android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/textview_viewall_newarrival"
+                android:id="@+id/viewall_newarrival_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="188dp"
+                android:layout_marginTop="5dp"
+                android:drawableRight="@drawable/ic_expand_accent"
                 android:text="@string/view_all"
                 android:textColor="@color/colorAccent01"
                 android:textSize="@dimen/_12ssp"
-                android:textStyle="bold"
-                android:layout_marginLeft="188dp"
-                android:layout_marginTop="5dp"
-                android:drawableRight="@drawable/ic_expand_accent" />
+                android:textStyle="bold" />
 
         </LinearLayout>
         <!--tools:listitem="@layout/featured_row_layout"-->
@@ -166,14 +162,13 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/new_arrivals_RV"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
     </LinearLayout>
 
     <meow.bottomnavigation.MeowBottomNavigation
         android:id="@+id/bottomNavigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-       />
+        android:layout_gravity="bottom" />
 
 </LinearLayout>

@@ -58,7 +58,7 @@
                         android:src="@drawable/cart_icon" />
 
                     <TextView
-                        android:id="@+id/countCartItemIV"
+                        android:id="@+id/countCartItemTV"
                         android:layout_width="@dimen/_20sdp"
                         android:layout_height="@dimen/_20sdp"
                         android:layout_marginStart="@dimen/_25sdp"
@@ -126,6 +126,7 @@
                 android:src="@drawable/icon_cog" />
 
             <TextView
+                android:id="@+id/generalTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -148,6 +149,7 @@
                 android:src="@drawable/icon_shield" />
 
             <TextView
+                android:id="@+id/privacy_and_security_TV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -169,6 +171,7 @@
                 android:src="@drawable/icon_payment" />
 
             <TextView
+                android:id="@+id/paymentTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -190,6 +193,7 @@
                 android:src="@drawable/icon_bell" />
 
             <TextView
+                android:id="@+id/notificationTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -212,8 +216,9 @@
                 android:src="@drawable/icon_logout" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/logOutTV"
+                android:layout_width="47dp"
+                android:layout_height="match_parent"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="@dimen/_8sdp"
                 android:text="Logout"
