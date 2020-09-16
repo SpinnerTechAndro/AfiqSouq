@@ -1,100 +1,98 @@
 <resources>
-    <string name="app_name">AfiqSouq</string>
-    <string name="women_s_collections">Women\'s Collections</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <!--Reset password-->
-    <string name="reset_pass">Reset Password</string>
-    <string name="forgotpass">Forgot password?</string>
-    <string name="entermail">Please enter the email address regestered on your account</string>
+    <string name="app_name">dev.spinnertech.AfiqSouq</string>
 
-    <!--Sign up-->
-    <string name="signup">Sign Up</string>
-    <string name="your_name">Your name</string>
-    <string name="your_mail">Your email</string>
-    <string name="password">Password</string>
-    <string name="service_privacy">By creating an account,you agree to the Kenakata Terms of services and privacy policy</string>
-    <string name="already_have_acc">Already have an account?Sign In</string>
-    <string name="signin">Sign In</string>
+<!--Reset password-->
+<string name="reset_pass">Reset Password</string>
+<string name="forgotpass">Forgot password?</string>
+<string name="entermail">Please enter the email address regestered on your account</string>
 
-    <!--Shopping Cart-->
-    <string name="shopping_cart">Shopping Cart</string>
-    <string name="subtotal">Sub Total</string>
-    <string name="shipping_fee">Shipping Fee</string>
-    <string name="total">Total</string>
-    <string name="discount">Discount</string>
-    <string name="tobe_paid">To Be Paid</string>
-    <string name="checkout">Checkout</string>
-    <string name="apply_coupon">Apply Coupon</string>
+<!--Sign up-->
+<string name="signup">Sign Up</string>
+<string name="your_name">Your name</string>
+<string name="your_mail">Your email</string>
+<string name="password">Password</string>
+<string name="service_privacy">By creating an account,you agree to the Kenakata Terms of services and privacy policy</string>
+<string name="already_have_acc">Already have an account?Sign In</string>
+<string name="signin">Sign In</string>
 
-    <!--shop-->
-    <string name="nw">New</string>
-    <string name="hot">Hot</string>
-    <string name="shop">Shop</string>
+<!--Shopping Cart-->
+<string name="shopping_cart">Shopping Cart</string>
+<string name="subtotal">Sub Total</string>
+<string name="shipping_fee">Shipping Fee</string>
+<string name="total">Total</string>
+<string name="discount">Discount</string>
+<string name="tobe_paid">To Be Paid</string>
+<string name="checkout">Checkout</string>
+<string name="apply_coupon">Apply Coupon</string>
 
-    <!--Home-->
-    <string name="discover">Discover</string>
-    <string name="featured">Featured</string>
-    <string name="view_all">View all</string>
-    <string name="new_arrivals">New Arrivals</string>
+<!--shop-->
+<string name="nw">New</string>
+<string name="hot">Hot</string>
+<string name="shop">Shop</string>
 
-    <!--Search-->
-    <string name="search">Search</string>
-    <string name="product_found">15 products found</string>
+<!--Home-->
+<string name="discover">Discover</string>
+<string name="featured">Featured</string>
+<string name="view_all">View all</string>
+<string name="new_arrivals">New Arrivals</string>
 
-    <!--Products details-->
-    <string name="demo_text">Lorem ipsum dolor sit amet,conhd lqwhdw hahffui hfuihs jaegfuwac jqwguqwh jwudhduwhc
+<!--Search-->
+<string name="search">Search</string>
+<string name="product_found">15 products found</string>
+
+<!--Products details-->
+<string name="demo_text">Lorem ipsum dolor sit amet,conhd lqwhdw hahffui hfuihs jaegfuwac jqwguqwh jwudhduwhc
     wudhjwdn uiahfuwajn kwawhdiwjhdn kwudhwjdn</string>
-    <string name="additional_info">Additional Info</string>
-    <string name="reviews">Reviews(5)</string>
-    <string name="about_brand">About Brand</string>
-    <string name="add_to_cart">Add to Cart</string>
+<string name="additional_info">Additional Info</string>
+<string name="reviews">Reviews(5)</string>
+<string name="about_brand">About Brand</string>
+<string name="add_to_cart">Add to Cart</string>
 
-    <!--Filters-->
-    <string name="filters">Filters</string>
-    <string name="categories">Categories</string>
-    <string name="men">Men(95)</string>
-    <string name="women">Women(160)</string>
-    <string name="kids">Kids(250)</string>
-    <string name="shoes">Shoes(75)</string>
-    <string name="Accessories">Accessories(55)</string>
-    <string name="price">Price</string>
-    <string name="colors">Colors</string>
-    <string name="sortby">Sort by</string>
-    <string name="most_popular">Most Popular</string>
-    <string name="size">Size</string>
-    <string name="brand">Brand</string>
-    <string name="apply_filter">Apply Filter</string>
-    <string name="clear_all">Clear All</string>
+<!--Filters-->
+<string name="filters">Filters</string>
+<string name="categories">Categories</string>
+<string name="men">Men(95)</string>
+<string name="women">Women(160)</string>
+<string name="kids">Kids(250)</string>
+<string name="shoes">Shoes(75)</string>
+<string name="Accessories">Accessories(55)</string>
+<string name="price">Price</string>
+<string name="colors">Colors</string>
+<string name="sortby">Sort by</string>
+<string name="most_popular">Most Popular</string>
+<string name="size">Size</string>
+<string name="brand">Brand</string>
+<string name="apply_filter">Apply Filter</string>
+<string name="clear_all">Clear All</string>
 
-    <!--Thank you-->
-    <string name="thanku">Thank you!</string>
-    <string name="order_track">Your payment is completed successfully.Please
+<!--Thank you-->
+<string name="thanku">Thank you!</string>
+<string name="order_track">Your payment is completed successfully.Please
         check the delivery status at Order Tracking</string>
-    <string name="back">Back to Shop</string>
+<string name="back">Back to Shop</string>
 
-    <!--My cart-->
-    <string name="mycart">My Cart</string>
-    <string name="empty_cart">Empty Cart!</string>
-    <string name="hey">Hey,add some awesome products in your cart!</string>
-    <string name="shop_now">Shop Now</string>
+<!--My cart-->
+<string name="mycart">My Cart</string>
+<string name="empty_cart">Empty Cart!</string>
+<string name="hey">Hey,add some awesome products in your cart!</string>
+<string name="shop_now">Shop Now</string>
 
-    <!--my account-->
-    <string name="myacc">My Account</string>
-    <string name="myprofile">My Profile</string>
-    <string name="wishlist">Wishlist</string>
-    <string name="my_order">My Orders</string>
-    <string name="payment">Payment</string>
-    <string name="address">Address</string>
-    <string name="gift">Gift Card and Vouchers</string>
-    <string name="setting">Settings</string>
-    <string name="logout">Logout</string>
+<!--my account-->
+<string name="myacc">My Account</string>
+<string name="myprofile">My Profile</string>
+<string name="wishlist">Wishlist</string>
+<string name="my_order">My Orders</string>
+<string name="payment">Payment</string>
+<string name="address">Address</string>
+<string name="gift">Gift Card and Vouchers</string>
+<string name="setting">Settings</string>
+<string name="logout">Logout</string>
 
-    <!--SMS verification-->
-    <string name="SV">SMS Verification</string>
-    <string name="enter_code">Enter the code below\n to verify phone number</string>
-    <string name="code_sent">A 6 digit verification code has been sent to ....5629</string>
-    <string name="verify">Verify</string>
-    <string name="cancel">Cancel</string>
+<!--SMS verification-->
+<string name="SV">SMS Verification</string>
+<string name="enter_code">Enter the code below\n to verify phone number</string>
+<string name="code_sent">A 6 digit verification code has been sent to ....5629</string>
+<string name="verify">Verify</string>
+<string name="cancel">Cancel</string>
 
 </resources>

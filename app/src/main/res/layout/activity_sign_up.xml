@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray1"
+    tools:context=".SignUp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="470dp"
+        android:background="@drawable/shape_signup"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+
+        <TextView
+            android:id="@+id/textView_signup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:gravity="center_vertical"
+            android:text="@string/signup"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/editText_signup_Name"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/shape_rect_gray"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:hint="@string/your_name"
+            android:textSize="13sp"
+            android:drawableLeft="@drawable/user"
+            android:padding="10dp"
+            android:textColor="@color/gray4" />
+
+        <EditText
+            android:id="@+id/editText_signup_Email"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/shape_rect_gray"
+            android:ems="10"
+            android:hint="@string/your_mail"
+            android:textSize="13sp"
+            android:padding="10dp"
+            android:drawableLeft="@drawable/ic_baseline_mail_outline_24"
+            android:textColor="@color/gray4" />
+
+        <EditText
+            android:id="@+id/editText_signup_Password"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/shape_rect_gray"
+            android:ems="10"
+            android:hint="@string/password"
+            android:textSize="13sp"
+            android:padding="10dp"
+            android:textColor="@color/gray4"
+            android:drawableLeft="@drawable/lock"
+            android:drawableRight="@drawable/eye_view" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp">
+
+            <CheckBox
+                android:id="@+id/checkbox_signup_servicePrivacy"
+                android:layout_width="12dp"
+                android:layout_height="13dp"
+                android:background="@drawable/shape_rect_radiobtn"
+                android:layout_marginTop="4dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/service_privacy"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:layout_marginLeft="10dp"/>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/button_signup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:background="@drawable/resetpass_btn_rect"
+            android:text="@string/signup"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:textAllCaps="false"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/already_have_acc"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:textSize="11sp"
+            android:layout_marginTop="30dp"/>
+
+        <View
+            android:layout_width="130dp"
+            android:layout_height="4dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="55dp"
+            android:background="#e2e2e2"/>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
