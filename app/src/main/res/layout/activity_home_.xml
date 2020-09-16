@@ -50,7 +50,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="52dp"
                 app:itemBackground="@null"
-                 app:labelVisibilityMode="unlabeled"
+                app:itemRippleColor="@null"
+                app:labelVisibilityMode="unlabeled"
                 android:layout_alignParentBottom="true"
                 app:itemIconTint="@drawable/nav_text_selector"
                 app:itemTextColor="@drawable/nav_text_selector"
@@ -60,9 +61,9 @@
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/play"
+                app:tint="@null"
+                app:srcCompat="@drawable/play"
                 app:fabSize="auto"
-
                 android:layout_marginBottom="-16dp"
                 android:layout_centerHorizontal="true"
                 android:layout_above="@+id/bottom_navigation_"
