@@ -2,6 +2,7 @@ package dev.spinner_tech.afiqsouq.api;
 
 import java.util.List;
 
+import dev.spinner_tech.afiqsouq.Models.CategoryResp;
 import dev.spinner_tech.afiqsouq.Models.LoginResp;
 import dev.spinner_tech.afiqsouq.Models.ProductResp;
 import dev.spinner_tech.afiqsouq.Models.Recived_Sign_up;
@@ -24,5 +25,8 @@ public  interface api {
 
     @GET("user/generate_auth_cookie")
     Call<LoginResp> Login(@Query("username") String username , @Query("password") String pass) ;
+    // get all the parent category   products/categories?parent=0
+    @GET("products/categories?parent=0")
+    Call<List<CategoryResp>> getAllParentCategory(@Header("Authorization") String authHeader );
 
 }

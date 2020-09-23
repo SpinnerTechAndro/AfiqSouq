@@ -62,12 +62,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:tint="@null"
-                app:srcCompat="@drawable/play"
+                app:srcCompat="@drawable/menu"
                 app:fabSize="auto"
                 android:layout_marginBottom="-16dp"
                 android:layout_centerHorizontal="true"
                 android:layout_above="@+id/bottom_navigation_"
-                app:maxImageSize="50dp" />
+                 />
 
         </RelativeLayout>
 

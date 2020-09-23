@@ -37,6 +37,7 @@
 
 
     <color name="black">#000000</color>
+    <color name="textColor">#0E153D</color>
 
 
 </resources>
