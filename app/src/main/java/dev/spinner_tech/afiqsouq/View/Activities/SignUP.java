@@ -5,11 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
-import android.widget.Toast;
 
-import java.util.List;
-
-import dev.spinner_tech.afiqsouq.Models.ProductResp;
 import dev.spinner_tech.afiqsouq.Models.Recived_Sign_up;
 import dev.spinner_tech.afiqsouq.Models.SignUpResp;
 import dev.spinner_tech.afiqsouq.R;
@@ -18,7 +14,6 @@ import dev.spinner_tech.afiqsouq.services.RetrofitClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
 
 public class SignUP extends AppCompatActivity {
 

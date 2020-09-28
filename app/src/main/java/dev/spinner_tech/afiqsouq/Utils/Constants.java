@@ -1,12 +1,6 @@
 package dev.spinner_tech.afiqsouq.Utils;
 
 import android.util.Log;
-import android.widget.Toast;
-
-import java.util.List;
-
-import dev.spinner_tech.afiqsouq.Models.ProductResp;
-import retrofit2.Callback;
 
 public  class Constants {
     public static final String ROOT_URL = "https://afiqsouq.com/wp-json/wc/v3/";
@@ -22,12 +16,12 @@ public  class Constants {
         Log.d("TAG" , msg) ;
     }
 
-//     call.enqueue(new Callback<List<ProductResp>>() {
+//     call.enqueue(new Callback<List<ProductModel>>() {
 //        @Override
-//        public void onResponse(Call<List<ProductResp>> call, Response<List<ProductResp>> response) {
+//        public void onResponse(Call<List<ProductModel>> call, Response<List<ProductModel>> response) {
 //
 //            if(response.code()==200){
-//                List<ProductResp> resp = response.body() ;
+//                List<ProductModel> resp = response.body() ;
 //
 //                Log.d("TAG" , resp.size()+ " ") ;
 //            }
@@ -37,7 +31,7 @@ public  class Constants {
 //        }
 //
 //        @Override
-//        public void onFailure(Call<List<ProductResp>> call, Throwable t) {
+//        public void onFailure(Call<List<ProductModel>> call, Throwable t) {
 //
 //            Toast.makeText(getApplicationContext(), "Something Went Wrong " + t.getMessage() , Toast.LENGTH_LONG).show();
 //        }

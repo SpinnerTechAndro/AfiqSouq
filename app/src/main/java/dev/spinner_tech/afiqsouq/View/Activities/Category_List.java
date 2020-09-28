@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Base64;
 import android.view.View;
@@ -42,12 +43,23 @@ public class Category_List extends AppCompatActivity {
             }
         });
 
-        itemClickListener = new CateGoryAdapter.ItemClickListener() {
-            @Override
-            public void onItemClick(View view, int pos) {
-               Toasty.success(getApplicationContext(), "Name : " + categoryResp.get(pos).getName() , 1).show();
+        itemClickListener = (view, pos) -> {
+          // Toasty.success(getApplicationContext(), "Name : " + categoryResp.get(pos).getName() , 1).show();
+
+         String   name = categoryResp.get(pos).getName() ;
+            if (name.contains("amp;")) {
+
+                 name = categoryResp.get(pos).getName().replace("amp;", "");
+
             }
-        } ;
+            Intent p = new Intent(getApplicationContext(), CategoryViewPage.class) ;
+            p.putExtra("cat_name" , name) ;
+            p.putExtra("parent_id" , categoryResp.get(pos).getId()+"") ;
+            startActivity(p);
+
+
+
+        };
 
     }
 

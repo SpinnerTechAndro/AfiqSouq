@@ -24,7 +24,7 @@ public  class CategoryResp {
     private String display;
     @SerializedName("image")
     @Expose
-    private ProductResp.Image image;
+    private ProductModel.Image image;
     @SerializedName("menu_order")
     @Expose
     private Integer menuOrder;
@@ -82,11 +82,11 @@ public  class CategoryResp {
         this.display = display;
     }
 
-    public ProductResp.Image getImage() {
+    public ProductModel.Image getImage() {
         return image;
     }
 
-    public void setImage(ProductResp.Image image) {
+    public void setImage(ProductModel.Image image) {
         this.image = image;
     }
 

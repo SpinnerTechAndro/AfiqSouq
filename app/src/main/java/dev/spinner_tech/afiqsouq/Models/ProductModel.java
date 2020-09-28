@@ -3,9 +3,10 @@ package dev.spinner_tech.afiqsouq.Models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
-public  class ProductResp {
+public  class ProductModel implements Serializable {
     @SerializedName("id")
     @Expose
     private Integer id;
@@ -702,7 +703,7 @@ public  class ProductResp {
     }
 
 
-    public class Category {
+    public class Category implements Serializable{
 
         @SerializedName("id")
         @Expose
@@ -739,7 +740,7 @@ public  class ProductResp {
         }
 
     }
-    public class Dimensions {
+    public class Dimensions implements Serializable {
 
         @SerializedName("length")
         @Expose
@@ -776,7 +777,7 @@ public  class ProductResp {
         }
 
     }
-    public class Image {
+    public class Image implements Serializable {
 
         @SerializedName("id")
         @Expose

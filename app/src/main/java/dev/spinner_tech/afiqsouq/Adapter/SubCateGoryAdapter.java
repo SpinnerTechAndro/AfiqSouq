@@ -25,14 +25,14 @@ import dev.spinner_tech.afiqsouq.R;
  * Created by USER on 18-Jul-20.
  */
 
-public class CateGoryAdapter extends RecyclerView.Adapter<CateGoryAdapter.ViewHolder> {
+public class SubCateGoryAdapter extends RecyclerView.Adapter<SubCateGoryAdapter.ViewHolder> {
 
     List<CategoryResp> list;
     private LayoutInflater mInflater;
     private ItemClickListener itemClickListener;
     Context context;
 
-    public CateGoryAdapter(Context context, List<CategoryResp> list, ItemClickListener itemClickListener) {
+    public SubCateGoryAdapter(Context context, List<CategoryResp> list, ItemClickListener itemClickListener) {
         this.mInflater = LayoutInflater.from(context);
         this.list = list;
         this.context = context;
@@ -42,7 +42,7 @@ public class CateGoryAdapter extends RecyclerView.Adapter<CateGoryAdapter.ViewHo
     @NotNull
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = mInflater.inflate(R.layout.categories_row_layout, parent, false);
+        View view = mInflater.inflate(R.layout.sub_category_row, parent, false);
         return new ViewHolder(view, itemClickListener);
     }
 
