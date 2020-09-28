@@ -11,95 +11,92 @@
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
-        android:layout_height="?actionBarSize"
+        android:layout_height="?attr/actionBarSize"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/white">
+            android:background="@color/white"
+            android:layout_height="match_parent">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
                 <ImageView
-                    android:id="@+id/imageview_shop_back"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:id="@+id/backBtn"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
                     android:src="@drawable/ic_baseline_arrow_back_24"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginLeft="20dp"
                     android:text="@string/shop"
                     android:textAllCaps="false"
-                    android:textColor="@color/black"
-                    android:textSize="18sp"
+                    android:textColor="@color/textColor"
+                    style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+                    android:id="@+id/header_title"
                     android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.38"
-                    app:layout_constraintStart_toEndOf="@+id/imageview_shop_back"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:layout_marginTop="8dp" />
+                    android:layout_centerInParent="true" />
 
                 <ImageView
+                    android:id="@+id/imageView_discover_cart"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.917"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:srcCompat="@drawable/cart_icon"
-                    tools:layout_editor_absoluteY="20dp"
-                    tools:ignore="MissingConstraints,VectorDrawableCompat" />
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="15dp"
+                    android:background="@drawable/cart_icon"
+                    />
 
                 <TextView
-                    android:id="@+id/textview_shop_cartNumber"
-                    android:layout_width="14dp"
-                    android:layout_height="14dp"
+                    android:id="@+id/textview_discover_cartNumber"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
                     android:background="@drawable/shape_round_cyan"
                     android:text="0"
+                    android:textStyle="bold"
                     android:textSize="10sp"
-                    android:textColor="@color/white"
                     android:gravity="center"
-                    android:layout_marginTop="12dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.94"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.9" />
+                    android:textColor="@color/white"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="6dp"
+                    android:layout_marginTop="@dimen/_3sdp"
+                    android:layout_above="@+id/imageView_discover_cart"/>
 
-                <ImageView
-                    android:id="@+id/imageView_shop_barIcon"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.83"
-                    app:layout_constraintStart_toStartOf="parent"
-                    android:visibility="gone"
-                    tools:layout_editor_absoluteY="20dp"
-                    tools:ignore="MissingConstraints,VectorDrawableCompat" />
-
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            </RelativeLayout>
 
         </androidx.appcompat.widget.Toolbar>
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:id="@+id/pList"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <com.github.ybq.android.spinkit.SpinKitView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/spin_kit"
+            style="@style/SpinKitView.Large.ThreeBounce"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            app:SpinKit_Color="@color/colorAccent" />
+
+    </LinearLayout>
 
 </LinearLayout>

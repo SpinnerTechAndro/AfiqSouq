@@ -15,6 +15,8 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
 
+import org.sufficientlysecure.htmltextview.HtmlTextView;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,6 +36,7 @@ public class ProductDetails extends AppCompatActivity {
     ProductModel.Image image;
     CardView cardImage1, cardImage2, cardImage3;
     List<ProductModel.Image> imageList = new ArrayList<>( ) ;
+    HtmlTextView  desc ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +54,7 @@ public class ProductDetails extends AppCompatActivity {
 
     private void setupView(ProductModel model) {
         //toolbar
-//        back = findViewById(R.id.backBtn);
+        back = findViewById(R.id.backBtn);
 //        cart_number = findViewById(R.id.textview_productDetail_cartNumber);
         title = findViewById(R.id.header_title);
 
@@ -67,19 +70,21 @@ public class ProductDetails extends AppCompatActivity {
         cardImage2 = findViewById(R.id.image2_container);
         cardImage3 = findViewById(R.id.image3_container);
         main_image = findViewById(R.id.main_image) ;
-        status = findViewById(R.id.Textview_productDetail_status);
+        desc = findViewById(R.id.Textview_productDetail_status);
         additional_info = findViewById(R.id.Button_productDetail_additionalInfo);
         review = findViewById(R.id.Button_productDetail_review);
 //        about_brand = findViewById(R.id.Button_productDetail_aboutBrand);
 
         price = findViewById(R.id.Textview_productDetail_price);
 
-
         add_to_cart = findViewById(R.id.button_productDetail_addToCart);
 
 
         title.setText(model.getName());
         price.setText("৳"+model.getSalePrice());
+
+
+        desc.setHtml(model.getShortDescription());
         imageList = model.getImages();
         if(imageList.size()>0){
             try{
@@ -136,6 +141,12 @@ public class ProductDetails extends AppCompatActivity {
                 catch (Exception e ){
 
                 }
+            }
+        });
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
             }
         });
     }

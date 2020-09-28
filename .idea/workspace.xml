@@ -6,49 +6,27 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="TAG" />
-    <option name="TOOL_WINDOW_LOG_LEVEL" value="verbose" />
+    <option name="TOOL_WINDOW_LOG_LEVEL" value="error" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1ddbe2eb-dd24-4bdd-9a2f-bc1285aee196" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_cepheuen_elegant_number_button_lib_1_0_3_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/Adapter/ProductListAdapter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/Adapter/SubCateGoryAdapter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/View/Activities/CategoryViewPage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/View/Activities/ProductDetails.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/View/Activities/ProductList.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/circleable_background.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_back_accent.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_category_view_page.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_product_details.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_product_list.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_product.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/sub_category_row.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_ybq_Android_SpinKit_1_4_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_sufficientlysecure_html_textview_4_0_aar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_annotation_annotation_1_1_0_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_annotation_annotation_1_1_0_jar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_collection_collection_1_1_0_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_collection_collection_1_1_0_jar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_constraintlayout_constraintlayout_solver_2_0_1_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_constraintlayout_constraintlayout_solver_2_0_1_jar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_code_gson_gson_2_8_5_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_code_gson_gson_2_8_5_jar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_javawriter_2_1_1_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_javawriter_2_1_1_jar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_retrofit2_retrofit_2_9_0_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_retrofit2_retrofit_2_9_0_jar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__javax_inject_javax_inject_1_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__javax_inject_javax_inject_1_jar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_hamcrest_hamcrest_core_1_3_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_hamcrest_hamcrest_core_1_3_jar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_hamcrest_hamcrest_integration_1_3_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_hamcrest_hamcrest_integration_1_3_jar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/app.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/Adapter/CateGoryAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/Adapter/CateGoryAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/Models/CategoryResp.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/Models/CategoryResp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/Models/ProductResp.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/Models/ProductModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/Utils/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/Utils/Constants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/View/Activities/Category_List.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/View/Activities/Category_List.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/View/Activities/SignUP.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/View/Activities/SignUP.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/View/Activities/CategoryViewPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/View/Activities/CategoryViewPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/View/Activities/ProductDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/View/Activities/ProductDetails.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/View/Activities/ProductList.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/View/Activities/ProductList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/View/Fragment/SearchFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/View/Fragment/SearchFragment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/api/api.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/api/api.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/gradient_bg.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/gradient_bg.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_category__list.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_category__list.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_home_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_home_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_product_details.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_product_details.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_product_list.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_product_list.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_search.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_search.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -236,10 +214,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="477" y="252" key="#PSD/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1600255095766" />
-    <state x="765" y="223" key="#com.intellij.ide.util.MemberChooser" timestamp="1600962347034">
+    <state x="765" y="223" key="#com.intellij.ide.util.MemberChooser" timestamp="1601309538885">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="765" y="223" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1600962347034" />
+    <state x="765" y="223" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1601309538885" />
     <state x="637" y="436" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1600242900382">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -268,30 +246,30 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1600250744365" />
-    <state width="1876" height="261" key="GridCell.Tab.0.bottom" timestamp="1601284079227">
+    <state width="1876" height="261" key="GridCell.Tab.0.bottom" timestamp="1601307417168">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1876" height="261" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1601284079227" />
-    <state width="1876" height="261" key="GridCell.Tab.0.center" timestamp="1601284079227">
+    <state width="1876" height="261" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1601307417168" />
+    <state width="1876" height="261" key="GridCell.Tab.0.center" timestamp="1601307417167">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1876" height="261" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1601284079227" />
-    <state width="1876" height="261" key="GridCell.Tab.0.left" timestamp="1601284079227">
+    <state width="1876" height="261" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1601307417167" />
+    <state width="1876" height="261" key="GridCell.Tab.0.left" timestamp="1601307417167">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1876" height="261" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1601284079227" />
-    <state width="1876" height="261" key="GridCell.Tab.0.right" timestamp="1601284079227">
+    <state width="1876" height="261" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1601307417167" />
+    <state width="1876" height="261" key="GridCell.Tab.0.right" timestamp="1601307417167">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1876" height="261" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1601284079227" />
+    <state width="1876" height="261" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1601307417167" />
     <state x="996" y="307" key="chooseDestDirectoryDialog" timestamp="1600844717605">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="996" y="307" key="chooseDestDirectoryDialog/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1600844717605" />
-    <state width="484" height="36" key="javadoc.popup.new" timestamp="1601284348969">
+    <state width="484" height="36" key="javadoc.popup.new" timestamp="1601310322935">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="484" height="36" key="javadoc.popup.new/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1601284348969" />
+    <state width="484" height="36" key="javadoc.popup.new/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1601310322935" />
     <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1600960703759">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

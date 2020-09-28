@@ -72,7 +72,9 @@ public class CategoryViewPage extends AppCompatActivity  implements ProductListA
             public void onItemClick(View view, int pos) {
                 // send the  parent id
                 // to the product list
-
+                Intent o = new Intent(getApplicationContext(), ProductList.class) ;
+                o.putExtra("CATEGORY" , Sub_Cat_list.get(pos).getId()+"") ;
+                startActivity(o);
 
 
             }
@@ -147,8 +149,8 @@ public class CategoryViewPage extends AppCompatActivity  implements ProductListA
 
         Intent p = new Intent(getApplicationContext(), ProductDetails.class) ;
         p.putExtra("MODEL" , model) ;
-        Toasty.error(getApplicationContext(), "T " + model.getId(), 1).show();
-       // startActivity(p);
+        //Toasty.error(getApplicationContext(), "T " + model.getId(), 1).show();
+       startActivity(p);
 
     }
 }

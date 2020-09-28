@@ -14,27 +14,43 @@ import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 
-public  interface api {
+public interface api {
 
 
     @POST("customers")
-    Call<Recived_Sign_up> postUserRegister(@Header("Authorization")String authHeader , @Body SignUpResp body);
+    Call<Recived_Sign_up> postUserRegister(@Header("Authorization") String authHeader, @Body SignUpResp body);
 
     @GET("products")
-    Call<List<ProductModel>> getAllProducts(@Header("Authorization") String authHeader );
+    Call<List<ProductModel>> getAllProducts(@Header("Authorization") String authHeader,
+                                            @Query("per_page") String per_page,
+                                            @Query("page") int page);
 
     @GET("user/generate_auth_cookie")
-    Call<LoginResp> Login(@Query("username") String username , @Query("password") String pass) ;
+    Call<LoginResp> Login(@Query("username") String username, @Query("password") String pass);
+
     // get all the parent category   products/categories?parent=0
     @GET("products/categories?parent=0&per_page=100")
-    Call<List<CategoryResp>> getAllParentCategory(@Header("Authorization") String authHeader );
-    @GET("products/categories")
-    Call<List<CategoryResp>> getAllSubCategory(@Header("Authorization")String authHeader ,
-                                               @Query("parent") String parent ,
-                                               @Query("per_page") String page );
-   // products?category=403 product via category
+    Call<List<CategoryResp>> getAllParentCategory(@Header("Authorization") String authHeader);
 
-   @GET("products")
-   Call<List<ProductModel>> getAllProductViaCategory(@Header("Authorization") String authHeader ,
-                                              @Query("category") String category);
+    @GET("products/categories")
+    Call<List<CategoryResp>> getAllSubCategory(@Header("Authorization") String authHeader,
+                                               @Query("parent") String parent,
+                                               @Query("per_page") String per_page);
+    // products?category=403 product via category
+
+    @GET("products")
+    Call<List<ProductModel>> getAllProductViaCategory(@Header("Authorization") String authHeader,
+                                                      @Query("category") String category);
+
+    @GET("products")
+    Call<List<ProductModel>> getAllProductViaCategoryID(@Header("Authorization") String authHeader,
+                                                        @Query("category") String category,
+                                                        @Query("per_page") String per_page,
+                                                        @Query("page") int page
+    );
+
+    @GET("products")
+    Call<List<ProductModel>> SearchProduct(@Header("Authorization") String authHeader,
+                                                        @Query("search") String search
+    );
 }

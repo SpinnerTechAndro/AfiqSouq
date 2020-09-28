@@ -83,7 +83,7 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
-        <EditText
+        <androidx.appcompat.widget.SearchView
             android:id="@+id/edittext_search_searchitem"
             android:layout_width="match_parent"
             android:layout_height="40dp"
@@ -92,11 +92,12 @@
             android:background="@drawable/shape_rect_white"
             android:drawableLeft="@drawable/search"
             android:drawableTint="@color/gray6"
-            android:hint="    e.g.kids shoe"
+            app:queryHint="e.g.kids shoe"
+            android:queryBackground="@null"
             android:backgroundTint="@color/gray7"
             android:layout_gravity="center"
+            app:iconifiedByDefault="false"
             android:textColorHint="@color/gray6"
-
             android:layout_marginTop="8dp"
             android:padding="10dp"/>
 
@@ -117,10 +118,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="@dimen/_5sdp"
                 android:text="@string/product_found"
                 android:textColor="@color/black"
                 android:textSize="20sp"
+                android:visibility="invisible"
                 android:textStyle="bold" />
 
             <TextView
@@ -131,23 +134,42 @@
                 android:drawableRight="@drawable/ic_baseline_keyboard_arrow_down_24"
                 android:text="@string/view_all"
                 android:textColor="@color/cyan"
+                android:visibility="gone"
                 android:textSize="14sp"
                 android:textStyle="bold" />
 
         </LinearLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView_search_searcheditem"
+
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/appBarLayout"
-            app:layout_constraintVertical_bias="0.273"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="0dp" />
+            android:orientation="vertical">
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingBottom="120dp"
+                android:clipToPadding="false"
+                android:scrollbarStyle="outsideOverlay"
+                android:layout_weight="1" />
 
+            <com.github.ybq.android.spinkit.SpinKitView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/spin_kit"
+                style="@style/SpinKitView.Large.ThreeBounce"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:visibility="gone"
+                app:SpinKit_Color="@color/colorAccent" />
 
+        </FrameLayout>
+
+<!--        <View-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="@dimen/_80sdp"/>-->
 
     </LinearLayout>
 
