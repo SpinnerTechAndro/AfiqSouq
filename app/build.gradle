@@ -71,6 +71,7 @@ dependencies {
     implementation 'org.sufficientlysecure:html-textview:4.0'
     //spink it
     implementation 'com.github.ybq:Android-SpinKit:1.4.0'
-
-
+    //room database
+    implementation "androidx.room:room-runtime:2.2.5"
+    annotationProcessor "androidx.room:room-compiler:2.2.5"
 }

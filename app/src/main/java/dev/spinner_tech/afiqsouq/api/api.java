@@ -7,11 +7,13 @@ import dev.spinner_tech.afiqsouq.Models.LoginResp;
 import dev.spinner_tech.afiqsouq.Models.ProductModel;
 import dev.spinner_tech.afiqsouq.Models.Recived_Sign_up;
 import dev.spinner_tech.afiqsouq.Models.SignUpResp;
+import dev.spinner_tech.afiqsouq.Models.VariationResp;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface api {
@@ -52,5 +54,10 @@ public interface api {
     @GET("products")
     Call<List<ProductModel>> SearchProduct(@Header("Authorization") String authHeader,
                                                         @Query("search") String search
+    );
+
+    @GET("products/{p_id}/variations")
+    Call<List<VariationResp>> ProductVariationList(@Header("Authorization") String authHeader,
+                                                   @Path("p_id") String p_id
     );
 }

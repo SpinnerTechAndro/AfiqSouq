@@ -72,7 +72,12 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
 //                .error(R.drawable.placeholder)
                 .into(holder.imageView);
         holder.title.setText(mDataFiltered.get(position).getName());
-        holder.price.setText(mDataFiltered.get(position).getSalePrice() + "৳");
+        String sale_price = mDataFiltered.get(position).getSalePrice();
+        if (sale_price.equals("") || sale_price.isEmpty()) {
+            holder.price.setText(mDataFiltered.get(position).getPrice() + "৳");
+        } else {
+            holder.price.setText(mDataFiltered.get(position).getSalePrice() + "৳");
+        }
 
 
         holder.itemView.setOnClickListener(v -> {

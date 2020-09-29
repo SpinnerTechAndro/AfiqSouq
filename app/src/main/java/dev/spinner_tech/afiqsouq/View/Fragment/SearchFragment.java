@@ -1,6 +1,7 @@
 package dev.spinner_tech.afiqsouq.View.Fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.widget.SearchView;
@@ -24,6 +25,7 @@ import dev.spinner_tech.afiqsouq.Adapter.ProductListAdapter;
 import dev.spinner_tech.afiqsouq.Models.ProductModel;
 import dev.spinner_tech.afiqsouq.R;
 import dev.spinner_tech.afiqsouq.Utils.Constants;
+import dev.spinner_tech.afiqsouq.View.Activities.ProductDetails;
 import dev.spinner_tech.afiqsouq.services.RetrofitClient;
 import es.dmoral.toasty.Toasty;
 import retrofit2.Call;
@@ -171,6 +173,11 @@ public class SearchFragment extends Fragment implements ProductListAdapter.ItemC
 
     @Override
     public void onItemClick(ProductModel model) {
+
+        Intent p = new Intent(context, ProductDetails.class) ;
+        p.putExtra("MODEL" , model) ;
+        //Toasty.error(getApplicationContext(), "T " + model.getId(), 1).show();
+        startActivity(p);
 
     }
 }

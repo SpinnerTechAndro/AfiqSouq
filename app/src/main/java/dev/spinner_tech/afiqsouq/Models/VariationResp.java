@@ -6,19 +6,11 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 import java.util.List;
 
-public  class ProductModel implements Serializable {
+public  class VariationResp {
+
     @SerializedName("id")
     @Expose
     private Integer id;
-    @SerializedName("name")
-    @Expose
-    private String name;
-    @SerializedName("slug")
-    @Expose
-    private String slug;
-    @SerializedName("permalink")
-    @Expose
-    private String permalink;
     @SerializedName("date_created")
     @Expose
     private String dateCreated;
@@ -31,24 +23,12 @@ public  class ProductModel implements Serializable {
     @SerializedName("date_modified_gmt")
     @Expose
     private String dateModifiedGmt;
-    @SerializedName("type")
-    @Expose
-    private String type;
-    @SerializedName("status")
-    @Expose
-    private String status;
-    @SerializedName("featured")
-    @Expose
-    private Boolean featured;
-    @SerializedName("catalog_visibility")
-    @Expose
-    private String catalogVisibility;
     @SerializedName("description")
     @Expose
     private String description;
-    @SerializedName("short_description")
+    @SerializedName("permalink")
     @Expose
-    private String shortDescription;
+    private String permalink;
     @SerializedName("sku")
     @Expose
     private String sku;
@@ -73,18 +53,15 @@ public  class ProductModel implements Serializable {
     @SerializedName("date_on_sale_to_gmt")
     @Expose
     private Object dateOnSaleToGmt;
-    @SerializedName("price_html")
-    @Expose
-    private String priceHtml;
     @SerializedName("on_sale")
     @Expose
     private Boolean onSale;
+    @SerializedName("status")
+    @Expose
+    private String status;
     @SerializedName("purchasable")
     @Expose
     private Boolean purchasable;
-    @SerializedName("total_sales")
-    @Expose
-    private Integer totalSales;
     @SerializedName("virtual")
     @Expose
     private Boolean virtual;
@@ -100,12 +77,6 @@ public  class ProductModel implements Serializable {
     @SerializedName("download_expiry")
     @Expose
     private Integer downloadExpiry;
-    @SerializedName("external_url")
-    @Expose
-    private String externalUrl;
-    @SerializedName("button_text")
-    @Expose
-    private String buttonText;
     @SerializedName("tax_status")
     @Expose
     private String taxStatus;
@@ -130,73 +101,30 @@ public  class ProductModel implements Serializable {
     @SerializedName("backordered")
     @Expose
     private Boolean backordered;
-    @SerializedName("sold_individually")
-    @Expose
-    private Boolean soldIndividually;
     @SerializedName("weight")
     @Expose
     private String weight;
     @SerializedName("dimensions")
     @Expose
     private Dimensions dimensions;
-    @SerializedName("shipping_required")
-    @Expose
-    private Boolean shippingRequired;
-    @SerializedName("shipping_taxable")
-    @Expose
-    private Boolean shippingTaxable;
     @SerializedName("shipping_class")
     @Expose
     private String shippingClass;
     @SerializedName("shipping_class_id")
     @Expose
     private Integer shippingClassId;
-    @SerializedName("reviews_allowed")
+    @SerializedName("image")
     @Expose
-    private Boolean reviewsAllowed;
-    @SerializedName("average_rating")
-    @Expose
-    private String averageRating;
-    @SerializedName("rating_count")
-    @Expose
-    private Integer ratingCount;
-    @SerializedName("related_ids")
-    @Expose
-    private List<Integer> relatedIds = null;
-    @SerializedName("upsell_ids")
-    @Expose
-    private List<Object> upsellIds = null;
-    @SerializedName("cross_sell_ids")
-    @Expose
-    private List<Object> crossSellIds = null;
-    @SerializedName("parent_id")
-    @Expose
-    private Integer parentId;
-    @SerializedName("purchase_note")
-    @Expose
-    private String purchaseNote;
-    @SerializedName("categories")
-    @Expose
-    private List<Category> categories = null;
-
-    @SerializedName("images")
-    @Expose
-    private List<Image> images = null;
+    private Image image;
     @SerializedName("attributes")
     @Expose
     private List<Attribute> attributes = null;
-    @SerializedName("default_attributes")
-    @Expose
-    private List<Object> defaultAttributes = null;
-    @SerializedName("variations")
-    @Expose
-    private List<Object> variations = null;
-    @SerializedName("grouped_products")
-    @Expose
-    private List<Object> groupedProducts = null;
     @SerializedName("menu_order")
     @Expose
     private Integer menuOrder;
+    @SerializedName("meta_data")
+
+
 
     public Integer getId() {
         return id;
@@ -204,30 +132,6 @@ public  class ProductModel implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getSlug() {
-        return slug;
-    }
-
-    public void setSlug(String slug) {
-        this.slug = slug;
-    }
-
-    public String getPermalink() {
-        return permalink;
-    }
-
-    public void setPermalink(String permalink) {
-        this.permalink = permalink;
     }
 
     public String getDateCreated() {
@@ -262,38 +166,6 @@ public  class ProductModel implements Serializable {
         this.dateModifiedGmt = dateModifiedGmt;
     }
 
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public Boolean getFeatured() {
-        return featured;
-    }
-
-    public void setFeatured(Boolean featured) {
-        this.featured = featured;
-    }
-
-    public String getCatalogVisibility() {
-        return catalogVisibility;
-    }
-
-    public void setCatalogVisibility(String catalogVisibility) {
-        this.catalogVisibility = catalogVisibility;
-    }
-
     public String getDescription() {
         return description;
     }
@@ -302,12 +174,12 @@ public  class ProductModel implements Serializable {
         this.description = description;
     }
 
-    public String getShortDescription() {
-        return shortDescription;
+    public String getPermalink() {
+        return permalink;
     }
 
-    public void setShortDescription(String shortDescription) {
-        this.shortDescription = shortDescription;
+    public void setPermalink(String permalink) {
+        this.permalink = permalink;
     }
 
     public String getSku() {
@@ -374,14 +246,6 @@ public  class ProductModel implements Serializable {
         this.dateOnSaleToGmt = dateOnSaleToGmt;
     }
 
-    public String getPriceHtml() {
-        return priceHtml;
-    }
-
-    public void setPriceHtml(String priceHtml) {
-        this.priceHtml = priceHtml;
-    }
-
     public Boolean getOnSale() {
         return onSale;
     }
@@ -390,20 +254,20 @@ public  class ProductModel implements Serializable {
         this.onSale = onSale;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     public Boolean getPurchasable() {
         return purchasable;
     }
 
     public void setPurchasable(Boolean purchasable) {
         this.purchasable = purchasable;
-    }
-
-    public Integer getTotalSales() {
-        return totalSales;
-    }
-
-    public void setTotalSales(Integer totalSales) {
-        this.totalSales = totalSales;
     }
 
     public Boolean getVirtual() {
@@ -444,22 +308,6 @@ public  class ProductModel implements Serializable {
 
     public void setDownloadExpiry(Integer downloadExpiry) {
         this.downloadExpiry = downloadExpiry;
-    }
-
-    public String getExternalUrl() {
-        return externalUrl;
-    }
-
-    public void setExternalUrl(String externalUrl) {
-        this.externalUrl = externalUrl;
-    }
-
-    public String getButtonText() {
-        return buttonText;
-    }
-
-    public void setButtonText(String buttonText) {
-        this.buttonText = buttonText;
     }
 
     public String getTaxStatus() {
@@ -526,14 +374,6 @@ public  class ProductModel implements Serializable {
         this.backordered = backordered;
     }
 
-    public Boolean getSoldIndividually() {
-        return soldIndividually;
-    }
-
-    public void setSoldIndividually(Boolean soldIndividually) {
-        this.soldIndividually = soldIndividually;
-    }
-
     public String getWeight() {
         return weight;
     }
@@ -548,22 +388,6 @@ public  class ProductModel implements Serializable {
 
     public void setDimensions(Dimensions dimensions) {
         this.dimensions = dimensions;
-    }
-
-    public Boolean getShippingRequired() {
-        return shippingRequired;
-    }
-
-    public void setShippingRequired(Boolean shippingRequired) {
-        this.shippingRequired = shippingRequired;
-    }
-
-    public Boolean getShippingTaxable() {
-        return shippingTaxable;
-    }
-
-    public void setShippingTaxable(Boolean shippingTaxable) {
-        this.shippingTaxable = shippingTaxable;
     }
 
     public String getShippingClass() {
@@ -582,84 +406,12 @@ public  class ProductModel implements Serializable {
         this.shippingClassId = shippingClassId;
     }
 
-    public Boolean getReviewsAllowed() {
-        return reviewsAllowed;
+    public Image getImage() {
+        return image;
     }
 
-    public void setReviewsAllowed(Boolean reviewsAllowed) {
-        this.reviewsAllowed = reviewsAllowed;
-    }
-
-    public String getAverageRating() {
-        return averageRating;
-    }
-
-    public void setAverageRating(String averageRating) {
-        this.averageRating = averageRating;
-    }
-
-    public Integer getRatingCount() {
-        return ratingCount;
-    }
-
-    public void setRatingCount(Integer ratingCount) {
-        this.ratingCount = ratingCount;
-    }
-
-    public List<Integer> getRelatedIds() {
-        return relatedIds;
-    }
-
-    public void setRelatedIds(List<Integer> relatedIds) {
-        this.relatedIds = relatedIds;
-    }
-
-    public List<Object> getUpsellIds() {
-        return upsellIds;
-    }
-
-    public void setUpsellIds(List<Object> upsellIds) {
-        this.upsellIds = upsellIds;
-    }
-
-    public List<Object> getCrossSellIds() {
-        return crossSellIds;
-    }
-
-    public void setCrossSellIds(List<Object> crossSellIds) {
-        this.crossSellIds = crossSellIds;
-    }
-
-    public Integer getParentId() {
-        return parentId;
-    }
-
-    public void setParentId(Integer parentId) {
-        this.parentId = parentId;
-    }
-
-    public String getPurchaseNote() {
-        return purchaseNote;
-    }
-
-    public void setPurchaseNote(String purchaseNote) {
-        this.purchaseNote = purchaseNote;
-    }
-
-    public List<Category> getCategories() {
-        return categories;
-    }
-
-    public void setCategories(List<Category> categories) {
-        this.categories = categories;
-    }
-
-    public List<Image> getImages() {
-        return images;
-    }
-
-    public void setImages(List<Image> images) {
-        this.images = images;
+    public void setImage(Image image) {
+        this.image = image;
     }
 
     public List<Attribute> getAttributes() {
@@ -668,30 +420,6 @@ public  class ProductModel implements Serializable {
 
     public void setAttributes(List<Attribute> attributes) {
         this.attributes = attributes;
-    }
-
-    public List<Object> getDefaultAttributes() {
-        return defaultAttributes;
-    }
-
-    public void setDefaultAttributes(List<Object> defaultAttributes) {
-        this.defaultAttributes = defaultAttributes;
-    }
-
-    public List<Object> getVariations() {
-        return variations;
-    }
-
-    public void setVariations(List<Object> variations) {
-        this.variations = variations;
-    }
-
-    public List<Object> getGroupedProducts() {
-        return groupedProducts;
-    }
-
-    public void setGroupedProducts(List<Object> groupedProducts) {
-        this.groupedProducts = groupedProducts;
     }
 
     public Integer getMenuOrder() {
@@ -703,81 +431,9 @@ public  class ProductModel implements Serializable {
     }
 
 
-    public class Category implements Serializable{
 
-        @SerializedName("id")
-        @Expose
-        private Integer id;
-        @SerializedName("name")
-        @Expose
-        private String name;
-        @SerializedName("slug")
-        @Expose
-        private String slug;
 
-        public Integer getId() {
-            return id;
-        }
-
-        public void setId(Integer id) {
-            this.id = id;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        public String getSlug() {
-            return slug;
-        }
-
-        public void setSlug(String slug) {
-            this.slug = slug;
-        }
-
-    }
-    public class Dimensions implements Serializable {
-
-        @SerializedName("length")
-        @Expose
-        private String length;
-        @SerializedName("width")
-        @Expose
-        private String width;
-        @SerializedName("height")
-        @Expose
-        private String height;
-
-        public String getLength() {
-            return length;
-        }
-
-        public void setLength(String length) {
-            this.length = length;
-        }
-
-        public String getWidth() {
-            return width;
-        }
-
-        public void setWidth(String width) {
-            this.width = width;
-        }
-
-        public String getHeight() {
-            return height;
-        }
-
-        public void setHeight(String height) {
-            this.height = height;
-        }
-
-    }
-    public class Image implements Serializable {
+    public class Image {
 
         @SerializedName("id")
         @Expose
@@ -869,7 +525,44 @@ public  class ProductModel implements Serializable {
         }
 
     }
-    public class Attribute implements  Serializable {
+    public class Dimensions {
+
+        @SerializedName("length")
+        @Expose
+        private String length;
+        @SerializedName("width")
+        @Expose
+        private String width;
+        @SerializedName("height")
+        @Expose
+        private String height;
+
+        public String getLength() {
+            return length;
+        }
+
+        public void setLength(String length) {
+            this.length = length;
+        }
+
+        public String getWidth() {
+            return width;
+        }
+
+        public void setWidth(String width) {
+            this.width = width;
+        }
+
+        public String getHeight() {
+            return height;
+        }
+
+        public void setHeight(String height) {
+            this.height = height;
+        }
+
+    }
+    public class Attribute implements Serializable {
 
         @SerializedName("id")
         @Expose
@@ -877,18 +570,9 @@ public  class ProductModel implements Serializable {
         @SerializedName("name")
         @Expose
         private String name;
-        @SerializedName("position")
+        @SerializedName("option")
         @Expose
-        private Integer position;
-        @SerializedName("visible")
-        @Expose
-        private Boolean visible;
-        @SerializedName("variation")
-        @Expose
-        private Boolean variation;
-        @SerializedName("options")
-        @Expose
-        private List<String> options = null;
+        private String option;
 
         public Integer getId() {
             return id;
@@ -906,37 +590,16 @@ public  class ProductModel implements Serializable {
             this.name = name;
         }
 
-        public Integer getPosition() {
-            return position;
+        public String getOption() {
+            return option;
         }
 
-        public void setPosition(Integer position) {
-            this.position = position;
-        }
-
-        public Boolean getVisible() {
-            return visible;
-        }
-
-        public void setVisible(Boolean visible) {
-            this.visible = visible;
-        }
-
-        public Boolean getVariation() {
-            return variation;
-        }
-
-        public void setVariation(Boolean variation) {
-            this.variation = variation;
-        }
-
-        public List<String> getOptions() {
-            return options;
-        }
-
-        public void setOptions(List<String> options) {
-            this.options = options;
+        public void setOption(String option) {
+            this.option = option;
         }
 
     }
 }
+
+
+

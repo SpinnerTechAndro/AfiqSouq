@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/white">
+    android:background="@color/gray3">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <LinearLayout
+        android:layout_centerInParent="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -93,16 +98,28 @@
             android:layout_height="260dp"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="15dp"
-            android:layout_marginRight="20dp"
-            android:background="@drawable/shape_rect_gray">
+            android:layout_marginBottom="@dimen/_2sdp"
+            android:layout_marginRight="20dp">
 
-            <ImageView
-                android:id="@+id/main_image"
-                android:scaleType="centerCrop"
-                android:layout_centerInParent="true"
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_centerInParent="true"
+                app:cardCornerRadius="13dp"
+                android:elevation="8dp"
 
+                android:layout_height="match_parent">
+                <ImageView
+                    android:id="@+id/main_image"
+                    android:scaleType="centerCrop"
+                    android:layout_centerInParent="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </androidx.cardview.widget.CardView>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_3sdp"/>
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -215,7 +232,7 @@
         android:layout_marginStart="@dimen/_5sdp"
         android:layout_marginEnd="@dimen/_5sdp"
         android:gravity="center_horizontal"
-        android:layout_marginTop="10dp" />
+        android:layout_marginTop="5dp" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -254,7 +271,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="35dp">
+        android:layout_marginTop="25dp">
 
         <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
             android:id="@+id/ElegantNUmberButton_productDetail_quantity"
@@ -277,16 +294,69 @@
             android:layout_gravity="center_vertical"/>
     </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/colorContainer"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="17sp"
+                android:textColor="@color/black"
+                android:layout_marginStart="10dp"
+                android:text="Color:"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/colorList"
+                android:layout_width="match_parent"
+                android:layout_marginStart="10dp"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/sizeContainer"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="17sp"
+                android:textColor="@color/black"
+                android:layout_marginStart="10dp"
+                android:text="Size :"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_marginStart="10dp"
+                android:id="@+id/size_list"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_80sdp"/>
+
+    </LinearLayout>
+
+    </ScrollView>
+
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button_productDetail_addToCart"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="30dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
         app:cornerRadius="8dp"
         app:backgroundTint="@color/cyan"
         android:text="@string/add_to_cart"
         android:backgroundTint="@color/cyan"
         android:textColor="@color/white"
+        android:layout_alignParentBottom="true"
         android:textAllCaps="false"/>
-    </LinearLayout>
-</ScrollView>
+</RelativeLayout>
