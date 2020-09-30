@@ -11,6 +11,8 @@ public  class Constants {
     public  static final String USER = "ck_62eed78870531071b419c0dca0b1dd9acf277227";
     public static final String KEY = "cs_a5b646ab7513867890dd63f2c504af98f00cee53";
     public static final String BASE = USER + ":"+KEY ;
+    public static final String BDT_SIGN = "৳" ;
+
 
     public  static  void PrintMsg(String msg){
         Log.d("TAG" , msg) ;

@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="dev.spinner_tech.afiqsouq">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -11,24 +12,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".View.Activities.ProductList"></activity>
+        <activity android:name=".View.Activities.CartListPage"></activity>
+        <activity android:name=".View.Activities.ProductList" />
         <activity android:name=".View.Activities.ProductDetails" />
         <activity android:name=".View.Activities.CategoryViewPage" />
-        <activity android:name=".View.Activities.Category_List">
-
-        </activity>
-        <activity android:name=".View.Activities.SignUP" />
-        <activity android:name=".View.Activities.Sign_in" />
-        <activity
-            android:name=".View.Home_Activity"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:windowSoftInputMode="adjustPan" >
-
+        <activity android:name=".View.Activities.Category_List"></activity>
+        <activity android:name=".View.Activities.SignUP" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".View.Activities.Sign_in" />
+        <activity
+            android:name=".View.Home_Activity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:windowSoftInputMode="adjustPan">
+
         </activity>
         <activity android:name=".MainActivity" />
     </application>

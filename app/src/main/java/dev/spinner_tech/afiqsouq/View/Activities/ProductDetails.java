@@ -71,6 +71,8 @@ public class ProductDetails extends AppCompatActivity {
     Boolean isColor = false, isSize = false;
     CartDatabase database;
     String imageLink = "nulll";
+    ImageView  cartImage  ;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,6 +110,7 @@ public class ProductDetails extends AppCompatActivity {
         cardImage2 = findViewById(R.id.image2_container);
         cardImage3 = findViewById(R.id.image3_container);
         main_image = findViewById(R.id.main_image);
+        cartImage =findViewById(R.id.imageView_discover_cart) ;
 
         desc = findViewById(R.id.Textview_productDetail_status);
         additional_info = findViewById(R.id.Button_productDetail_additionalInfo);
@@ -205,6 +208,14 @@ public class ProductDetails extends AppCompatActivity {
     }
 
     private void allClickListenter() {
+
+        cartImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent p = new Intent(getApplicationContext()  , CartListPage.class);
+                startActivity(p);
+            }
+        });
 
         add_to_cart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -462,6 +473,9 @@ public class ProductDetails extends AppCompatActivity {
             @Override
             public void run() {
                 CartDatabase.getDatabase(getApplicationContext()).dao().insertCartItem(cartDbModel);
+
+                Intent p = new Intent(getApplicationContext() , CartListPage.class);
+                startActivity( p);
             }
         });
 
