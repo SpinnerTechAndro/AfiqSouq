@@ -12,20 +12,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1ddbe2eb-dd24-4bdd-9a2f-bc1285aee196" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/Adapter/CartListAdapter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/Utils/Utilities.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/View/Activities/CartListPage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/btn_close_trns.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/coupon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/resetpass_btn_rect.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_cart_list.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/cart_item.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/Models/PrefUserModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/Utils/SharedPrefManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/Utils/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/Utils/Constants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/View/Activities/ProductDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/View/Activities/ProductDetails.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/Models/Recived_Sign_up.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/Models/Recived_Sign_up.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/View/Activities/SignUP.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/View/Activities/SignUP.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_sign_u_p.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_sign_u_p.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,8 +44,8 @@
       <list>
         <option value="Interface" />
         <option value="layoutResourceFile" />
-        <option value="Class" />
         <option value="resourceFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -95,12 +89,8 @@
     <key name="android.template.-1325860038">
       <recent name="dev.spinner_tech.afiqsouq.View.Activities" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="F:\Running Projects\office\AfiqSouq\app\src\main\res\drawable" />
-      <recent name="F:\Running Projects\office\AfiqSouq\app\src\main\res\layout" />
-      <recent name="F:\Running Projects\office\AfiqSouq\app\src\main\java\dev\spinner_tech\afiqsouq\database" />
-      <recent name="F:\Running Projects\office\AfiqSouq\app\src\main\java\dev\spinner_tech\afiqsouq" />
-      <recent name="F:\Running Projects\office\AfiqSouq\app\src\main\res\font" />
+    <key name="android.template.1110844506">
+      <recent name="dev.spinner_tech.afiqsouq.View.Activities" />
     </key>
     <key name="android.template.1264294787">
       <recent name="dev.spinner_tech.afiqsouq.View.Activities" />
@@ -119,8 +109,12 @@
       <recent name="dev.spinner_tech.afiqsouq.Adapter" />
       <recent name="dev.spinner_tech.afiqsouq.database" />
     </key>
-    <key name="android.template.1110844506">
-      <recent name="dev.spinner_tech.afiqsouq.View.Activities" />
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\Running Projects\office\AfiqSouq\app\src\main\res\drawable" />
+      <recent name="F:\Running Projects\office\AfiqSouq\app\src\main\res\layout" />
+      <recent name="F:\Running Projects\office\AfiqSouq\app\src\main\java\dev\spinner_tech\afiqsouq\database" />
+      <recent name="F:\Running Projects\office\AfiqSouq\app\src\main\java\dev\spinner_tech\afiqsouq" />
+      <recent name="F:\Running Projects\office\AfiqSouq\app\src\main\res\font" />
     </key>
     <key name="android.template.2062377307">
       <recent name="dev.spinner_tech.afiqsouq.View.Activities" />
@@ -220,10 +214,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="477" y="252" key="#PSD/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1600255095766" />
-    <state x="765" y="223" key="#com.intellij.ide.util.MemberChooser" timestamp="1601402303049">
+    <state x="765" y="223" key="#com.intellij.ide.util.MemberChooser" timestamp="1601547915537">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="765" y="223" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1601402303049" />
+    <state x="765" y="223" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1601547915537" />
     <state x="637" y="436" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1600242900382">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -252,22 +246,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1600250744365" />
-    <state width="1876" height="261" key="GridCell.Tab.0.bottom" timestamp="1601493624442">
+    <state width="1876" height="263" key="GridCell.Tab.0.bottom" timestamp="1601546320620">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1876" height="261" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1601493624442" />
-    <state width="1876" height="261" key="GridCell.Tab.0.center" timestamp="1601493624441">
+    <state width="1876" height="263" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1601546320620" />
+    <state width="1876" height="263" key="GridCell.Tab.0.center" timestamp="1601546320620">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1876" height="261" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1601493624441" />
-    <state width="1876" height="261" key="GridCell.Tab.0.left" timestamp="1601493624441">
+    <state width="1876" height="263" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1601546320620" />
+    <state width="1876" height="263" key="GridCell.Tab.0.left" timestamp="1601546320620">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1876" height="261" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1601493624441" />
-    <state width="1876" height="261" key="GridCell.Tab.0.right" timestamp="1601493624441">
+    <state width="1876" height="263" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1601546320620" />
+    <state width="1876" height="263" key="GridCell.Tab.0.right" timestamp="1601546320620">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1876" height="261" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1601493624441" />
+    <state width="1876" height="263" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1601546320620" />
     <state x="540" y="263" key="IDE.errors.dialog" timestamp="1601394217858">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -276,10 +270,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="996" y="307" key="chooseDestDirectoryDialog/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1601480783024" />
-    <state width="484" height="36" key="javadoc.popup.new" timestamp="1601494060501">
+    <state width="484" height="36" key="javadoc.popup.new" timestamp="1601548216900">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="484" height="36" key="javadoc.popup.new/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1601494060501" />
+    <state width="484" height="36" key="javadoc.popup.new/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1601548216900" />
     <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1600960703759">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

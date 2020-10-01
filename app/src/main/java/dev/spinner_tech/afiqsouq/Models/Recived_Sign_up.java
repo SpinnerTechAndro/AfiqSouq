@@ -57,6 +57,14 @@ public  class Recived_Sign_up {
         this.id = id;
     }
 
+
+    public Recived_Sign_up(Integer id, String email, String username, SignUpResp.Shipping shipping) {
+        this.id = id;
+        this.email = email;
+        this.username = username;
+        this.shipping = shipping;
+    }
+
     public String getDateCreated() {
         return dateCreated;
     }
