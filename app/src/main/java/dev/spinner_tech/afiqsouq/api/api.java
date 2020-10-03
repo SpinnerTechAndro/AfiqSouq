@@ -7,6 +7,7 @@ import dev.spinner_tech.afiqsouq.Models.LoginResp;
 import dev.spinner_tech.afiqsouq.Models.ProductModel;
 import dev.spinner_tech.afiqsouq.Models.Recived_Sign_up;
 import dev.spinner_tech.afiqsouq.Models.SignUpResp;
+import dev.spinner_tech.afiqsouq.Models.TaxREsp;
 import dev.spinner_tech.afiqsouq.Models.VariationResp;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -33,6 +34,10 @@ public interface api {
     // get all the parent category   products/categories?parent=0
     @GET("products/categories?parent=0&per_page=100")
     Call<List<CategoryResp>> getAllParentCategory(@Header("Authorization") String authHeader);
+
+    // tax list
+    @GET("taxes")
+    Call<List<TaxREsp>> getAllTax(@Header("Authorization") String authHeader);
 
     @GET("products/categories")
     Call<List<CategoryResp>> getAllSubCategory(@Header("Authorization") String authHeader,

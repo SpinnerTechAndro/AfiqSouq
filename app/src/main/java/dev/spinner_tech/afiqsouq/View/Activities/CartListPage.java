@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,26 +13,34 @@ import android.widget.Adapter;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 import dev.spinner_tech.afiqsouq.Adapter.CartListAdapter;
 import dev.spinner_tech.afiqsouq.Models.CartDbModel;
+import dev.spinner_tech.afiqsouq.Models.TaxREsp;
 import dev.spinner_tech.afiqsouq.R;
 import dev.spinner_tech.afiqsouq.Utils.Constants;
+import dev.spinner_tech.afiqsouq.Utils.SharedPrefManager;
 import dev.spinner_tech.afiqsouq.database.CartDatabase;
+import es.dmoral.toasty.Toasty;
 
 public class CartListPage extends AppCompatActivity {
 
 
-    public TextView cartNumber, coupon_no, sub_total, shipping_fee, total, discount, paid, product_name, product_price;
+    public TextView cartNumber , tax_fee, coupon_no, sub_total, shipping_fee, total, discount, paid, product_name, product_price;
     Button checkoutout, apply_couppon;
     RecyclerView rv_shoppingCart;
     List<CartDbModel> cartList = new ArrayList<>();
     List<CartDbModel> orderList = new ArrayList<>();
     CartListAdapter adapter;
     double toatalAmount;
-
+    double rate = 0.0  ;
+    DecimalFormat dec = new DecimalFormat("#0.0");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,13 +53,14 @@ public class CartListPage extends AppCompatActivity {
         rv_shoppingCart = findViewById(R.id.recyclerview_shoppingcart_cartItem); //shows cart item
 
         sub_total = findViewById(R.id.textview_shoppingcart_subtotal_amount);
-        shipping_fee = findViewById(R.id.textview_shoppingcart_shippingfee_amount);
+        tax_fee = findViewById(R.id.textview_shoppingcart_shippingfee_amount);
         total = findViewById(R.id.textview_shoppingcart_total_amount);
         discount = findViewById(R.id.textview_shoppingcart_discount_amount);
         paid = findViewById(R.id.textview_shoppingcart_tobe_paid_amount);
         checkoutout = findViewById(R.id.button_shoppingcart_checkoutd);
-
+        rate = loadTaxFormCache();
         rv_shoppingCart.setLayoutManager(new LinearLayoutManager(this));
+
 
         loadAllCartItem();
 
@@ -72,12 +82,21 @@ public class CartListPage extends AppCompatActivity {
 
                     orderList.clear();
                     orderList.addAll(cartList);
-                    adapter = new CartListAdapter(cartList, CartListPage.this, 0);
+                    adapter = new CartListAdapter(cartList, CartListPage.this, 0, rate );
                     rv_shoppingCart.setAdapter(adapter);
 
-                    sub_total.setText(Constants.BDT_SIGN + Math.round(calculateTotal(cartList)));
-                    total.setText(Constants.BDT_SIGN + Math.round(calculateTotal(cartList) + 0));
-                    paid.setText(Constants.BDT_SIGN + Math.round(calculateTotal(cartList) + 0));
+                    // total
+                    double totalMoney = calculateTotal(cartList ) ;
+                    //setting sub amount
+                    sub_total.setText(Constants.BDT_SIGN + Math.round(totalMoney) );
+
+                    Log.d("TAG", "run: "+ "totall" + totalMoney + ((totalMoney*(rate/100)))) ;
+                    // calculating tax
+
+                    tax_fee.setText(Constants.BDT_SIGN + dec.format(totalMoney*(rate/100))) ;
+                    totalMoney = totalMoney + ((totalMoney*(rate/100)))   ;
+                    total.setText(Constants.BDT_SIGN + Math.round( totalMoney+ 0) );
+                    paid.setText(Constants.BDT_SIGN + Math.round(totalMoney + 0) );
 
                 } else {
                     // show  empty layout
@@ -140,6 +159,36 @@ public class CartListPage extends AppCompatActivity {
             }
         });
 
+
+    }
+
+
+
+    public  Double loadTaxFormCache(){
+        String country  =   SharedPrefManager.getInstance(getApplicationContext())
+                .getUser().getCountry().toLowerCase();
+        String rate = "0.00" ;
+        SharedPreferences shref;
+        SharedPreferences.Editor editor;
+        shref = getSharedPreferences("TAX", MODE_PRIVATE);
+        String key = "TAX_KEY";
+        Gson gson = new Gson();
+        String response=shref.getString(key , "");
+        List<TaxREsp> lstArrayList = gson.fromJson(response,
+                new TypeToken<List<TaxREsp>>(){}.getType());
+
+        assert lstArrayList != null;
+        for(TaxREsp item : lstArrayList){
+
+            if(item.getCountry().toLowerCase().equals(country) ){
+
+                rate = item.getRate();
+                break;
+            }
+
+       }
+
+        return Double.parseDouble(rate);
 
     }
 }

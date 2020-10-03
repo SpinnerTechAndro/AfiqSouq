@@ -48,12 +48,13 @@
 
             <TextView
                 android:id="@+id/textView_shoppingcartfr_productName"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Blue silk flare slived top"
                 android:textColor="@color/deep_blue"
                 android:textSize="14sp"
-                android:maxLines="1"
+                android:ems="10"
+                android:ellipsize="marquee"
                 android:minLines="1"
                 android:textStyle="bold" />
 

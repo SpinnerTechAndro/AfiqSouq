@@ -1,7 +1,9 @@
 package dev.spinner_tech.afiqsouq.Adapter;
 
 import android.annotation.SuppressLint;
+import android.graphics.Color;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +21,9 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
 
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,18 +37,20 @@ import dev.spinner_tech.afiqsouq.database.CartDatabase;
 
 public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.ViewHolder> {
 
-    CartDbModel UpdateItem ;
+    CartDbModel UpdateItem;
     private LayoutInflater mInflater;
-    List<CartDbModel> cartList   = new ArrayList<>();
-    CartListPage cartPage  ;
-    double deliveryCharge ;
+    List<CartDbModel> cartList = new ArrayList<>();
+    CartListPage cartPage;
+    double deliveryCharge, tax;
 
 
-    public CartListAdapter(List<CartDbModel> cartList, CartListPage context, double deliveryCharge) {
+    public CartListAdapter(List<CartDbModel> cartList, CartListPage context, double deliveryCharge, double tax) {
         this.cartList = cartList;
         this.cartPage = context;
-        this.deliveryCharge = deliveryCharge ;
+        this.deliveryCharge = deliveryCharge;
+        this.tax = tax;
     }
+
 
     @Override
     public CartListAdapter.ViewHolder onCreateViewHolder(@NotNull ViewGroup parent, int viewType) {
@@ -54,36 +60,43 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.ViewHo
 
     @SuppressLint("StaticFieldLeak")
     @Override
-    public void onBindViewHolder(CartListAdapter.ViewHolder holder,final int position) {
-              final CartDatabase database  = Room.databaseBuilder(cartPage,
+    public void onBindViewHolder(CartListAdapter.ViewHolder holder, final int position) {
+
+        if (position % 2 == 0) {
+
+            holder.container.setBackgroundColor(Color.parseColor("#F8F9FF"));
+        } else {
+            holder.container.setBackgroundColor(Color.WHITE);
+        }
+
+        final CartDatabase database = Room.databaseBuilder(cartPage,
                 CartDatabase.class, CartDatabase.DB_NAME)
                 .fallbackToDestructiveMigration()
                 .build();
         final CartDbModel cartItem = cartList.get(position);
         holder.txtName.setText(cartItem.title);
-        holder.textPrice.setText("৳"+Math.round(cartItem.unit_price));
-        holder.numberButton.setNumber(cartItem.qty+"");
+        holder.textPrice.setText("৳" + Math.round(cartItem.unit_price));
+        holder.numberButton.setNumber(cartItem.qty + "");
 
         Glide.with(cartPage)
                 .load(cartList.get(position).product_image)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .into(holder.productImage) ;
+                .into(holder.productImage);
 
         holder.numberButton.setOnValueChangeListener((view, oldValue, newValue) -> {
 
             // update the value .....
 
-            UpdateItem = cartList.get(position) ;
+            UpdateItem = cartList.get(position);
 
-            UpdateItem.qty = newValue ;
+            UpdateItem.qty = newValue;
 
-            UpdateItem.sub_total =(double)(Math.round(cartItem.unit_price) * newValue);
+            UpdateItem.sub_total = (double) (Math.round(cartItem.unit_price) * newValue);
 
             // UpdateItem.title = cartList.get(position).title ;
             //   holder.textPrice.setText(cartList.get(position).price * newValue + ""); // setting the item price in the row
             //UpdateItem.product_id = cartList.get(position).product_id ;
             //UpdateItem.cart_id = cartList.get(position).cart_id ;
-
 
 
 //                new AsyncTask<CartDbModel, Void, Integer>() {
@@ -110,18 +123,21 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.ViewHo
             });
 
 
-
-                Utilities utilities = new Utilities() ;
-                double total = utilities.calculateTotal(cartList) ;
+            Utilities utilities = new Utilities();
+            double total = utilities.calculateTotal(cartList);
 //                        cartPage.totalview.setText(utilities.calculateTotal(cartList)+ " .Tk");
 //                        cartPage.totalPrice.setText(Math.round(utilities.calculateTotal(cartList) +deliveryCharge )  + " ");
-                cartPage.sub_total.setText(Constants.BDT_SIGN + total);
-                cartPage.total.setText(Constants.BDT_SIGN +  (total +deliveryCharge) );
-                cartPage.paid.setText(Constants.BDT_SIGN + (total + deliveryCharge) );
+
+            //calculate total tax
 
 
-
-
+            cartPage.sub_total.setText(Constants.BDT_SIGN + total);
+            DecimalFormat dec = new DecimalFormat("#0.0");
+            cartPage.tax_fee.setText(Constants.BDT_SIGN + dec.format(total * (tax / 100)));
+            total = total + ((total * (tax / 100)));
+            Log.d("TAG", " adapter run: " + ((total * (tax / 100))));
+            cartPage.total.setText(Constants.BDT_SIGN + (total + deliveryCharge));
+            cartPage.paid.setText(Constants.BDT_SIGN + (total + deliveryCharge));
 
 
         });
@@ -137,16 +153,20 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.ViewHo
 
                 );
 
-                cartList.remove(position) ;
+                cartList.remove(position);
                 notifyItemChanged(position);
                 notifyDataSetChanged();
-                Utilities utilities = new Utilities() ;
-                double total = utilities.calculateTotal(cartList) ;
+                Utilities utilities = new Utilities();
+                double total = utilities.calculateTotal(cartList);
 //                        cartPage.totalview.setText(utilities.calculateTotal(cartList)+ " .Tk");
 //                        cartPage.totalPrice.setText(Math.round(utilities.calculateTotal(cartList) +deliveryCharge )  + " ");
+
                 cartPage.sub_total.setText(Constants.BDT_SIGN + total);
-                cartPage.total.setText(Constants.BDT_SIGN +  (total +deliveryCharge) );
-                cartPage.paid.setText(Constants.BDT_SIGN + (total + deliveryCharge) );
+                DecimalFormat dec = new DecimalFormat("#0.0");
+                cartPage.tax_fee.setText(Constants.BDT_SIGN + dec.format(total * (tax / 100)));
+                total = total + ((total * (tax / 100)));
+                cartPage.total.setText(Constants.BDT_SIGN + (total + deliveryCharge));
+                cartPage.paid.setText(Constants.BDT_SIGN + (total + deliveryCharge));
             }
         });
 
@@ -161,25 +181,23 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.ViewHo
 
         public TextView txtName;
         public TextView textPrice;
-        public ConstraintLayout container ;
-        public ElegantNumberButton numberButton ;
-        public ImageView delteBtn  ;
+        public ConstraintLayout container;
+        public ElegantNumberButton numberButton;
+        public ImageView delteBtn;
         public ImageView productImage;
 
 
         public ViewHolder(View view) {
             super(view);
 
-           // delteBtn = view.findViewById(R.id.cart_delete) ;
+            // delteBtn = view.findViewById(R.id.cart_delete) ;
             txtName = view.findViewById(R.id.textView_shoppingcartfr_productName);
             textPrice = view.findViewById(R.id.textView_shoppingcartfr_price);
-            numberButton = view.findViewById(R.id.elegantNumberButton_shoppingcartfr_quantity) ;
-          //  cardView = view.findViewById(R.id.container);
+            numberButton = view.findViewById(R.id.elegantNumberButton_shoppingcartfr_quantity);
+            //  cardView = view.findViewById(R.id.container);
             productImage = view.findViewById(R.id.cardview_shoppcartfr_productImage);
-            delteBtn =view.findViewById(R.id.Imageview_shoppingcartfr_cancel) ;
-            container =view.findViewById(R.id.container) ;
-
-
+            delteBtn = view.findViewById(R.id.Imageview_shoppingcartfr_cancel);
+            container = view.findViewById(R.id.container);
 
 
         }

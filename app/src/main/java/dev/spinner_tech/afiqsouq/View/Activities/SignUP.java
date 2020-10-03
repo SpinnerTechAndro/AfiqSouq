@@ -114,7 +114,7 @@ public class SignUP extends AppCompatActivity {
                 deliverAdress, "", ""+district, ""+district, "", country, email
                 , ph);
 //String firstName, String lastName, String company, String address1, String address2, String city, String state, String postcode, String country
-        SignUpResp.Shipping shippingModel = new SignUpResp.Shipping(""+name, " ", "test",
+        SignUpResp.Shipping shippingModel = new SignUpResp.Shipping(""+name, " ", " ",
                 deliverAdress, "", district, "", "", country);
 
         SignUpResp resp = new SignUpResp(email, pass, ""+name, ",", name, billingModel, shippingModel);
@@ -162,7 +162,7 @@ public class SignUP extends AppCompatActivity {
                     spinKitView.setVisibility(View.GONE);
                     Constants.PrintMsg("Error : CODE  " + response.code());
                     if(response.code()==400){
-                        Toasty.error(getApplicationContext() , "An account is already registered with your email address",
+                        Toasty.error(getApplicationContext() , "An account is already registered with your email address or User name ",
                                 1
                                 ).show();
                     }

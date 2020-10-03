@@ -89,32 +89,41 @@
        </com.google.android.material.appbar.AppBarLayout>
 
        <LinearLayout
-           android:layout_width="wrap_content"
-           android:layout_height="45dp"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
            android:orientation="horizontal"
            android:backgroundTint="#E4FFFC"
            android:background="@drawable/shape_rect_gray"
-           android:layout_margin="15dp">
+           android:layout_marginTop="15dp"
+           android:layout_marginBottom="5dp"
+           android:layout_marginStart="25dp"
+           android:layout_marginEnd="25dp">
 
-           <TextView
+           <EditText
                android:id="@+id/textview_shoppingcart_couponNo"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
-               android:hint=" Coupon  "
+               android:hint="Coupon "
+               android:background="@null"
+               android:inputType="text"
+               android:textColorHint="@color/gray3"
+               android:layout_gravity="center"
+               android:gravity="center"
                android:textColor="@color/cyan"
-               android:textSize="17sp"
+               android:textSize="16sp"
+               android:clickable="true"
                android:drawablePadding="@dimen/_5sdp"
                android:drawableStart="@drawable/coupon"
                android:fontFamily="@font/sf_pro"
                android:layout_marginLeft="20dp"
-               />
+               android:focusable="true" />
 
            <com.google.android.material.button.MaterialButton
                android:id="@+id/button_shoppingcart_applyCoupon"
-               android:layout_width="130dp"
+               android:layout_width="match_parent"
                android:layout_height="wrap_content"
                android:background="@drawable/shape_btn_applycoupon"
-               android:layout_marginLeft="80.27dp"
+               android:layout_marginStart="80.27dp"
                android:backgroundTint="@color/cyan"
                android:text="@string/apply_coupon"
                android:textAllCaps="false"
@@ -173,7 +182,7 @@
            <TextView
                android:layout_width="100dp"
                android:layout_height="wrap_content"
-               android:text="@string/shipping_fee"
+               android:text="Tax"
                android:textColor="@color/deep_blue"/>
 
            <TextView
@@ -216,7 +225,7 @@
                android:id="@+id/textview_shoppingcart_total_amount"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
-               android:text="$470.00"
+               android:text="$0.00"
                android:textStyle="bold"
                android:textColor="@color/cyan"
                android:textAllCaps="true"
@@ -241,7 +250,7 @@
                android:id="@+id/textview_shoppingcart_discount_amount"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
-               android:text="$15.00"
+               android:text="$0.0"
                android:textColor="@color/deep_blue"
                android:textAllCaps="true"
                android:layout_marginLeft="112dp"/>
@@ -278,7 +287,7 @@
                android:id="@+id/textview_shoppingcart_tobe_paid_amount"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
-               android:text="$455.00"
+               android:text="$0.00"
                android:textColor="@color/cyan"
                android:textStyle="bold"
                android:textAllCaps="true"

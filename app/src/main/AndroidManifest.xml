@@ -12,28 +12,28 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".View.Activities.CartListPage"></activity>
+        <activity android:name=".View.Activities.SplashScreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".View.Activities.CartListPage" />
         <activity android:name=".View.Activities.ProductList" />
         <activity android:name=".View.Activities.ProductDetails" />
         <activity android:name=".View.Activities.CategoryViewPage" />
-        <activity android:name=".View.Activities.Category_List"></activity>
+        <activity android:name=".View.Activities.Category_List" />
         <activity
             android:name=".View.Activities.SignUP"
             android:windowSoftInputMode="adjustPan">
 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-
-            </intent-filter>
         </activity>
         <activity android:name=".View.Activities.Sign_in" />
         <activity
             android:name=".View.Home_Activity"
             android:configChanges="keyboardHidden|orientation|screenSize"
-            android:windowSoftInputMode="adjustPan">
-
-        </activity>
+            android:windowSoftInputMode="adjustPan"></activity>
         <activity android:name=".MainActivity" />
     </application>
 
