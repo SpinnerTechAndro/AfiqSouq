@@ -6,11 +6,12 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import dev.spinner_tech.afiqsouq.View.Fragment.HomeFragment;
+import dev.spinner_tech.afiqsouq.View.Fragment.ProfileFragment;
 import dev.spinner_tech.afiqsouq.View.Fragment.SearchFragment;
 
 public class viewPager2_adapter extends FragmentStateAdapter {
 
-    private String[] titles = new String[]{"Home", "Search"};
+    private String[] titles = new String[]{"Home", "Search" ,"Profile"};
 
     public viewPager2_adapter(@NonNull FragmentActivity fragmentActivity) {
         super(fragmentActivity);
@@ -24,6 +25,8 @@ public class viewPager2_adapter extends FragmentStateAdapter {
                 return new HomeFragment();
             case 1:
                 return new SearchFragment();
+            case 2:
+                return new ProfileFragment();
 
         }
 
@@ -34,6 +37,6 @@ public class viewPager2_adapter extends FragmentStateAdapter {
 
     @Override
     public int getItemCount() {
-        return 2;
+        return 3;
     }
 }

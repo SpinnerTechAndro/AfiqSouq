@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:id="@+id/toolbarRL"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_margin="@dimen/_2sdp">
+
+        <ImageView
+            android:id="@+id/backIB"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/ic_baseline_arrow_back_24"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="Checkout Page"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/_17sdp" />
+
+        <RelativeLayout
+            android:layout_width="@dimen/_60sdp"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbarRL"
+        android:layout_marginLeft="@dimen/_5sdp"
+        android:layout_marginRight="@dimen/_5sdp">
+
+
+        <RelativeLayout
+
+            android:id="@+id/shipping_RL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="Shipping to"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/_16sdp" />
+
+            <ImageButton
+                android:id="@+id/expand_icon_IB"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/_3sdp"
+                android:background="@null"
+                android:scaleType="fitXY"
+              />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/person_information_RL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/shipping_RL"
+            android:layout_marginTop="@dimen/_10sdp">
+
+
+            <!--active status-->
+            <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/active_status_IV"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:visibility="invisible"
+                android:src="@mipmap/ic_launcher_round"
+                app:civ_border_color="@color/colorWhite"
+                app:civ_border_width="2dp" />
+
+
+            <ImageButton
+                android:id="@+id/delete_IB"
+                android:visibility="gone"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="@dimen/_3sdp"
+                android:background="@null"
+                android:src="@drawable/icon_trash"
+
+                />
+
+            <ImageButton
+                android:id="@+id/edit_IB"
+                android:visibility="gone"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_toLeftOf="@id/delete_IB"
+                android:background="@null"
+
+                android:src="@drawable/icon_edit"
+
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_3sdp"
+                android:layout_marginEnd="@dimen/_3sdp"
+                android:layout_toEndOf="@id/active_status_IV"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/name_TV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_toRightOf="@id/active_status_IV"
+                    android:text="Fariha Anjum"
+                    android:background="@null"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="17sp" />
+
+
+                <EditText
+                    android:id="@+id/address_TV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginRight="@dimen/_50sdp"
+                    android:maxLines="4"
+                    android:background="@null"
+                    android:text="East kazipare, Begom rokeya avenue 1206,Dhaka"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/phone_number_tv_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:text="01912938283"
+                    android:background="@null"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/add_a_new_address_Btn"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_10sdp"
+            android:layout_below="@id/person_information_RL"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:backgroundTint="@color/white"
+            android:textAllCaps="false"
+            android:textColor="@color/cyan"
+            android:textSize="@dimen/_14sdp" />
+
+        <RelativeLayout
+
+            android:id="@+id/add_payment_text_RL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/add_a_new_address_Btn"
+            android:layout_marginTop="@dimen/_10sdp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="Select Payment Methode"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/_16sdp" />
+
+            <ImageButton
+                android:id="@+id/select_payment_methode_expandIB"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/_3sdp"
+                android:background="@null"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_expand_accent" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/select_payment_methode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/add_payment_text_RL"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="2">
+
+                <RelativeLayout
+                    android:id="@+id/bankTransferRL"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bank_transfer_card_background">
+
+                    <ImageView
+                        android:id="@+id/bank_image"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:src="@drawable/icon_bank" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/bank_image"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:layout_width="@dimen/_25sdp"
+                            android:layout_height="@dimen/_25sdp"
+                            android:layout_gravity="center_vertical"
+                            android:src="@drawable/ic_check_color_accent" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_5sdp"
+                            android:text="Bank transfer"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="@dimen/_14sdp" />
+
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/cash_on_delivery_RL"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/cash_on_delivery_card_background">
+
+
+                    <ImageView
+                        android:id="@+id/cash_on_delivery_image"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:src="@drawable/icon_cash" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/cash_on_delivery_image"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:layout_width="@dimen/_25sdp"
+                            android:layout_height="@dimen/_25sdp"
+                            android:layout_gravity="center_vertical"
+                            android:src="@drawable/ic_check_gray" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_5sdp"
+                            android:text="Cash On Delivery"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="@dimen/_14sdp" />
+
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="2">
+
+                <RelativeLayout
+                    android:id="@+id/paypalRL"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/paypal_card_background">
+
+                    <ImageView
+                        android:id="@+id/paypal_image"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:src="@drawable/paypal" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/paypal_image"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:layout_width="@dimen/_25sdp"
+                            android:layout_height="@dimen/_25sdp"
+                            android:layout_gravity="center_vertical"
+                            android:src="@drawable/ic_check_color_accent" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_5sdp"
+                            android:layout_marginRight="@dimen/_5sdp"
+                            android:text="PayPal"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="@dimen/_14sdp" />
+
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/master_card_RL"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/master_card_background">
+
+
+                    <ImageView
+                        android:id="@+id/master_card_image"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:src="@drawable/icon_card" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/master_card_image"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:layout_width="@dimen/_25sdp"
+                            android:layout_height="@dimen/_25sdp"
+                            android:layout_gravity="center_vertical"
+                            android:src="@drawable/ic_check_gray" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_5sdp"
+                            android:text="Master Card"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="@dimen/_14sdp" />
+
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/place_order_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_18sdp"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:padding="16dp"
+            android:backgroundTint="@color/cyan"
+            android:text="Place Order"
+            app:cornerRadius="18dp"
+            android:textAllCaps="false"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/_12sdp"
+            android:textColor="@color/colorWhite"
+            android:textSize="17sp" />
+
+
+    </RelativeLayout>
+</RelativeLayout>

@@ -12,6 +12,9 @@ public  class Constants {
     public static final String KEY = "cs_a5b646ab7513867890dd63f2c504af98f00cee53";
     public static final String BASE = USER + ":"+KEY ;
     public static final String BDT_SIGN = "৳" ;
+    public static  final  String COD = "cod" ;
+    public static  final  String cashOnDelivery = "Cash on delivery" ;
+
 
 
     public  static  void PrintMsg(String msg){

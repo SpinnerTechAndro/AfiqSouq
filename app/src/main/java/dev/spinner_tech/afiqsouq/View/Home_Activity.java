@@ -6,12 +6,14 @@ import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.animation.ValueAnimator;
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -44,7 +46,7 @@ public class Home_Activity extends AppCompatActivity {
     RelativeLayout lin_id;
     PathModel outline;
     ViewPager2 viewPager;
-    ImageView image;
+    ImageView image, sideBar;
     TextView title;
 
     @Override
@@ -55,6 +57,8 @@ public class Home_Activity extends AppCompatActivity {
         viewPager = findViewById(R.id.view_pager);
         image = findViewById(R.id.imageView_discover_cart);
         title = findViewById(R.id.title);
+        sideBar = findViewById(R.id.imageview_discover_toolbar_left);
+
 
         // getSupportFragmentManager().beginTransaction().replace(R.id.view_pager, new dashboardFragment()).commit();
         viewPager.setAdapter(new viewPager2_adapter(Home_Activity.this));
@@ -79,6 +83,9 @@ public class Home_Activity extends AppCompatActivity {
                     case 1:
                         navigation.getMenu().findItem(R.id.action_fav).setChecked(true);
                         break;
+                    case 2:
+                        navigation.getMenu().findItem(R.id.action_profile).setChecked(true);
+                        break;
 
                 }
 
@@ -97,7 +104,7 @@ public class Home_Activity extends AppCompatActivity {
 
                 if (SharedPrefManager.getInstance(getApplicationContext())
                         .isUserLoggedIn()) {
-                    Intent  p  = new Intent(getApplicationContext(), CartListPage.class);
+                    Intent p = new Intent(getApplicationContext(), CartListPage.class);
                     startActivity(p);
                 }
 
@@ -105,7 +112,20 @@ public class Home_Activity extends AppCompatActivity {
             }
         });
 
+        sideBar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openDialogue();
+            }
+        });
+    }
 
+    private void openDialogue() {
+        Dialog dialog = new Dialog(Home_Activity.this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        dialog.setContentView(R.layout.menu_dialoge);
+        dialog.show();
     }
 
 
@@ -126,6 +146,10 @@ public class Home_Activity extends AppCompatActivity {
                             viewPager.setCurrentItem(1, false);
                             break;
 
+                        case R.id.action_profile:
+                            viewPager.setCurrentItem(2, false);
+                            break;
+
 
                     }
                     //      getSupportFragmentManager().beginTransaction().replace(R.id.view_pager, selectedFragmnet).commit();
@@ -138,7 +162,7 @@ public class Home_Activity extends AppCompatActivity {
 
     public void getViewPager() {
         if (null == viewPager) {
-            viewPager = (ViewPager2) findViewById(R.id.view_pager) ;
+            viewPager = (ViewPager2) findViewById(R.id.view_pager);
         }
 
         viewPager.setCurrentItem(1);

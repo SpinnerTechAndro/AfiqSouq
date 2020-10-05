@@ -3,7 +3,10 @@ package dev.spinner_tech.afiqsouq.api;
 import java.util.List;
 
 import dev.spinner_tech.afiqsouq.Models.CategoryResp;
+import dev.spinner_tech.afiqsouq.Models.CreateOrderResp;
+import dev.spinner_tech.afiqsouq.Models.DebugModel;
 import dev.spinner_tech.afiqsouq.Models.LoginResp;
+import dev.spinner_tech.afiqsouq.Models.OrderResp;
 import dev.spinner_tech.afiqsouq.Models.ProductModel;
 import dev.spinner_tech.afiqsouq.Models.Recived_Sign_up;
 import dev.spinner_tech.afiqsouq.Models.SignUpResp;
@@ -65,4 +68,6 @@ public interface api {
     Call<List<VariationResp>> ProductVariationList(@Header("Authorization") String authHeader,
                                                    @Path("p_id") String p_id
     );
+    @POST("orders")
+    Call<OrderResp> CreateOrder(@Header("Authorization") String authHeader, @Body CreateOrderResp body);
 }

@@ -12,6 +12,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".View.Activities.OrderDone"></activity>
+        <activity
+            android:name=".View.Activities.SelectDeliveryAddress"
+            android:windowSoftInputMode="stateHidden"></activity>
         <activity android:name=".View.Activities.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,14 +30,12 @@
         <activity android:name=".View.Activities.Category_List" />
         <activity
             android:name=".View.Activities.SignUP"
-            android:windowSoftInputMode="adjustPan">
-
-        </activity>
-        <activity android:name=".View.Activities.Sign_in" />
+            android:windowSoftInputMode="adjustPan"></activity>
+        <activity android:name=".View.Activities.Sign_in"></activity>
         <activity
             android:name=".View.Home_Activity"
             android:configChanges="keyboardHidden|orientation|screenSize"
-            android:windowSoftInputMode="adjustPan"></activity>
+            android:windowSoftInputMode="adjustPan" />
         <activity android:name=".MainActivity" />
     </application>
 

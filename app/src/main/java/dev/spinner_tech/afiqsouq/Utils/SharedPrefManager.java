@@ -92,7 +92,7 @@ public class SharedPrefManager {
 
 
 
-
+        editor.clear() ;
         editor.apply();
 
         SharedPreferences sharedPreferences1 = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
