@@ -12,7 +12,7 @@
        android:layout_width="match_parent"
        android:orientation="vertical"
        android:background="@color/white"
-       android:layout_height="wrap_content">
+       android:layout_height="match_parent">
 
        <com.google.android.material.appbar.AppBarLayout
            android:id="@+id/appBarLayout"
@@ -93,8 +93,8 @@
            android:orientation="horizontal"
            android:backgroundTint="#E4FFFC"
            android:background="@drawable/shape_rect_gray"
-           android:layout_marginTop="15dp"
-           android:layout_marginBottom="5dp"
+           android:layout_marginTop="10dp"
+           android:layout_marginBottom="3dp"
            android:layout_marginStart="25dp"
            android:layout_marginEnd="25dp">
 
@@ -136,13 +136,14 @@
            android:id="@+id/recyclerview_shoppingcart_cartItem"
            android:layout_width="match_parent"
            android:layout_height="@dimen/_220sdp"
+           android:nestedScrollingEnabled="false"
            />
 
        <View
            android:layout_width="340dp"
            android:layout_height="1dp"
            android:layout_gravity="center_horizontal"
-           android:layout_marginTop="25dp"
+           android:layout_marginTop="15dp"
            android:background="@color/gray3"/>
 
        <LinearLayout
@@ -189,6 +190,31 @@
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
                android:text="$20.00"
+               android:textColor="@color/deep_blue"
+               android:textAllCaps="true"
+               android:layout_marginLeft="73dp"/>
+
+
+       </LinearLayout>
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="horizontal"
+           android:layout_marginTop="10dp"
+           android:layout_marginLeft="140dp">
+
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="Delivery Charge"
+               android:textColor="@color/deep_blue"/>
+
+           <TextView
+               android:id="@+id/deliveryCharge"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="0.00"
                android:textColor="@color/deep_blue"
                android:textAllCaps="true"
                android:layout_marginLeft="73dp"/>

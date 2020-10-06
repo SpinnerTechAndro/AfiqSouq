@@ -14,6 +14,8 @@ public  class Constants {
     public static final String BDT_SIGN = "৳" ;
     public static  final  String COD = "cod" ;
     public static  final  String cashOnDelivery = "Cash on delivery" ;
+    public  static  final String INSIDE_DHAKA = "2" ;
+    public  static  final String OUTSIDE_DHAKA = "3" ;
 
 
 

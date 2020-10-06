@@ -4,9 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -24,15 +26,21 @@ import dev.spinner_tech.afiqsouq.Models.CartDbModel;
 import dev.spinner_tech.afiqsouq.Models.CreateOrderResp;
 import dev.spinner_tech.afiqsouq.Models.PrefUserModel;
 import dev.spinner_tech.afiqsouq.Models.TaxREsp;
+import dev.spinner_tech.afiqsouq.Models.deliveryZoneResp;
 import dev.spinner_tech.afiqsouq.R;
 import dev.spinner_tech.afiqsouq.Utils.Constants;
 import dev.spinner_tech.afiqsouq.Utils.SharedPrefManager;
 import dev.spinner_tech.afiqsouq.database.CartDatabase;
+import dev.spinner_tech.afiqsouq.services.RetrofitClient;
+import es.dmoral.toasty.Toasty;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class CartListPage extends AppCompatActivity {
 
 
-    public TextView cartNumber, tax_fee, coupon_no, sub_total, shipping_fee, total, discount, paid, product_name, product_price;
+    public TextView cartNumber, tax_fee, coupon_no, sub_total, deliveryChargeTV, total, discount, paid, product_name, product_price;
     Button checkoutout, apply_couppon;
     RecyclerView rv_shoppingCart;
     List<CartDbModel> cartList = new ArrayList<>();
@@ -40,7 +48,10 @@ public class CartListPage extends AppCompatActivity {
     CartListAdapter adapter;
     double toatalAmount;
     double rate = 0.0;
+    String method_title = "Flat rate", method_Id = "flat_rate", deliveryCharge = "50";
     DecimalFormat dec = new DecimalFormat("#0.0");
+    int delivery_charge = 50;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,19 +70,19 @@ public class CartListPage extends AppCompatActivity {
         discount = findViewById(R.id.textview_shoppingcart_discount_amount);
         paid = findViewById(R.id.textview_shoppingcart_tobe_paid_amount);
         checkoutout = findViewById(R.id.button_shoppingcart_checkoutd);
+        deliveryChargeTV = findViewById(R.id.deliveryCharge);
+
         rate = loadTaxFormCache();
         rv_shoppingCart.setLayoutManager(new LinearLayoutManager(this));
 
-
-        loadAllCartItem();
 
         checkoutout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent p = new Intent(getApplicationContext(), SelectDeliveryAddress.class);
-                p.putExtra("MODEL" , BuildOrderModel()) ;
+                p.putExtra("MODEL", BuildOrderModel());
                 startActivity(p);
-             //   BuildOrderModel();
+                //   BuildOrderModel();
 
 
             }
@@ -82,7 +93,8 @@ public class CartListPage extends AppCompatActivity {
 
 
     private void loadAllCartItem() {
-
+        deliveryChargeTV.setText(Constants.BDT_SIGN + deliveryCharge);
+        delivery_charge = Integer.parseInt(deliveryCharge);
         countCartItem();
         CartDatabase.databaseWriteExecutor.execute(new Runnable() {
             @Override
@@ -92,24 +104,39 @@ public class CartListPage extends AppCompatActivity {
 
                 if (cartList != null && !cartList.isEmpty()) // i know its werid but thats r8 cheaking list is popluted
                 {
+                    /*
+                    Handler refresh = new Handler(Looper.getMainLooper());
+refresh.post(new Runnable() {
+    public void run()
+    {
+        byeSetup();
+    }
+})
 
-                    orderList.clear();
-                    orderList.addAll(cartList);
-                    adapter = new CartListAdapter(cartList, CartListPage.this, 0, rate);
-                    rv_shoppingCart.setAdapter(adapter);
+                     */
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            orderList.clear();
+                            orderList.addAll(cartList);
 
-                    // total
-                    double totalMoney = calculateTotal(cartList);
-                    //setting sub amount
-                    sub_total.setText(Constants.BDT_SIGN + Math.round(totalMoney));
+                            adapter = new CartListAdapter(cartList, CartListPage.this, delivery_charge, rate);
+                            rv_shoppingCart.setAdapter(adapter);
 
-                    Log.d("TAG", "run: " + "totall" + totalMoney + ((totalMoney * (rate / 100))));
-                    // calculating tax
+                            // total
+                            double totalMoney = calculateTotal(cartList);
+                            //setting sub amount
+                            sub_total.setText(Constants.BDT_SIGN + Math.round(totalMoney));
 
-                    tax_fee.setText(Constants.BDT_SIGN + dec.format(totalMoney * (rate / 100)));
-                    totalMoney = totalMoney + ((totalMoney * (rate / 100)));
-                    total.setText(Constants.BDT_SIGN + Math.round(totalMoney + 0));
-                    paid.setText(Constants.BDT_SIGN + Math.round(totalMoney + 0));
+                            Log.d("TAG", "run: " + "totall" + totalMoney + ((totalMoney * (rate / 100))));
+                            // calculating tax
+
+                            tax_fee.setText(Constants.BDT_SIGN + dec.format(totalMoney * (rate / 100)));
+                            totalMoney = totalMoney + ((totalMoney * (rate / 100)));
+                            total.setText(Constants.BDT_SIGN + Math.round(totalMoney + delivery_charge));
+                            paid.setText(Constants.BDT_SIGN + Math.round(totalMoney + delivery_charge));
+                        }
+                    });
 
                 } else {
                     // show  empty layout
@@ -231,7 +258,7 @@ public class CartListPage extends AppCompatActivity {
 
         // shipping lines
         List<CreateOrderResp.ShippingLine> shippingLineList = new ArrayList<>();
-        CreateOrderResp.ShippingLine shippingLineModel = new CreateOrderResp.ShippingLine("flat_rate", "Flat rate", "50");
+        CreateOrderResp.ShippingLine shippingLineModel = new CreateOrderResp.ShippingLine(method_Id, method_title, deliveryCharge + "");
         shippingLineList.add(shippingLineModel);
         // billing model
         //String firstName, String lastName, String address1, String address2, String city, String state, String postcode, String country, String email, String phone
@@ -246,11 +273,85 @@ public class CartListPage extends AppCompatActivity {
         CreateOrderResp orderModel = new CreateOrderResp(Constants.COD, Constants.cashOnDelivery, false,
                 billingModel, shipping, itemList, shippingLineList);
 
-     //   CreateOrder(orderModel);
+        //   CreateOrder(orderModel);
 
         return orderModel;
 
     }
 
+    @Override
+    protected void onStart() {
 
+        checkForDeliveryCharge();
+
+
+        super.onStart();
+
+
+    }
+
+    private void checkForDeliveryCharge() {
+        ProgressDialog dialog = new ProgressDialog(CartListPage.this);
+        dialog.setMessage("Getting Delivery Charge");
+        dialog.show();
+        // check for delivery charge and id title
+        String zoneID = "3";
+        if (SharedPrefManager.getInstance(getApplicationContext()).getUser().getState().toLowerCase().equals("dhaka")) {
+
+            zoneID = Constants.INSIDE_DHAKA;
+
+
+        } else {
+            // outside of dhaka
+            zoneID = Constants.OUTSIDE_DHAKA;
+
+        }
+
+        String authHeader = "Basic " + Base64.encodeToString(Constants.BASE.getBytes(), Base64.NO_WRAP);
+
+        // make the call
+        Call<List<deliveryZoneResp>> deliveryZoneRespCall = RetrofitClient.getInstance()
+                .getApi()
+                .getDeliveryCharge(authHeader, zoneID);
+
+        deliveryZoneRespCall.enqueue(new Callback<List<deliveryZoneResp>>() {
+            @Override
+            public void onResponse(Call<List<deliveryZoneResp>> call, Response<List<deliveryZoneResp>> response) {
+
+                if (response.code() == 200) {
+                    List<deliveryZoneResp> deliveryZoneRespList = response.body();
+                    try {
+                        method_Id = deliveryZoneRespList.get(0).getMethodId();
+                        method_title = deliveryZoneRespList.get(0).getMethodTitle();
+                        deliveryCharge = deliveryZoneRespList.get(0).getSettings().getCost().getValue();
+                        dialog.dismiss();
+                        loadAllCartItem();
+
+                    } catch (Exception e) {
+                        Toasty.error(getApplicationContext(), "Error " + e.getMessage(), 1).show();
+                        deliveryCharge = "10";
+                        dialog.dismiss();
+                        loadAllCartItem();
+                    }
+
+                } else {
+                    Toasty.error(getApplicationContext(), "Error " + response.code(), 1).show();
+                    deliveryCharge = "10";
+                    dialog.dismiss();
+                    loadAllCartItem();
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(Call<List<deliveryZoneResp>> call, Throwable t) {
+                Toasty.error(getApplicationContext(), "Error " + t.getMessage(), 1).show();
+                deliveryCharge = "10";
+                dialog.dismiss();
+                loadAllCartItem();
+            }
+        });
+
+    }
 }

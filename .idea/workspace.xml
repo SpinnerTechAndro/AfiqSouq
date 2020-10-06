@@ -6,72 +6,20 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="TAG" />
     <option name="TOOL_WINDOW_LOG_LEVEL" value="verbose" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1ddbe2eb-dd24-4bdd-9a2f-bc1285aee196" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_mikhaellopez_circularimageview_4_2_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/Models/CreateOrderResp.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/Models/DebugModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/Models/OrderResp.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/View/Activities/OrderDone.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/View/Activities/SelectDeliveryAddress.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/View/Fragment/ProfileFragment.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/add_to_cart_black_background.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/bank_transfer_card_background.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/btn_close_1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/cash_on_delivery_card_background.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/categories.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/dialog_bg.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_check_color_accent.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_check_gray.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_expand_accent.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/icon_bag.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/icon_bag_1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/icon_box.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/icon_box_1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/icon_cog_1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/icon_heart.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/icon_heart_1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/icon_logout_1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/icon_marker.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/icon_marker_1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/icon_payment_1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/icon_user_1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/master_card_background.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/myaccount_bg.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/paypal.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/profile_back.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/top_deals.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_order_done.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_select_delivery_address.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_profile.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/menu_dialoge.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_annotation_annotation_1_1_0_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_annotation_annotation_1_1_0_jar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_collection_collection_1_1_0_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_collection_collection_1_1_0_jar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_constraintlayout_constraintlayout_solver_2_0_1_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_constraintlayout_constraintlayout_solver_2_0_1_jar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_code_gson_gson_2_8_5_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_code_gson_gson_2_8_5_jar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_javawriter_2_1_1_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_javawriter_2_1_1_jar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_retrofit2_retrofit_2_9_0_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_retrofit2_retrofit_2_9_0_jar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__javax_inject_javax_inject_1_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__javax_inject_javax_inject_1_jar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_hamcrest_hamcrest_core_1_3_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_hamcrest_hamcrest_core_1_3_jar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_hamcrest_hamcrest_integration_1_3_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_hamcrest_hamcrest_integration_1_3_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/Models/deliveryZoneResp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/app.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/Adapter/viewPager2_adapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/Adapter/viewPager2_adapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/Adapter/CartListAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/Adapter/CartListAdapter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/Utils/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/Utils/Constants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/Utils/SharedPrefManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/Utils/SharedPrefManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/View/Activities/CartListPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/View/Activities/CartListPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/View/Home_Activity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/View/Home_Activity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/api/api.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/api/api.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/database/CartDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/database/CartDatabase.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_cart_list.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_cart_list.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_product_details.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_product_details.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -164,8 +112,8 @@
     <key name="android.template.-566120814">
       <recent name="dev.spinner_tech.afiqsouq.View.Activities" />
     </key>
-    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
-      <recent name="dev.spinner_tech.afiqsouq" />
+    <key name="android.template.-818253568">
+      <recent name="dev.spinner_tech.afiqsouq.View.Activities" />
     </key>
     <key name="android.template.-1102856960">
       <recent name="dev.spinner_tech.afiqsouq.View.Activities" />
@@ -178,16 +126,19 @@
     <key name="MoveFile.RECENT_KEYS">
       <recent name="F:\Running Projects\office\AfiqSouq\app\src\main\res\layout" />
     </key>
-    <key name="android.template.-818253568">
-      <recent name="dev.spinner_tech.afiqsouq.View.Activities" />
-    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="dev.spinner_tech.afiqsouq.Utils" />
       <recent name="dev.spinner_tech.afiqsouq.Adapter" />
       <recent name="dev.spinner_tech.afiqsouq.database" />
     </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="dev.spinner_tech.afiqsouq" />
+    </key>
     <key name="android.template.208661246">
       <recent name="dev.spinner_tech.afiqsouq.View.Activities" />
+    </key>
+    <key name="android.template.-1174013565">
+      <recent name="dev.spinner_tech.afiqsouq.Models" />
     </key>
   </component>
   <component name="RunManager">
@@ -281,10 +232,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="477" y="252" key="#PSD/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1600255095766" />
-    <state x="765" y="223" key="#com.intellij.ide.util.MemberChooser" timestamp="1601905022028">
+    <state x="765" y="223" key="#com.intellij.ide.util.MemberChooser" timestamp="1601999176924">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="765" y="223" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1601905022028" />
+    <state x="765" y="223" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1601999176924" />
     <state x="637" y="436" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1600242900382">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -317,22 +268,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1600250744365" />
-    <state width="1876" height="652" key="GridCell.Tab.0.bottom" timestamp="1601911305367">
+    <state width="1876" height="652" key="GridCell.Tab.0.bottom" timestamp="1602000504795">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1876" height="652" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1601911305367" />
-    <state width="1876" height="652" key="GridCell.Tab.0.center" timestamp="1601911305367">
+    <state width="1876" height="652" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1602000504795" />
+    <state width="1876" height="652" key="GridCell.Tab.0.center" timestamp="1602000504795">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1876" height="652" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1601911305367" />
-    <state width="1876" height="652" key="GridCell.Tab.0.left" timestamp="1601911305366">
+    <state width="1876" height="652" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1602000504795" />
+    <state width="1876" height="652" key="GridCell.Tab.0.left" timestamp="1602000504795">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1876" height="652" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1601911305366" />
-    <state width="1876" height="652" key="GridCell.Tab.0.right" timestamp="1601911305367">
+    <state width="1876" height="652" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1602000504795" />
+    <state width="1876" height="652" key="GridCell.Tab.0.right" timestamp="1602000504795">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1876" height="652" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1601911305367" />
+    <state width="1876" height="652" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1602000504795" />
     <state x="540" y="263" key="IDE.errors.dialog" timestamp="1601394217858">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -341,10 +292,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="996" y="307" key="chooseDestDirectoryDialog/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1601480783024" />
-    <state width="484" height="36" key="javadoc.popup.new" timestamp="1601913120474">
+    <state width="484" height="36" key="javadoc.popup.new" timestamp="1602002100062">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="484" height="36" key="javadoc.popup.new/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1601913120474" />
+    <state width="484" height="36" key="javadoc.popup.new/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1602002100062" />
     <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1600960703759">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

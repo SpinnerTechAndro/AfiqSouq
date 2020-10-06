@@ -12,6 +12,7 @@ import dev.spinner_tech.afiqsouq.Models.Recived_Sign_up;
 import dev.spinner_tech.afiqsouq.Models.SignUpResp;
 import dev.spinner_tech.afiqsouq.Models.TaxREsp;
 import dev.spinner_tech.afiqsouq.Models.VariationResp;
+import dev.spinner_tech.afiqsouq.Models.deliveryZoneResp;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -63,6 +64,12 @@ public interface api {
     Call<List<ProductModel>> SearchProduct(@Header("Authorization") String authHeader,
                                                         @Query("search") String search
     );
+
+    @GET("shipping/zones/{id}/methods")
+    Call<List<deliveryZoneResp>> getDeliveryCharge(@Header("Authorization") String authHeader ,
+                                                   @Path("id") String id
+    );
+
 
     @GET("products/{p_id}/variations")
     Call<List<VariationResp>> ProductVariationList(@Header("Authorization") String authHeader,

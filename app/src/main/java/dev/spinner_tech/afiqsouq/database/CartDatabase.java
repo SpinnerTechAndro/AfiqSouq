@@ -28,7 +28,7 @@ public abstract class CartDatabase extends RoomDatabase {
     public abstract RecentDao recentDao();
 
     private static volatile CartDatabase INSTANCE;
-    private static final int NUMBER_OF_THREADS = 2;
+    private static final int NUMBER_OF_THREADS = 1;
     public static final ExecutorService databaseWriteExecutor =
             Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 

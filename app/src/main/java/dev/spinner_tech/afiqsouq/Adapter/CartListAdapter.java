@@ -72,6 +72,7 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.ViewHo
         final CartDatabase database = Room.databaseBuilder(cartPage,
                 CartDatabase.class, CartDatabase.DB_NAME)
                 .fallbackToDestructiveMigration()
+                .allowMainThreadQueries()
                 .build();
         final CartDbModel cartItem = cartList.get(position);
         holder.txtName.setText(cartItem.title);
