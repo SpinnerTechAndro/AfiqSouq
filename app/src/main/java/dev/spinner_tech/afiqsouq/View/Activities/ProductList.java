@@ -46,10 +46,10 @@ public class ProductList extends AppCompatActivity implements ProductListAdapter
         setContentView(R.layout.activity_product_list);
         recyclerView = findViewById(R.id.list);
         progress = (SpinKitView) findViewById(R.id.spin_kit);
-        manager = new GridLayoutManager(this ,2 );
+        manager = new GridLayoutManager(this, 2);
 
         recyclerView.setLayoutManager(manager);
-        adapter = new ProductListAdapter(getApplicationContext() , plist , this ) ;
+        adapter = new ProductListAdapter(getApplicationContext(), plist, this);
         recyclerView.setAdapter(adapter);
         //reciver the cat and type ;
 
@@ -58,6 +58,13 @@ public class ProductList extends AppCompatActivity implements ProductListAdapter
 
         decideWhatToLoad(category, currentPage);
         initScrollListener();
+
+        findViewById(R.id.backBtn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
     }
 
@@ -104,7 +111,7 @@ public class ProductList extends AppCompatActivity implements ProductListAdapter
 
                 } else {
                     Toasty.error(getApplicationContext(), "Error : " + response.code(), 1).show();
-                progress.setVisibility(View.GONE);
+                    progress.setVisibility(View.GONE);
                 }
 
             }
@@ -145,9 +152,6 @@ public class ProductList extends AppCompatActivity implements ProductListAdapter
                 }
 
 
-
-
-
             }
         });
 
@@ -156,11 +160,10 @@ public class ProductList extends AppCompatActivity implements ProductListAdapter
 
     private void loadMore() {
 
-        if(isEnd){
-            Toasty.warning(getApplicationContext(), "Your At The Last Page." , Toasty.LENGTH_LONG)
+        if (isEnd) {
+            Toasty.warning(getApplicationContext(), "Your At The Last Page.", Toasty.LENGTH_LONG)
                     .show();
-        }
-        else {
+        } else {
             currentPage++;
             decideWhatToLoad(category, currentPage);
         }
@@ -170,8 +173,8 @@ public class ProductList extends AppCompatActivity implements ProductListAdapter
 
     @Override
     public void onItemClick(ProductModel model) {
-        Intent p = new Intent(getApplicationContext(), ProductDetails.class) ;
-        p.putExtra("MODEL" , model) ;
+        Intent p = new Intent(getApplicationContext(), ProductDetails.class);
+        p.putExtra("MODEL", model);
 
         startActivity(p);
     }

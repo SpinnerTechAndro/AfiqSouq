@@ -21,9 +21,7 @@ import dev.spinner_tech.afiqsouq.Models.ProductModel;
 import dev.spinner_tech.afiqsouq.R;
 
 
-/**
- * Created by USER on 18-Jul-20.
- */
+
 
 public class CateGoryAdapter extends RecyclerView.Adapter<CateGoryAdapter.ViewHolder> {
 

@@ -11,15 +11,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1ddbe2eb-dd24-4bdd-9a2f-bc1285aee196" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/Models/deliveryZoneResp.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/Adapter/HorizontralProductListAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/View/Activities/Top_Recent_List.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_top__recent__list.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_product_horizontral.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/app.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/Adapter/CartListAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/Adapter/CartListAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/Utils/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/Utils/Constants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/View/Activities/CartListPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/View/Activities/CartListPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/Adapter/CateGoryAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/Adapter/CateGoryAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/View/Activities/Category_List.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/View/Activities/Category_List.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/View/Activities/ProductList.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/View/Activities/ProductList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/View/Fragment/HomeFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/View/Fragment/HomeFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/View/Home_Activity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/View/Home_Activity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/api/api.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/api/api.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/database/CartDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/database/CartDatabase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_cart_list.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_cart_list.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_home.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_home.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,13 +75,13 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="9c222cac" />
-    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-10-05T13:05:02.332Z" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="Pixel_XL_API_28" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-10-07T09:17:15.649Z" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="android.sdk.path" value="I:/android" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/main/res/drawable" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/res/drawable" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/res/layout" />
     <property name="project.structure.last.edited" value="Suggestions" />
     <property name="project.structure.proportion" value="0.17" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -95,9 +101,12 @@
     <key name="android.template.-2009694709">
       <recent name="dev.spinner_tech.afiqsouq.Models" />
     </key>
+    <key name="android.template.-1381294398">
+      <recent name="dev.spinner_tech.afiqsouq.View.Activities" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="F:\Running Projects\office\AfiqSouq\app\src\main\res\drawable" />
       <recent name="F:\Running Projects\office\AfiqSouq\app\src\main\res\layout" />
+      <recent name="F:\Running Projects\office\AfiqSouq\app\src\main\res\drawable" />
       <recent name="F:\Running Projects\office\AfiqSouq\app\src\main\java\dev\spinner_tech\afiqsouq\database" />
       <recent name="F:\Running Projects\office\AfiqSouq\app\src\main\java\dev\spinner_tech\afiqsouq" />
       <recent name="F:\Running Projects\office\AfiqSouq\app\src\main\res\font" />
@@ -112,8 +121,8 @@
     <key name="android.template.-566120814">
       <recent name="dev.spinner_tech.afiqsouq.View.Activities" />
     </key>
-    <key name="android.template.-818253568">
-      <recent name="dev.spinner_tech.afiqsouq.View.Activities" />
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="dev.spinner_tech.afiqsouq" />
     </key>
     <key name="android.template.-1102856960">
       <recent name="dev.spinner_tech.afiqsouq.View.Activities" />
@@ -126,13 +135,13 @@
     <key name="MoveFile.RECENT_KEYS">
       <recent name="F:\Running Projects\office\AfiqSouq\app\src\main\res\layout" />
     </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="dev.spinner_tech.afiqsouq.Utils" />
-      <recent name="dev.spinner_tech.afiqsouq.Adapter" />
-      <recent name="dev.spinner_tech.afiqsouq.database" />
+    <key name="android.template.-818253568">
+      <recent name="dev.spinner_tech.afiqsouq.View.Activities" />
     </key>
-    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
-      <recent name="dev.spinner_tech.afiqsouq" />
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="dev.spinner_tech.afiqsouq.Adapter" />
+      <recent name="dev.spinner_tech.afiqsouq.Utils" />
+      <recent name="dev.spinner_tech.afiqsouq.database" />
     </key>
     <key name="android.template.208661246">
       <recent name="dev.spinner_tech.afiqsouq.View.Activities" />
@@ -232,10 +241,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="477" y="252" key="#PSD/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1600255095766" />
-    <state x="765" y="223" key="#com.intellij.ide.util.MemberChooser" timestamp="1601999176924">
+    <state x="765" y="223" key="#com.intellij.ide.util.MemberChooser" timestamp="1602065456282">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="765" y="223" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1601999176924" />
+    <state x="765" y="223" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1602065456282" />
     <state x="637" y="436" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1600242900382">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -292,10 +301,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="996" y="307" key="chooseDestDirectoryDialog/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1601480783024" />
-    <state width="484" height="36" key="javadoc.popup.new" timestamp="1602002100062">
+    <state width="484" height="36" key="javadoc.popup.new" timestamp="1602066438003">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="484" height="36" key="javadoc.popup.new/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1602002100062" />
+    <state width="484" height="36" key="javadoc.popup.new/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1602066438003" />
     <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1600960703759">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

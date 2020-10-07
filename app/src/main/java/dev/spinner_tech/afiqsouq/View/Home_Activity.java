@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,6 +35,8 @@ import dev.spinner_tech.afiqsouq.Models.TaxREsp;
 import dev.spinner_tech.afiqsouq.R;
 import dev.spinner_tech.afiqsouq.Utils.SharedPrefManager;
 import dev.spinner_tech.afiqsouq.View.Activities.CartListPage;
+import dev.spinner_tech.afiqsouq.View.Activities.Category_List;
+import dev.spinner_tech.afiqsouq.View.Activities.Top_Recent_List;
 import es.dmoral.toasty.Toasty;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
@@ -121,10 +124,43 @@ public class Home_Activity extends AppCompatActivity {
     }
 
     private void openDialogue() {
+        LinearLayout categoryTv , recentTv  , topDealsTv  ;
+
         Dialog dialog = new Dialog(Home_Activity.this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         dialog.setContentView(R.layout.menu_dialoge);
+        // views of  the dialogue
+        categoryTv = dialog.findViewById(R.id.categories_tv) ;
+        recentTv = dialog.findViewById(R.id.new_arrivals_tv) ;
+        topDealsTv = dialog.findViewById(R.id.top_deals_tv);
+
+        topDealsTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent  p = new Intent(getApplicationContext() , Top_Recent_List.class) ;
+                p.putExtra("TYPE" , "TOP") ;
+                startActivity(p);
+            }
+        });
+
+        categoryTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent  p = new Intent(getApplicationContext() , Category_List.class) ;
+                startActivity(p);
+            }
+        });
+
+        recentTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent  p = new Intent(getApplicationContext() , Top_Recent_List.class) ;
+                p.putExtra("TYPE" , "RECENT") ;
+                startActivity(p);
+            }
+        });
+
         dialog.show();
     }
 

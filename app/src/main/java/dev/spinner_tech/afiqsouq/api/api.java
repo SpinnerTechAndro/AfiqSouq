@@ -32,6 +32,14 @@ public interface api {
                                             @Query("per_page") String per_page,
                                             @Query("page") int page);
 
+    // popular product list
+    //
+    @GET("products?per_page=10&orderby=date&order=desc")
+    Call<List<ProductModel>> getAllRecentProducts(@Header("Authorization") String authHeader
+            , @Query("per_page") int page);
+    @GET("products?per_page=10&orderby=popularity&order=desc")
+    Call<List<ProductModel>> getAllFeaturedProducts(@Header("Authorization") String authHeader , @Query("per_page") int page );
+
     @GET("user/generate_auth_cookie")
     Call<LoginResp> Login(@Query("username") String username, @Query("password") String pass);
 
