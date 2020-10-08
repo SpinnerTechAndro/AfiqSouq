@@ -4,11 +4,13 @@ import java.util.List;
 
 import dev.spinner_tech.afiqsouq.Models.CategoryResp;
 import dev.spinner_tech.afiqsouq.Models.CreateOrderResp;
+import dev.spinner_tech.afiqsouq.Models.CreateReviewRep;
 import dev.spinner_tech.afiqsouq.Models.DebugModel;
 import dev.spinner_tech.afiqsouq.Models.LoginResp;
 import dev.spinner_tech.afiqsouq.Models.OrderResp;
 import dev.spinner_tech.afiqsouq.Models.ProductModel;
 import dev.spinner_tech.afiqsouq.Models.Recived_Sign_up;
+import dev.spinner_tech.afiqsouq.Models.ReviewResp;
 import dev.spinner_tech.afiqsouq.Models.SignUpResp;
 import dev.spinner_tech.afiqsouq.Models.TaxREsp;
 import dev.spinner_tech.afiqsouq.Models.VariationResp;
@@ -73,6 +75,13 @@ public interface api {
                                                         @Query("search") String search
     );
 
+    //products/reviews?product=5151
+
+    @GET("products/reviews")
+    Call<List<ReviewResp>> getProductReview(@Header("Authorization") String authHeader,
+                                         @Query("product") int product_id
+    );
+
     @GET("shipping/zones/{id}/methods")
     Call<List<deliveryZoneResp>> getDeliveryCharge(@Header("Authorization") String authHeader ,
                                                    @Path("id") String id
@@ -85,4 +94,7 @@ public interface api {
     );
     @POST("orders")
     Call<OrderResp> CreateOrder(@Header("Authorization") String authHeader, @Body CreateOrderResp body);
+
+    @POST("products/reviews")
+    Call<ReviewResp> CreateReviews(@Header("Authorization") String authHeader, @Body CreateReviewRep body);
 }

@@ -6,26 +6,29 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="TAG" />
     <option name="TOOL_WINDOW_LOG_LEVEL" value="verbose" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1ddbe2eb-dd24-4bdd-9a2f-bc1285aee196" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/Adapter/HorizontralProductListAdapter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/View/Activities/Top_Recent_List.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_top__recent__list.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_product_horizontral.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/Adapter/ReviewAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/Models/CreateReviewRep.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/Models/ReviewResp.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/View/Activities/Add_Review.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/View/Activities/reviewActivity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_baseline_add_24.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_rating_accent_full.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/layesrlist_progressbar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/round_image.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_add__review.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_review.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/reviews_row_layout.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/app.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/Adapter/CateGoryAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/Adapter/CateGoryAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/View/Activities/Category_List.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/View/Activities/Category_List.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/View/Activities/ProductList.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/View/Activities/ProductList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/View/Fragment/HomeFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/View/Fragment/HomeFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/View/Home_Activity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/View/Home_Activity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/api/api.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/api/api.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_home.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_home.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,7 +79,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="Pixel_XL_API_28" />
-    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-10-07T09:17:15.649Z" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-10-08T14:29:41.342Z" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="android.sdk.path" value="I:/android" />
@@ -93,6 +96,9 @@
   </component>
   <component name="RecentsManager">
     <key name="android.template.1110844506">
+      <recent name="dev.spinner_tech.afiqsouq.View.Activities" />
+    </key>
+    <key name="android.template.1502802658">
       <recent name="dev.spinner_tech.afiqsouq.View.Activities" />
     </key>
     <key name="android.template.2062377307">
@@ -121,8 +127,8 @@
     <key name="android.template.-566120814">
       <recent name="dev.spinner_tech.afiqsouq.View.Activities" />
     </key>
-    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
-      <recent name="dev.spinner_tech.afiqsouq" />
+    <key name="android.template.-818253568">
+      <recent name="dev.spinner_tech.afiqsouq.View.Activities" />
     </key>
     <key name="android.template.-1102856960">
       <recent name="dev.spinner_tech.afiqsouq.View.Activities" />
@@ -135,13 +141,13 @@
     <key name="MoveFile.RECENT_KEYS">
       <recent name="F:\Running Projects\office\AfiqSouq\app\src\main\res\layout" />
     </key>
-    <key name="android.template.-818253568">
-      <recent name="dev.spinner_tech.afiqsouq.View.Activities" />
-    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="dev.spinner_tech.afiqsouq.Adapter" />
       <recent name="dev.spinner_tech.afiqsouq.Utils" />
       <recent name="dev.spinner_tech.afiqsouq.database" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="dev.spinner_tech.afiqsouq" />
     </key>
     <key name="android.template.208661246">
       <recent name="dev.spinner_tech.afiqsouq.View.Activities" />
@@ -241,10 +247,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="477" y="252" key="#PSD/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1600255095766" />
-    <state x="765" y="223" key="#com.intellij.ide.util.MemberChooser" timestamp="1602065456282">
+    <state x="765" y="223" key="#com.intellij.ide.util.MemberChooser" timestamp="1602178931749">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="765" y="223" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1602065456282" />
+    <state x="765" y="223" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1602178931749" />
     <state x="637" y="436" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1600242900382">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -261,10 +267,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="540" y="275" key="AndroidCreateResourceDirectoryDialog/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1600256319950" />
-    <state x="540" y="275" key="AndroidCreateResourceFileDialog" timestamp="1601836100882">
+    <state x="540" y="275" width="840" height="486" key="AndroidCreateResourceFileDialog" timestamp="1602175075946">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="540" y="275" key="AndroidCreateResourceFileDialog/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1601836100882" />
+    <state x="540" y="275" width="840" height="486" key="AndroidCreateResourceFileDialog/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1602175075946" />
     <state x="819" y="342" key="AndroidCreateXmlResourceDialog" timestamp="1600851056842">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -277,22 +283,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1600250744365" />
-    <state width="1876" height="652" key="GridCell.Tab.0.bottom" timestamp="1602000504795">
+    <state width="1876" height="652" key="GridCell.Tab.0.bottom" timestamp="1602179028745">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1876" height="652" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1602000504795" />
-    <state width="1876" height="652" key="GridCell.Tab.0.center" timestamp="1602000504795">
+    <state width="1876" height="652" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1602179028745" />
+    <state width="1876" height="652" key="GridCell.Tab.0.center" timestamp="1602179028744">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1876" height="652" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1602000504795" />
-    <state width="1876" height="652" key="GridCell.Tab.0.left" timestamp="1602000504795">
+    <state width="1876" height="652" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1602179028744" />
+    <state width="1876" height="652" key="GridCell.Tab.0.left" timestamp="1602179028744">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1876" height="652" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1602000504795" />
-    <state width="1876" height="652" key="GridCell.Tab.0.right" timestamp="1602000504795">
+    <state width="1876" height="652" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1602179028744" />
+    <state width="1876" height="652" key="GridCell.Tab.0.right" timestamp="1602179028745">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1876" height="652" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1602000504795" />
+    <state width="1876" height="652" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1602179028745" />
     <state x="540" y="263" key="IDE.errors.dialog" timestamp="1601394217858">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -301,10 +307,15 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="996" y="307" key="chooseDestDirectoryDialog/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1601480783024" />
-    <state width="484" height="36" key="javadoc.popup.new" timestamp="1602066438003">
+    <state x="92" y="92" width="1736" height="856" key="com.android.tools.idea.avdmanager.AvdListDialog" timestamp="1602179088901">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="484" height="36" key="javadoc.popup.new/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1602066438003" />
+    <state x="92" y="92" width="1736" height="856" key="com.android.tools.idea.avdmanager.AvdListDialog/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1602179088901" />
+    <state width="484" height="36" key="javadoc.popup.new" timestamp="1602180752580">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="484" height="36" key="javadoc.popup.new/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1602170343676" />
+    <state width="484" height="36" key="javadoc.popup.new/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1602180752580" />
     <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1600960703759">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

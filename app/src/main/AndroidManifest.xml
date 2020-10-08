@@ -12,18 +12,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".View.Activities.Top_Recent_List"></activity>
-        <activity android:name=".View.Activities.OrderDone" />
-        <activity
-            android:name=".View.Activities.SelectDeliveryAddress"
-            android:windowSoftInputMode="stateHidden" />
-        <activity android:name=".View.Activities.SplashScreen">
+        <activity android:name=".View.Activities.Add_Review"></activity>
+        <activity android:name=".View.Activities.reviewActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".View.Activities.Top_Recent_List" />
+        <activity android:name=".View.Activities.OrderDone" />
+        <activity
+            android:name=".View.Activities.SelectDeliveryAddress"
+            android:windowSoftInputMode="stateHidden" />
+        <activity android:name=".View.Activities.SplashScreen"></activity>
         <activity android:name=".View.Activities.CartListPage" />
         <activity android:name=".View.Activities.ProductList" />
         <activity android:name=".View.Activities.ProductDetails" />
