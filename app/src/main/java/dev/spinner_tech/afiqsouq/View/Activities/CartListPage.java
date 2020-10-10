@@ -271,7 +271,7 @@ refresh.post(new Runnable() {
         // create the final model
         //String paymentMethod, String paymentMethodTitle, Boolean setPaid, Billing billing, Shipping shipping, List<LineItem> lineItems, List<ShippingLine> shippingLines
         CreateOrderResp orderModel = new CreateOrderResp(Constants.COD, Constants.cashOnDelivery, false,
-                billingModel, shipping, itemList, shippingLineList);
+                billingModel, shipping, itemList, shippingLineList , userModel.getId());
 
         //   CreateOrder(orderModel);
 

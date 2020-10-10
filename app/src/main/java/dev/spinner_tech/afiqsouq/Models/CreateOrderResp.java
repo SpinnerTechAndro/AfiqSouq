@@ -29,8 +29,12 @@ public class CreateOrderResp implements Serializable {
     @SerializedName("shipping_lines")
     @Expose
     private List<ShippingLine> shippingLines = null;
+    @SerializedName("customer_id")
+    @Expose
+    private String customer_id = null;
 
-    public CreateOrderResp(String paymentMethod, String paymentMethodTitle, Boolean setPaid, Billing billing, Shipping shipping, List<LineItem> lineItems, List<ShippingLine> shippingLines) {
+
+    public CreateOrderResp(String paymentMethod, String paymentMethodTitle, Boolean setPaid, Billing billing, Shipping shipping, List<LineItem> lineItems, List<ShippingLine> shippingLines, String customer_id) {
         this.paymentMethod = paymentMethod;
         this.paymentMethodTitle = paymentMethodTitle;
         this.setPaid = setPaid;
@@ -38,6 +42,7 @@ public class CreateOrderResp implements Serializable {
         this.shipping = shipping;
         this.lineItems = lineItems;
         this.shippingLines = shippingLines;
+        this.customer_id = customer_id;
     }
 
     public String getPaymentMethod() {

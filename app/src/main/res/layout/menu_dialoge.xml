@@ -27,7 +27,7 @@
                 android:layout_height="@dimen/_60sdp"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="@dimen/_30sdp"
-                android:src="@mipmap/ic_launcher_round"
+                android:src="@drawable/userpp"
                 app:civ_border_color="@color/colorAccent01"
                 app:civ_border_width="@dimen/_4sdp" />
 
@@ -45,7 +45,7 @@
                 android:layout_below="@id/profile_IV"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="@dimen/_8sdp"
-                android:text="Chowdhury Sumon"
+                android:text=""
                 android:textColor="@color/colorAccent01"
                 android:textSize="@dimen/_16sdp"
                 android:textStyle="bold" />
@@ -58,7 +58,7 @@
                 android:layout_below="@id/person_name_tv"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="@dimen/_5sdp"
-                android:text="Chowdhury@gmail.com"
+                android:text=""
                 android:textColor="@color/colorWhite"
                 android:textSize="@dimen/_16sdp"
                 android:textStyle="bold" />
@@ -157,6 +157,7 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:visibility="gone"
                     android:layout_marginTop="@dimen/_12sdp"
                     android:id="@+id/notification_tv"
                     >

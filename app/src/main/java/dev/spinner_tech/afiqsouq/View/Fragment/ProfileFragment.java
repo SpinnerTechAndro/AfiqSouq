@@ -14,9 +14,11 @@ import androidx.fragment.app.Fragment;
 
 import com.mikhaellopez.circularimageview.CircularImageView;
 
+import dev.spinner_tech.afiqsouq.Models.PrefUserModel;
 import dev.spinner_tech.afiqsouq.R;
 import dev.spinner_tech.afiqsouq.Utils.SharedPrefManager;
 import dev.spinner_tech.afiqsouq.View.Activities.Sign_in;
+import dev.spinner_tech.afiqsouq.View.Activities.oldOrderList;
 import es.dmoral.toasty.Toasty;
 
 /**
@@ -87,11 +89,11 @@ public class ProfileFragment extends Fragment {
         name = view.findViewById(R.id.textview_myacc_name);
         email = view.findViewById(R.id.textview_myacc_email);
         profile = view.findViewById(R.id.textview_myacc_myProfile);
-        wishlist = view.findViewById(R.id.textview_myacc_wishlist);
+     //   wishlist = view.findViewById(R.id.textview_myacc_wishlist);
         order = view.findViewById(R.id.textview_myacc_myOrder);
         payment = view.findViewById(R.id.textview_myacc_payment);
         // address=view.findViewById(R.id.textview_myacc_address);
-        gift = view.findViewById(R.id.textview_myacc_giftcard);
+     //   gift = view.findViewById(R.id.textview_myacc_giftcard);
         // setting=view.findViewById(R.id.textview_myacc_setting);
         logout = view.findViewById(R.id.textview_myacc_logout);
 
@@ -104,6 +106,21 @@ public class ProfileFragment extends Fragment {
                 getActivity().finish();
             }
         });
+
+        order.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent p = new Intent(getContext(), oldOrderList.class) ;
+                startActivity(p);
+
+            }
+        });
+        // set user data
+        PrefUserModel userModel = SharedPrefManager.getInstance(getContext()).getUser();
+        name.setText(userModel.getName());
+        email.setText(userModel.getMail());
+
+
         return view;
 
     }

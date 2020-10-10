@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -24,6 +25,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationMenu;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.mikhaellopez.circularimageview.CircularImageView;
 import com.sdsmdg.harjot.vectormaster.VectorMasterView;
 import com.sdsmdg.harjot.vectormaster.models.PathModel;
 
@@ -31,6 +33,7 @@ import java.util.List;
 
 import dev.spinner_tech.afiqsouq.Adapter.viewPager2_adapter;
 import dev.spinner_tech.afiqsouq.Helper.CurvedBottomNavigationView;
+import dev.spinner_tech.afiqsouq.Models.PrefUserModel;
 import dev.spinner_tech.afiqsouq.Models.TaxREsp;
 import dev.spinner_tech.afiqsouq.R;
 import dev.spinner_tech.afiqsouq.Utils.SharedPrefManager;
@@ -69,6 +72,7 @@ public class Home_Activity extends AppCompatActivity {
         navigation = (CurvedBottomNavigationView) findViewById(R.id.bottom_navigation_);
         navigation.inflateMenu(R.menu.menu);
 
+       // Log.d("TAG", "onCreate: " + SharedPrefManager.getInstance(getApplicationContext()).getUser().getId());
         navigation.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
 
         viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
@@ -125,7 +129,8 @@ public class Home_Activity extends AppCompatActivity {
 
     private void openDialogue() {
         LinearLayout categoryTv , recentTv  , topDealsTv  ;
-
+        TextView name , email  ;
+        CircularImageView cancelBtn ;
         Dialog dialog = new Dialog(Home_Activity.this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
@@ -133,8 +138,17 @@ public class Home_Activity extends AppCompatActivity {
         // views of  the dialogue
         categoryTv = dialog.findViewById(R.id.categories_tv) ;
         recentTv = dialog.findViewById(R.id.new_arrivals_tv) ;
+        name = dialog.findViewById(R.id.person_name_tv) ;
+        email = dialog.findViewById(R.id.person_email_tv) ;
+        cancelBtn = dialog.findViewById(R.id.close_btn_id) ;
         topDealsTv = dialog.findViewById(R.id.top_deals_tv);
 
+        //
+        PrefUserModel model = SharedPrefManager.getInstance(getApplicationContext())
+                .getUser() ;
+
+        name.setText(model.getName());
+        email.setText(model.getMail());
         topDealsTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -161,6 +175,13 @@ public class Home_Activity extends AppCompatActivity {
             }
         });
 
+
+        cancelBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               dialog.dismiss();
+            }
+        });
         dialog.show();
     }
 

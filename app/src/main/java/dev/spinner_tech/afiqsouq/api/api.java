@@ -2,6 +2,7 @@ package dev.spinner_tech.afiqsouq.api;
 
 import java.util.List;
 
+import dev.spinner_tech.afiqsouq.Models.CartModel;
 import dev.spinner_tech.afiqsouq.Models.CategoryResp;
 import dev.spinner_tech.afiqsouq.Models.CreateOrderResp;
 import dev.spinner_tech.afiqsouq.Models.CreateReviewRep;
@@ -15,6 +16,7 @@ import dev.spinner_tech.afiqsouq.Models.SignUpResp;
 import dev.spinner_tech.afiqsouq.Models.TaxREsp;
 import dev.spinner_tech.afiqsouq.Models.VariationResp;
 import dev.spinner_tech.afiqsouq.Models.deliveryZoneResp;
+import dev.spinner_tech.afiqsouq.Models.oldOrderModel;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -95,6 +97,12 @@ public interface api {
     @POST("orders")
     Call<OrderResp> CreateOrder(@Header("Authorization") String authHeader, @Body CreateOrderResp body);
 
+    //orders?customer=13
+    @GET("orders")
+    Call<List<oldOrderModel>> oldOrderList(@Header("Authorization") String authHeader,
+                                           @Query("customer") String c_id) ;
+
     @POST("products/reviews")
-    Call<ReviewResp> CreateReviews(@Header("Authorization") String authHeader, @Body CreateReviewRep body);
+    Call<ReviewResp> CreateReviews(@Header("Authorization") String authHeader,
+                                   @Body CreateReviewRep body);
 }
