@@ -100,7 +100,6 @@
                 android:backgroundTint="@color/colorAccent"
                 android:isIndicator="true"
                 android:numStars="5"
-                android:layout_centerVertical="true"
                 android:rating="0"
                 android:stepSize="0.1" />
 
@@ -109,8 +108,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/averageViewRatingBar"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:text=""
+                android:layout_marginTop="@dimen/_10sdp"
                 android:fontFamily="@font/sf_pro"
                 android:textColor="@color/navy_blue"
                 android:textStyle="bold" />

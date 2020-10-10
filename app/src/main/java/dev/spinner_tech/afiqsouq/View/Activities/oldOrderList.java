@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Base64;
 import android.view.View;
@@ -88,6 +89,9 @@ public class oldOrderList extends AppCompatActivity implements PastOrderListAdap
 
     @Override
     public void onItemClick(oldOrderModel model) {
-        Toasty.error(getApplicationContext(), "" + model.getId(), 1).show();
+//        Toasty.error(getApplicationContext(), "" + model.getId(), 1).show();
+        Intent p = new Intent(getApplicationContext(), OldOrderDetails.class) ;
+        p.putExtra("OLD_MODEL" , model) ;
+        startActivity(p);
     }
 }

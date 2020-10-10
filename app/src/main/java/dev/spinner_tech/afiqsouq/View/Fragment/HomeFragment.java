@@ -23,6 +23,7 @@ import dev.spinner_tech.afiqsouq.R;
 import dev.spinner_tech.afiqsouq.Utils.Constants;
 import dev.spinner_tech.afiqsouq.View.Activities.ProductDetails;
 import dev.spinner_tech.afiqsouq.View.Activities.ProductList;
+import dev.spinner_tech.afiqsouq.View.Activities.Top_Recent_List;
 import dev.spinner_tech.afiqsouq.View.Home_Activity;
 import dev.spinner_tech.afiqsouq.services.RetrofitClient;
 import es.dmoral.toasty.Toasty;
@@ -36,7 +37,7 @@ import retrofit2.Response;
  * Use the {@link HomeFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class HomeFragment extends Fragment  implements  HorizontralProductListAdapter.ItemClickListener{
+public class HomeFragment extends Fragment implements HorizontralProductListAdapter.ItemClickListener {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -79,9 +80,9 @@ public class HomeFragment extends Fragment  implements  HorizontralProductListAd
     }
 
     View view;
-    TextView search , viewAllFeature , viewAllRecent ;
-    RecyclerView popularRecyclerViewList  ,featuredList;
-    Context context ;
+    TextView search, viewAllFeature, viewAllRecent;
+    RecyclerView popularRecyclerViewList, featuredList;
+    Context context;
 
 
     @Override
@@ -90,12 +91,12 @@ public class HomeFragment extends Fragment  implements  HorizontralProductListAd
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_home, container, false);
         search = view.findViewById(R.id.edittext_search_searchitem);
-        viewAllFeature = view.findViewById(R.id.textview_viewall_featured) ;
-        viewAllRecent = view.findViewById(R.id.textview_viewall_newarrival) ;
-        popularRecyclerViewList = view.findViewById(R.id.recyclerview_new_arrival) ;
-        featuredList = view.findViewById(R.id.recyclerview_featured) ;
-        popularRecyclerViewList.setLayoutManager(new LinearLayoutManager(getContext() , LinearLayoutManager.HORIZONTAL , false));
-        featuredList.setLayoutManager(new LinearLayoutManager(getContext() ,LinearLayoutManager.HORIZONTAL , false));
+        viewAllFeature = view.findViewById(R.id.textview_viewall_featured);
+        viewAllRecent = view.findViewById(R.id.textview_viewall_newarrival);
+        popularRecyclerViewList = view.findViewById(R.id.recyclerview_new_arrival);
+        featuredList = view.findViewById(R.id.recyclerview_featured);
+        popularRecyclerViewList.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+        featuredList.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
 
         context = view.getContext();
 
@@ -114,8 +115,9 @@ public class HomeFragment extends Fragment  implements  HorizontralProductListAd
         viewAllFeature.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent p = new Intent(getContext() , ProductList.class);
-                p.putExtra("CATEGORY" , "feature") ;
+
+                Intent p = new Intent(context, Top_Recent_List.class);
+                p.putExtra("TYPE", "TOP");
                 startActivity(p);
             }
         });
@@ -123,8 +125,8 @@ public class HomeFragment extends Fragment  implements  HorizontralProductListAd
         viewAllRecent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent p = new Intent(getContext() , ProductList.class);
-                p.putExtra("CATEGORY" , "recent") ;
+                Intent p = new Intent(context, Top_Recent_List.class);
+                p.putExtra("TYPE", "RECENT");
                 startActivity(p);
             }
         });
@@ -138,16 +140,16 @@ public class HomeFragment extends Fragment  implements  HorizontralProductListAd
         String authHeader = "Basic " + Base64.encodeToString(Constants.BASE.getBytes(), Base64.NO_WRAP);
         Call<List<ProductModel>> popularProduct = RetrofitClient.getInstance()
                 .getApi()
-                .getAllRecentProducts(authHeader ,10);
+                .getAllRecentProducts(authHeader, 10);
 
         popularProduct.enqueue(new Callback<List<ProductModel>>() {
             @Override
             public void onResponse(Call<List<ProductModel>> call, Response<List<ProductModel>> response) {
                 if (response.code() == 200) {
                     // now load the data
-                    List<ProductModel> productModelList = response.body() ;
+                    List<ProductModel> productModelList = response.body();
                     //load the data
-                    popularRecyclerViewList.setAdapter(new HorizontralProductListAdapter(getContext() , productModelList , HomeFragment.this));
+                    popularRecyclerViewList.setAdapter(new HorizontralProductListAdapter(getContext(), productModelList, HomeFragment.this));
 
                 } else {
                     Toasty.error(context, "Something Went Wrong !! Code : " + response.code(), Toasty.LENGTH_LONG).show();
@@ -167,16 +169,16 @@ public class HomeFragment extends Fragment  implements  HorizontralProductListAd
         String authHeader = "Basic " + Base64.encodeToString(Constants.BASE.getBytes(), Base64.NO_WRAP);
         Call<List<ProductModel>> popularProduct = RetrofitClient.getInstance()
                 .getApi()
-                .getAllFeaturedProducts(authHeader ,10 );
+                .getAllFeaturedProducts(authHeader, 10);
 
         popularProduct.enqueue(new Callback<List<ProductModel>>() {
             @Override
             public void onResponse(Call<List<ProductModel>> call, Response<List<ProductModel>> response) {
                 if (response.code() == 200) {
                     // now load the data
-                    List<ProductModel> productModelList = response.body() ;
+                    List<ProductModel> productModelList = response.body();
                     //load the data
-                    featuredList.setAdapter(new HorizontralProductListAdapter(getContext() , productModelList , HomeFragment.this));
+                    featuredList.setAdapter(new HorizontralProductListAdapter(getContext(), productModelList, HomeFragment.this));
 
                 } else {
                     Toasty.error(context, "Something Went Wrong !! Code : " + response.code(), Toasty.LENGTH_LONG).show();
@@ -194,8 +196,8 @@ public class HomeFragment extends Fragment  implements  HorizontralProductListAd
 
     @Override
     public void onItemClick(ProductModel model) {
-        Intent p = new Intent(getContext() , ProductDetails.class) ;
-        p.putExtra("MODEL" , model) ;
+        Intent p = new Intent(getContext(), ProductDetails.class);
+        p.putExtra("MODEL", model);
         startActivity(p);
     }
 }

@@ -255,13 +255,13 @@
             android:id="@+id/Button_productDetail_review"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
-            app:backgroundTint="@color/gray5"
-            android:background="@drawable/shape_rect_deep_blue"
-            android:text="@string/reviews"
-            android:backgroundTint="@color/gray4"
-            android:textAllCaps="false"
             android:layout_marginLeft="10dp"
-            android:textColor="#0E153D"/>
+            android:background="@drawable/shape_rect_deep_blue"
+            android:backgroundTint="@color/gray4"
+            android:text="@string/reviews"
+            android:textAllCaps="false"
+            android:textColor="#0E153D"
+            app:backgroundTint="@color/gray5" />
 
 
     </LinearLayout>
@@ -352,7 +352,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
-        app:cornerRadius="8dp"
+        app:cornerRadius="9dp"
         app:backgroundTint="@color/cyan"
         android:text="@string/add_to_cart"
         android:backgroundTint="@color/cyan"

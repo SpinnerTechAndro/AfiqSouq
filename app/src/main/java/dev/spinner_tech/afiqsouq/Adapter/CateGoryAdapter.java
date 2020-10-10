@@ -53,7 +53,7 @@ public class CateGoryAdapter extends RecyclerView.Adapter<CateGoryAdapter.ViewHo
         if (image != null) {
             Glide.with(context)
                     .load(image.getSrc())
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
                     .into(holder.imageView);
         }
         if (list.get(position).getName().contains("amp;")) {

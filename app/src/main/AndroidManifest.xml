@@ -1,20 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="dev.spinner_tech.afiqsouq">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
-    <application
-        android:allowBackup="true"
+    <application xmlns:tools="http://schemas.android.com/tools"
+        android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".View.Activities.oldOrderList"></activity>
-        <activity android:name=".View.Activities.Add_Review"></activity>
-        <activity android:name=".View.Activities.reviewActivity"></activity>
+        android:theme="@style/AppTheme"
+        tools:replace="android:allowBackup">
+        <activity android:name=".View.Activities.OldOrderDetails" />
+        <activity android:name=".View.Activities.oldOrderList" />
+        <activity android:name=".View.Activities.Add_Review" />
+        <activity android:name=".View.Activities.reviewActivity" />
         <activity android:name=".View.Activities.Top_Recent_List" />
         <activity android:name=".View.Activities.OrderDone" />
         <activity

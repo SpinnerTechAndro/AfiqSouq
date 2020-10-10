@@ -1,5 +1,6 @@
 package dev.spinner_tech.afiqsouq.View.Activities;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -8,6 +9,7 @@ import androidx.room.Database;
 import androidx.room.Room;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -38,6 +40,7 @@ import dev.spinner_tech.afiqsouq.Models.ProductModel;
 import dev.spinner_tech.afiqsouq.Models.VariationResp;
 import dev.spinner_tech.afiqsouq.R;
 import dev.spinner_tech.afiqsouq.Utils.Constants;
+import dev.spinner_tech.afiqsouq.Utils.SharedPrefManager;
 import dev.spinner_tech.afiqsouq.database.CartDatabase;
 import dev.spinner_tech.afiqsouq.services.RetrofitClient;
 import es.dmoral.toasty.Toasty;
@@ -50,7 +53,7 @@ public class ProductDetails extends AppCompatActivity {
     //toolbar & content
     ImageView back, enlarge, share, favourite, image1, image2, image3, main_image;
     TextView cart_number, status, price, S, M, XL, XXL, title;
-    Button additional_info, review, about_brand, add_to_cart;
+    Button additional_info, about_brand, add_to_cart;
     ElegantNumberButton quantity;
     RelativeLayout dashboard;
     ProductModel model;
@@ -66,12 +69,13 @@ public class ProductDetails extends AppCompatActivity {
     RecyclerView ColorRList, SizeRList;
     SizeAdapter sizeAdapter;
     ColorrAdapter colorrAdapter;
-    MaterialButton addToCart;
+    MaterialButton addToCart, review;
     int variationId = 0;
     Boolean isColor = false, isSize = false;
     CartDatabase database;
     String imageLink = "nulll";
-    ImageView  cartImage  ;
+    ImageView cartImage;
+    AlertDialog alert;
 
 
     @Override
@@ -110,7 +114,7 @@ public class ProductDetails extends AppCompatActivity {
         cardImage2 = findViewById(R.id.image2_container);
         cardImage3 = findViewById(R.id.image3_container);
         main_image = findViewById(R.id.main_image);
-        cartImage =findViewById(R.id.imageView_discover_cart) ;
+        cartImage = findViewById(R.id.imageView_discover_cart);
 
         desc = findViewById(R.id.Textview_productDetail_status);
         additional_info = findViewById(R.id.Button_productDetail_additionalInfo);
@@ -181,6 +185,16 @@ public class ProductDetails extends AppCompatActivity {
         setUpSize_ColorConstiner(sizeList, ColorList);
         allClickListenter();
 
+        review.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // got oto review page
+                Intent p = new Intent(getApplicationContext(), reviewActivity.class);
+                p.putExtra("PID", model.getId());
+                startActivity(p);
+            }
+        });
+
     }
 
     private void setUpSize_ColorConstiner(List<String> sizeList, List<String> colorList) {
@@ -212,7 +226,7 @@ public class ProductDetails extends AppCompatActivity {
         cartImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent p = new Intent(getApplicationContext()  , CartListPage.class);
+                Intent p = new Intent(getApplicationContext(), CartListPage.class);
                 startActivity(p);
             }
         });
@@ -221,70 +235,113 @@ public class ProductDetails extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                try {
-                    // size
-                    int variationSize = variationRespList.size();
-                    if (variationSize == 0) {
-                        // dont have any variation
-                        insertIntoCart(model);
-                        Toasty.success(getApplicationContext(), "Variation ID : " + variationId, Toasty.LENGTH_LONG).show();
+                if (!SharedPrefManager.getInstance(getApplicationContext()).isUserLoggedIn()) {
+                    TriggerDilogue();
+                } else {
+                    try {
+                        // size
+                        int variationSize = variationRespList.size();
+                        if (variationSize == 0) {
+                            // dont have any variation
+                            insertIntoCart(model);
+                        //    Toasty.success(getApplicationContext(), "Variation ID : " + variationId, Toasty.LENGTH_LONG).show();
 
-                    } else {
-                        String color = colorrAdapter.getColorName().toLowerCase();
-                        String size = sizeAdapter.getSizeName().toLowerCase();
+                        } else {
 
-                        // loop through the varitaion list to get all the
-                        //  List<VariationResp.Attribute> attributeList = variationRespList.;
-                        for (VariationResp item : variationRespList) {
+                            Boolean isSingleSize  = false , isSingleColor = false ;
+                            String size, color;
 
-                            // now check which attribute has all of the color and size
-                            List<VariationResp.Attribute> attributes = item.getAttributes();
-                            // now cross check this
-                            for (VariationResp.Attribute i : attributes) {
+                            try {
+                                size = sizeAdapter.getSizeName().toLowerCase();
+                            } catch (Exception e) {
+                                size = "-no_Size";
+                            }
+                            try {
+                                color = colorrAdapter.getColorName().toLowerCase();
+                            } catch (Exception e) {
+                                color = "-no_Color";
+                            }
+                            if(color.equals("-no_Color"))
+                            {
+                                isSingleColor = true ;
+                            }
+                            if(size.equals("-no_Size"))
+                            {
+                                isSingleSize = true ;
 
-                                //Log.d("TAG", "onClick: " +i.getName().toLowerCase() + " "+ i.getOption().toLowerCase());
-                                if (i.getName().toLowerCase().equals("color")) {
+                            }
+                            // loop through the varitaion list to get all the
+                            //  List<VariationResp.Attribute> attributeList = variationRespList.;
+                            for (VariationResp item : variationRespList) {
 
-                                    //  Log.d("TAG", "onClick: " +color + " "+ size);
+                                // now check which attribute has all of the color and size
+                                List<VariationResp.Attribute> attributes = item.getAttributes();
+                                // now cross check this
+                                for (VariationResp.Attribute i : attributes) {
 
-                                    if (i.getOption().toLowerCase().equals(color)) {
-                                        Log.d("TAGE", "onClick: " + i.getName().toLowerCase() + " " + i.getOption().toLowerCase());
+                                    //Log.d("TAG", "onClick: " +i.getName().toLowerCase() + " "+ i.getOption().toLowerCase());
+                                        if (i.getName().toLowerCase().equals("color")) {
 
-                                        isColor = true;
-                                    } else isColor = false;
+                                        //  Log.d("TAG", "onClick: " +color + " "+ size);
 
-                                    // Log.d("TAG", "onClick:  color match " );
-                                } else if (i.getName().toLowerCase().equals("size")) {
-                                    // Log.d("TAG", "onClick: " +i.getName().toLowerCase() + " "+ i.getOption().toLowerCase());
-                                    // Log.d("TAG", "onClick: " +color + " "+ size);
+                                        if (i.getOption().toLowerCase().equals(color)) {
+                                            Log.d("TAGE", "onClick: " + i.getName().toLowerCase() + " " + i.getOption().toLowerCase());
 
-                                    if (i.getOption().toLowerCase().equals(size)) {
-                                        isSize = true;
-                                        Log.d("TAGE", "onClick: " + i.getName().toLowerCase() + " " + i.getOption().toLowerCase());
+                                            isColor = true;
+                                        } else isColor = false;
 
-                                    } else isSize = false;
+                                        // Log.d("TAG", "onClick:  color match " );
+                                    }
+                                        else if (i.getName().toLowerCase().equals("size")) {
+                                        // Log.d("TAG", "onClick: " +i.getName().toLowerCase() + " "+ i.getOption().toLowerCase());
+                                        // Log.d("TAG", "onClick: " +color + " "+ size);
+                                        if (i.getOption().toLowerCase().equals(size)) {
+                                            isSize = true;
+                                            Log.d("TAGE", "onClick: " + i.getName().toLowerCase() + " " + i.getOption().toLowerCase());
 
+                                        } else isSize = false;
 
-                                    //  Log.d("TAG", "onClick:  size match " );
+                                        //  Log.d("TAG", "onClick:  size match " );
+                                    }
+
 
                                 }
 
+                                if (isSize && isColor) {
+                                    variationId = item.getId();
+                                    Log.d("TAG", "onClick:  size & color match "  + variationId);
+                                   break;
+                                }
+                                else {
+
+                                    if(isSingleSize){ // size does not exist
+                                        if(isColor){
+                                            variationId = item.getId();
+                                            Log.d("TAG", "onClick:  color match "  + variationId);
+                                            break;
+                                        }
+                                    }
+                                    else if(isSingleColor){
+                                        // color does not exist
+                                        if(isSize){
+                                            variationId = item.getId();
+                                            Log.d("TAG", "onClick:  size match "  + variationId);
+                                            break;
+                                        }
+                                    }
+
+
+                                }
 
                             }
 
-                            if (isSize && isColor) {
-                                variationId = item.getId();
-
-                                break;
-                            }
+                            //  Toasty.success(getApplicationContext(), "Variation ID : " + variationId, Toasty.LENGTH_LONG).show();
+                            insertIntoCart(model);
                         }
-
-                        //  Toasty.success(getApplicationContext(), "Variation ID : " + variationId, Toasty.LENGTH_LONG).show();
-                        insertIntoCart(model);
+                    } catch (Exception e) {
+                        //insertIntoCart(model);
+                        Toasty.error(getApplicationContext(), "Something Went Wrong " + e.getMessage(), 1).show();
                     }
-                } catch (Exception e) {
-                    //insertIntoCart(model);
-                    Toasty.error(getApplicationContext(), "Something Went Wrong ", 1).show();
                 }
 
 
@@ -474,8 +531,8 @@ public class ProductDetails extends AppCompatActivity {
             public void run() {
                 CartDatabase.getDatabase(getApplicationContext()).dao().insertCartItem(cartDbModel);
 
-                Intent p = new Intent(getApplicationContext() , CartListPage.class);
-                startActivity( p);
+                Intent p = new Intent(getApplicationContext(), CartListPage.class);
+                startActivity(p);
             }
         });
 
@@ -525,6 +582,26 @@ public class ProductDetails extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void TriggerDilogue() {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(ProductDetails.this);
+        builder.setMessage("You Are Not Logged In !!")
+                .setCancelable(false)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        //do things
+                        try {
+                            alert.dismiss();
+                            finish();
+                        } catch (Exception r) {
+                            finish();
+                        }
+                    }
+                });
+        alert = builder.create();
+        alert.show();
     }
 
     @Override

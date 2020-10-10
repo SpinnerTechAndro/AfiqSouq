@@ -4,12 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Base64;
 import android.view.View;
 import android.view.ViewTreeObserver;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.github.ybq.android.spinkit.SpinKitView;
@@ -19,10 +21,12 @@ import java.util.List;
 
 import dev.spinner_tech.afiqsouq.Adapter.HorizontralProductListAdapter;
 import dev.spinner_tech.afiqsouq.Adapter.ProductListAdapter;
+import dev.spinner_tech.afiqsouq.Models.CartDbModel;
 import dev.spinner_tech.afiqsouq.Models.ProductModel;
 import dev.spinner_tech.afiqsouq.R;
 import dev.spinner_tech.afiqsouq.Utils.Constants;
 import dev.spinner_tech.afiqsouq.View.Fragment.HomeFragment;
+import dev.spinner_tech.afiqsouq.database.CartDatabase;
 import dev.spinner_tech.afiqsouq.services.RetrofitClient;
 import es.dmoral.toasty.Toasty;
 import retrofit2.Call;
@@ -41,7 +45,9 @@ public class Top_Recent_List extends AppCompatActivity implements ProductListAda
     ProductListAdapter adapter;
     String type  ;
     Call<List<ProductModel>> popularProduct ;
-    TextView titleView;
+    TextView titleView , countCartTv ;
+    CartDatabase cartDatabase  ;
+    ImageView cartIcon ;
 
     int currentItems, totalItems, scrollOutItems;
 
@@ -52,11 +58,26 @@ public class Top_Recent_List extends AppCompatActivity implements ProductListAda
         recyclerView = findViewById(R.id.list);
         titleView = findViewById(R.id.header_title) ;
         progress = (SpinKitView) findViewById(R.id.spin_kit);
+        countCartTv = findViewById(R.id.textview_discover_cartNumber);
+        cartIcon = findViewById(R.id.imageView_discover_cart) ;
         manager = new GridLayoutManager(this, 2);
         recyclerView.setLayoutManager(manager);
         type = getIntent().getStringExtra("TYPE") ;
-
+        cartDatabase = Room.databaseBuilder(getApplicationContext(),
+                CartDatabase.class, CartDatabase.DB_NAME)
+                .fallbackToDestructiveMigration()
+                .allowMainThreadQueries()
+                .build();
         loadAllPopularProducts(type);
+
+        cartIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent p  = new Intent(getApplicationContext(), CartListPage.class) ;
+                startActivity(p);
+            }
+        });
+
     }
 
     public void loadAllPopularProducts(String type) {
@@ -135,4 +156,26 @@ public class Top_Recent_List extends AppCompatActivity implements ProductListAda
 
         startActivity(p);
     }
+
+
+    @Override
+    protected void onResume() {
+        countCartItemNumber();
+        super.onResume();
+
+    }
+
+    public void countCartItemNumber() {
+
+        try{
+            List<CartDbModel> models  =  cartDatabase.dao().fetchAllTodos() ;
+            countCartTv.setText(models.size()+"");
+        }
+        catch (Exception e){
+
+        }
+    }
+
+
+
 }

@@ -1,6 +1,7 @@
 package dev.spinner_tech.afiqsouq.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -19,8 +21,12 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import java.util.ArrayList;
 import java.util.List;
 
+import dev.spinner_tech.afiqsouq.Models.CartDbModel;
 import dev.spinner_tech.afiqsouq.Models.ProductModel;
 import dev.spinner_tech.afiqsouq.R;
+import dev.spinner_tech.afiqsouq.View.Activities.CartListPage;
+import dev.spinner_tech.afiqsouq.database.CartDatabase;
+import es.dmoral.toasty.Toasty;
 
 
 /**
@@ -34,6 +40,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
     private LayoutInflater mInflater;
     private ItemClickListener itemClickListener;
     Context context;
+    CartDatabase database;
 
     public ProductListAdapter(Context context, List<ProductModel> productList, ItemClickListener itemClickListener) {
         this.mInflater = LayoutInflater.from(context);
@@ -41,6 +48,11 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
         this.context = context;
         this.itemClickListener = itemClickListener;
         this.mDataFiltered = productList;
+        database = Room.databaseBuilder(context,
+                CartDatabase.class, CartDatabase.DB_NAME)
+                .fallbackToDestructiveMigration()
+                .allowMainThreadQueries()
+                .build();
     }
 
     public void addItems(List<ProductModel> newItems) {
@@ -67,7 +79,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
         Log.d("TAG", "onBindViewHolder: " + mDataFiltered.size());
         Glide.with(context)
                 .load(mDataFiltered.get(position).getImages().get(0).getSrc())
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
 //                .placeholder(R.drawable.placeholder)
 //                .error(R.drawable.placeholder)
                 .into(holder.imageView);
@@ -79,6 +91,20 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
             holder.price.setText(mDataFiltered.get(position).getSalePrice() + "৳");
         }
 
+        holder.cartImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ProductModel model = mDataFiltered.get(position);
+                if (checkIfItemAllreadyExist(model.getId())) {
+                    Toasty.error(context, "You Already Added The Product" , Toasty.LENGTH_SHORT).show();
+
+                } else {
+
+                    insertTheProduct(model);
+                }
+
+            }
+        });
 
         holder.itemView.setOnClickListener(v -> {
 
@@ -88,6 +114,79 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
         });
 
 
+    }
+
+    private void insertTheProduct(ProductModel singelProduct) {
+
+        CartDbModel cartDbModel = new CartDbModel();
+
+         List<ProductModel.Attribute> attrList = singelProduct.getAttributes() ;
+
+         try{
+             if(attrList.size()==0){
+                 cartDbModel.title = singelProduct.getName();
+                 String sale_price = singelProduct.getSalePrice();
+                 double price = 0.0;
+
+                 if (sale_price.equals("") || sale_price.isEmpty()) {
+                     sale_price = singelProduct.getPrice();
+                 }
+
+                 price = Double.parseDouble(sale_price);
+                 cartDbModel.unit_price = Double.parseDouble(price + "");
+                 cartDbModel.qty = 1;
+                 cartDbModel.product_image = "imageLink";
+                 cartDbModel.product_id = singelProduct.getId();
+                 cartDbModel.color = "NULL";
+                 cartDbModel.size = "NULL";
+                 cartDbModel.variation_id = 0;
+                 cartDbModel.sub_total = (double) (price * 1);
+
+                 CartDatabase.databaseWriteExecutor.execute(new Runnable() {
+                     @Override
+                     public void run() {
+                         CartDatabase.getDatabase(context).dao().insertCartItem(cartDbModel);
+
+                     }
+                 });
+
+
+                 Toasty.success(context, "Added To Cart", Toasty.LENGTH_SHORT).show();
+
+             }
+             else {
+                 Toasty.warning(context , "This Product Has Different Type Of Variation\n Plz Choose it " , Toasty.LENGTH_LONG).show();
+
+             }
+
+         }catch (Exception r ){
+             Toasty.warning(context , "This Product Has Different Type Of Variation\n Plz Choose it " , Toasty.LENGTH_LONG).show();
+         }
+
+
+
+    }
+
+    public boolean checkIfItemAllreadyExist(int pid) {
+        CartDbModel  singleCartItem ;
+        if(database != null){
+
+
+             singleCartItem = database.dao().fetchCartByID(pid) ;
+
+        }
+        else {
+            singleCartItem = null ;
+        }
+
+        if(singleCartItem!= null){
+            Log.d("TAG", "checkIfProductExist: " + singleCartItem.title);
+            return  true  ;
+        }
+        else {
+            Log.d("TAG", "checkIfProductExist: NO DATA" );
+            return  false ;
+        }
     }
 
     @Override
@@ -145,7 +244,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public ImageView imageView;
+        public ImageView imageView, cartImage;
         public CardView container;
         public TextView title, price;
         ItemClickListener itemClickListener;
@@ -155,6 +254,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
             imageView = (ImageView) itemView.findViewById(R.id.imageview_search_favourite);
             title = itemView.findViewById(R.id.name);
             price = itemView.findViewById(R.id.textview_search_price);
+            cartImage = itemView.findViewById(R.id.imageview_search_cart_fr);
 
 
         }

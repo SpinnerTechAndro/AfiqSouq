@@ -1,10 +1,12 @@
 package dev.spinner_tech.afiqsouq.View.Activities;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -12,6 +14,7 @@ import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -51,8 +54,8 @@ public class CartListPage extends AppCompatActivity {
     String method_title = "Flat rate", method_Id = "flat_rate", deliveryCharge = "50";
     DecimalFormat dec = new DecimalFormat("#0.0");
     int delivery_charge = 50;
-
-
+    AlertDialog alert ;
+    LinearLayout cartLayout , emptyCartLayout ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,7 +74,9 @@ public class CartListPage extends AppCompatActivity {
         paid = findViewById(R.id.textview_shoppingcart_tobe_paid_amount);
         checkoutout = findViewById(R.id.button_shoppingcart_checkoutd);
         deliveryChargeTV = findViewById(R.id.deliveryCharge);
-
+        emptyCartLayout = findViewById(R.id.emptyContainer) ;
+        cartLayout = findViewById(R.id.cartContainer) ;
+        cartLayout.setVisibility(View.GONE);
         rate = loadTaxFormCache();
         rv_shoppingCart.setLayoutManager(new LinearLayoutManager(this));
 
@@ -88,6 +93,13 @@ public class CartListPage extends AppCompatActivity {
             }
         });
 
+        findViewById(R.id.backBtn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
 
     }
 
@@ -95,15 +107,12 @@ public class CartListPage extends AppCompatActivity {
     private void loadAllCartItem() {
         deliveryChargeTV.setText(Constants.BDT_SIGN + deliveryCharge);
         delivery_charge = Integer.parseInt(deliveryCharge);
-        countCartItem();
+       // countCartItem();
         CartDatabase.databaseWriteExecutor.execute(new Runnable() {
             @Override
             public void run() {
                 cartList = CartDatabase.getDatabase(getApplicationContext()).dao().fetchAllTodos();
 
-
-                if (cartList != null && !cartList.isEmpty()) // i know its werid but thats r8 cheaking list is popluted
-                {
                     /*
                     Handler refresh = new Handler(Looper.getMainLooper());
 refresh.post(new Runnable() {
@@ -117,32 +126,41 @@ refresh.post(new Runnable() {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            orderList.clear();
-                            orderList.addAll(cartList);
 
-                            adapter = new CartListAdapter(cartList, CartListPage.this, delivery_charge, rate);
-                            rv_shoppingCart.setAdapter(adapter);
 
-                            // total
-                            double totalMoney = calculateTotal(cartList);
-                            //setting sub amount
-                            sub_total.setText(Constants.BDT_SIGN + Math.round(totalMoney));
+                            if (cartList != null && !cartList.isEmpty()) // i know its werid but thats r8 cheaking list is popluted
+                            {
+                                cartLayout.setVisibility(View.VISIBLE);
+                                emptyCartLayout.setVisibility(View.GONE);
+                                orderList.clear();
+                                orderList.addAll(cartList);
 
-                            Log.d("TAG", "run: " + "totall" + totalMoney + ((totalMoney * (rate / 100))));
-                            // calculating tax
+                                adapter = new CartListAdapter(cartList, CartListPage.this, delivery_charge, rate);
+                                rv_shoppingCart.setAdapter(adapter);
 
-                            tax_fee.setText(Constants.BDT_SIGN + dec.format(totalMoney * (rate / 100)));
-                            totalMoney = totalMoney + ((totalMoney * (rate / 100)));
-                            total.setText(Constants.BDT_SIGN + Math.round(totalMoney + delivery_charge));
-                            paid.setText(Constants.BDT_SIGN + Math.round(totalMoney + delivery_charge));
+                                // total
+                                double totalMoney = calculateTotal(cartList);
+                                //setting sub amount
+                                sub_total.setText(Constants.BDT_SIGN + Math.round(totalMoney));
+
+                                Log.d("TAG", "run: " + "totall" + totalMoney + ((totalMoney * (rate / 100))));
+                                // calculating tax
+
+                                tax_fee.setText(Constants.BDT_SIGN + dec.format(totalMoney * (rate / 100)));
+                                totalMoney = totalMoney + ((totalMoney * (rate / 100)));
+                                total.setText(Constants.BDT_SIGN + Math.round(totalMoney + delivery_charge));
+                                paid.setText(Constants.BDT_SIGN + Math.round(totalMoney + delivery_charge));
+                            }
+                            else {
+                                // show  empty layout
+                                cartLayout.setVisibility(View.INVISIBLE);
+                                emptyCartLayout.setVisibility(View.VISIBLE);
+
+                            }
                         }
                     });
 
-                } else {
-                    // show  empty layout
 
-
-                }
             }
         });
 
@@ -194,7 +212,7 @@ refresh.post(new Runnable() {
 //                    mybag_item_count_tv.setText("0");
                 }
 
-                Log.d("TAG", list.size() + "");
+                //Log.d("TAG", list.size() + "");
 
             }
         });
@@ -282,12 +300,41 @@ refresh.post(new Runnable() {
     @Override
     protected void onStart() {
 
-        checkForDeliveryCharge();
+        // check if  the user  id
+        if(SharedPrefManager.getInstance(getApplicationContext()).isUserLoggedIn()){
+            checkForDeliveryCharge();
+        }
+        else {
+            // user not loagged in
+            TriggerDilogue() ;
+        }
+
 
 
         super.onStart();
 
 
+    }
+
+    private void TriggerDilogue() {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("You Are Not Logged In !!")
+                .setCancelable(false)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        //do things
+                        try{
+                            alert.dismiss();
+                            finish();
+                        }
+                        catch (Exception r ){
+                            finish();
+                        }
+                    }
+                });
+         alert = builder.create();
+        alert.show();
     }
 
     private void checkForDeliveryCharge() {

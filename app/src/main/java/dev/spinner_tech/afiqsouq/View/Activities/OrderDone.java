@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import dev.spinner_tech.afiqsouq.MainActivity;
 import dev.spinner_tech.afiqsouq.R;
+import dev.spinner_tech.afiqsouq.View.Home_Activity;
 
 public class OrderDone extends AppCompatActivity {
 
@@ -22,7 +23,7 @@ public class OrderDone extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent p = new Intent(getApplicationContext(), MainActivity.class);
+                Intent p = new Intent(getApplicationContext(), Home_Activity.class);
                 startActivity(p);
             }
         });
@@ -31,7 +32,7 @@ public class OrderDone extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent p = new Intent(getApplicationContext(), MainActivity.class);
+                Intent p = new Intent(getApplicationContext(), Home_Activity.class);
                 startActivity(p);
             }
         });

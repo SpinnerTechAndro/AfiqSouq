@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="22dp"
-            android:text="Fariha Anjum"
+            android:text=" "
             android:textColor="@color/cyan"
             android:textSize="17sp"
             android:textStyle="bold" />
@@ -46,7 +46,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="5dp"
             android:baselineAligned="false"
-            android:text="farihaanjum@gmail.com"
+            android:text=""
             android:textColor="@color/black"
             android:textSize="14sp"
             android:textStyle="bold" />
@@ -69,8 +69,8 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_width="14dp"
-                android:layout_height="14dp"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
                 android:layout_marginTop="2dp"
                 android:backgroundTint="#20D3C2"
                 android:background="@drawable/icon_user_1"/>
@@ -84,7 +84,7 @@
                 android:layout_marginTop="15dp"
                 android:text="@string/myprofile"
                 android:textColor="@color/deep_blue"
-                android:textSize="14sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
         </LinearLayout>
@@ -127,8 +127,8 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_width="14dp"
-                android:layout_height="14dp"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
                 android:layout_marginTop="2dp"
                 android:backgroundTint="@color/cyan"
                 android:background="@drawable/icon_bag_1"/>
@@ -142,7 +142,7 @@
                 android:layout_marginTop="5dp"
                 android:text="@string/my_order"
                 android:textColor="@color/deep_blue"
-                android:textSize="14sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
         </LinearLayout>
@@ -245,8 +245,8 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_width="14dp"
-                android:layout_height="14dp"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
                 android:layout_marginTop="2dp"
                 android:backgroundTint="@color/cyan"
                 android:background="@drawable/icon_logout_1"/>
@@ -260,7 +260,7 @@
                 android:layout_marginLeft="10dp"
                 android:text="@string/logout"
                 android:textColor="@color/deep_blue"
-                android:textSize="14sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
         </LinearLayout>

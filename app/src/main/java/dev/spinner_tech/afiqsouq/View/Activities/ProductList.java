@@ -5,11 +5,14 @@ import android.os.Bundle;
 import android.util.Base64;
 import android.view.View;
 import android.widget.AbsListView;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
 
 import com.github.ybq.android.spinkit.SpinKitView;
 
@@ -17,9 +20,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dev.spinner_tech.afiqsouq.Adapter.ProductListAdapter;
+import dev.spinner_tech.afiqsouq.Models.CartDbModel;
 import dev.spinner_tech.afiqsouq.Models.ProductModel;
 import dev.spinner_tech.afiqsouq.R;
 import dev.spinner_tech.afiqsouq.Utils.Constants;
+import dev.spinner_tech.afiqsouq.database.CartDatabase;
 import dev.spinner_tech.afiqsouq.services.RetrofitClient;
 import es.dmoral.toasty.Toasty;
 import retrofit2.Call;
@@ -37,16 +42,26 @@ public class ProductList extends AppCompatActivity implements ProductListAdapter
     LinearLayoutManager manager;
     List<ProductModel> plist = new ArrayList<>();
     ProductListAdapter adapter;
-
+    TextView countTv  ;
+    ImageView cartImage;
+    CartDatabase cartDatabase;
     int currentItems, totalItems, scrollOutItems;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_list);
+        cartImage = findViewById(R.id.imageView_discover_cart);
+        countTv = findViewById(R.id.textview_discover_cartNumber)  ;
         recyclerView = findViewById(R.id.list);
         progress = (SpinKitView) findViewById(R.id.spin_kit);
         manager = new GridLayoutManager(this, 2);
+
+        cartDatabase = Room.databaseBuilder(getApplicationContext(),
+                CartDatabase.class, CartDatabase.DB_NAME)
+                .fallbackToDestructiveMigration()
+                .allowMainThreadQueries()
+                .build();
 
         recyclerView.setLayoutManager(manager);
         adapter = new ProductListAdapter(getApplicationContext(), plist, this);
@@ -66,6 +81,13 @@ public class ProductList extends AppCompatActivity implements ProductListAdapter
             }
         });
 
+        cartImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent p = new Intent(getApplicationContext(), CartListPage.class);
+                startActivity(p);
+            }
+        });
     }
 
     private void decideWhatToLoad(String category, int page) {
@@ -177,5 +199,22 @@ public class ProductList extends AppCompatActivity implements ProductListAdapter
         p.putExtra("MODEL", model);
 
         startActivity(p);
+    }
+
+    public void countCartItemNumber() {
+
+        try {
+            List<CartDbModel> models = cartDatabase.dao().fetchAllTodos();
+            countTv.setText(models.size() + "");
+        } catch (Exception e) {
+
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        countCartItemNumber();
+        super.onResume();
+
     }
 }

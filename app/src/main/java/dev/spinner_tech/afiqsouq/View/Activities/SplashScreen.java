@@ -60,7 +60,7 @@ public class SplashScreen extends AppCompatActivity {
                     editor = shref.edit();
                     editor.putString(key, json);
                     editor.apply();
-                    Toasty.normal(getApplicationContext() , ModelArrayList.size()+" " , Toasty.LENGTH_LONG).show();
+                  //  Toasty.normal(getApplicationContext() , ModelArrayList.size()+" " , Toasty.LENGTH_LONG).show();
 
                     Intent p = new Intent(getApplicationContext() , Home_Activity.class);
                     startActivity(p);
