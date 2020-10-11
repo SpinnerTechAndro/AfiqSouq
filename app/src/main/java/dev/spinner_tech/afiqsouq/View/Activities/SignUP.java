@@ -31,11 +31,11 @@ import retrofit2.Response;
 public class SignUP extends AppCompatActivity {
 
     AutoCompleteTextView districtList, countryList;
-    TextInputEditText namein, emailIn, passIn, deliveryAddress  , phonein ;
+    TextInputEditText namein, emailIn, passIn, deliveryAddress, phonein;
     CheckBox terms;
     MaterialButton signUpBtn;
-    String name, email, pass, deliverAdress, country, district , ph;
-    SpinKitView spinKitView ;
+    String name, email, pass, deliverAdress, country, district, ph;
+    SpinKitView spinKitView;
 
 
     @Override
@@ -52,8 +52,8 @@ public class SignUP extends AppCompatActivity {
         deliveryAddress = findViewById(R.id.deliveryAddress);
         terms = findViewById(R.id.checkbox);
         signUpBtn = findViewById(R.id.button_signin);
-        phonein =findViewById(R.id.phone) ;
-        spinKitView = findViewById(R.id.spin_kit) ;
+        phonein = findViewById(R.id.phone);
+        spinKitView = findViewById(R.id.spin_kit);
         spinKitView.setVisibility(View.GONE);
 
 
@@ -77,15 +77,14 @@ public class SignUP extends AppCompatActivity {
                     pass = passIn.getText().toString();
                     email = emailIn.getText().toString();
                     deliverAdress = deliveryAddress.getText().toString();
-                    ph =phonein.getText().toString();
+                    ph = phonein.getText().toString();
 
                     // check if thery are empty are not
 
                     if (TextUtils.isEmpty(name) || TextUtils.isEmpty(pass) || TextUtils.isEmpty(country) || TextUtils.isEmpty(district) ||
-                            TextUtils.isEmpty(email) || TextUtils.isEmpty(deliverAdress)|| TextUtils.isEmpty(ph)) {
+                            TextUtils.isEmpty(email) || TextUtils.isEmpty(deliverAdress) || TextUtils.isEmpty(ph)) {
                         Toasty.error(getApplicationContext(), "Fill Data Properly!!", 1).show();
-                    }
-                    else {
+                    } else {
 
                         RegisterUser();
                     }
@@ -101,23 +100,22 @@ public class SignUP extends AppCompatActivity {
 
     public void RegisterUser() {
         spinKitView.setVisibility(View.VISIBLE);
-        if(country.toLowerCase().equals("bangladesh")){
-            country = "BD" ;
-        }
-        else {
-            country = "PH" ;
+        if (country.toLowerCase().equals("bangladesh")) {
+            country = "BD";
+        } else {
+            country = "PH";
         }
 
         String authHeader = "Basic " + Base64.encodeToString(Constants.BASE.getBytes(), Base64.NO_WRAP);
 
         SignUpResp.Billing billingModel = new SignUpResp.Billing(name, ",", "",
-                deliverAdress, "", ""+district, ""+district, "", country, email
+                deliverAdress, "", "" + district, "" + district, "", country, email
                 , ph);
 //String firstName, String lastName, String company, String address1, String address2, String city, String state, String postcode, String country
-        SignUpResp.Shipping shippingModel = new SignUpResp.Shipping(""+name, " ", " ",
+        SignUpResp.Shipping shippingModel = new SignUpResp.Shipping("" + name, " ", " ",
                 deliverAdress, "", district, "", "", country);
 
-        SignUpResp resp = new SignUpResp(email, pass, ""+name, ",", name, billingModel, shippingModel);
+        SignUpResp resp = new SignUpResp(email, pass, "" + name, ",", name, billingModel, shippingModel);
         Call<Recived_Sign_up> call = RetrofitClient.getInstance().getApi().
                 postUserRegister(authHeader, resp);
 
@@ -125,7 +123,7 @@ public class SignUP extends AppCompatActivity {
         call.enqueue(new Callback<Recived_Sign_up>() {
             @Override
             public void onResponse(Call<Recived_Sign_up> call, Response<Recived_Sign_up> response) {
-               // Constants.PrintMsg("Error : CODE  " + response.code());
+                // Constants.PrintMsg("Error : CODE  " + response.code());
                 if (response.code() == 201) {
 
 
@@ -133,18 +131,18 @@ public class SignUP extends AppCompatActivity {
                     SignUpResp.Shipping shippingMOdel = model.getShipping();
 
 
-                  //  String id, String name, String email, String adress, String country, String ph, String state
+                    //  String id, String name, String email, String adress, String country, String ph, String state
 
                     SharedPrefManager.getInstance(getApplicationContext()).userLogin(
-                            model.getId()+"" ,
-                            model.getUsername() ,
-                            model.getEmail() ,
-                            shippingMOdel.getAddress1() ,
-                            shippingMOdel.getCountry() ,
+                            model.getId() + "",
+                            model.getUsername(),
+                            model.getEmail(),
+                            shippingMOdel.getAddress1(),
+                            shippingMOdel.getCountry(),
                             model.getBilling().getPhone(),
                             shippingMOdel.getState()
 
-                    ) ;
+                    );
 
                     SharedPrefManager.getInstance(getApplicationContext())
                             .saveUser(model.getEmail());
@@ -152,19 +150,17 @@ public class SignUP extends AppCompatActivity {
                     spinKitView.setVisibility(View.GONE);
 
                     // saved  the data
-                    Intent p = new Intent( getApplicationContext() , Home_Activity.class) ;
+                    Intent p = new Intent(getApplicationContext(), Home_Activity.class);
                     startActivity(p);
-
-
 
 
                 } else {
                     spinKitView.setVisibility(View.GONE);
                     Constants.PrintMsg("Error : CODE  " + response.code());
-                    if(response.code()==400){
-                        Toasty.error(getApplicationContext() , "An account is already registered with your email address or User name ",
+                    if (response.code() == 400) {
+                        Toasty.error(getApplicationContext(), "An account is already registered with your email address or User name ",
                                 1
-                                ).show();
+                        ).show();
                     }
                 }
 

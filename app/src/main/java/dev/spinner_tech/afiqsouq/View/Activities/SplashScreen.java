@@ -6,15 +6,19 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Base64;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
+import dev.spinner_tech.afiqsouq.BuildConfig;
 import dev.spinner_tech.afiqsouq.Models.TaxREsp;
 import dev.spinner_tech.afiqsouq.R;
 import dev.spinner_tech.afiqsouq.Utils.Constants;
+import dev.spinner_tech.afiqsouq.Utils.SharedPrefManager;
 import dev.spinner_tech.afiqsouq.View.Home_Activity;
 import dev.spinner_tech.afiqsouq.services.RetrofitClient;
 import es.dmoral.toasty.Toasty;
@@ -30,6 +34,8 @@ public class SplashScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
+        TextView versioNumber = findViewById(R.id.versionNumber) ;
+        versioNumber.setText("V"+BuildConfig.VERSION_NAME);
 
         // request for tax list
         loadTax();
@@ -61,20 +67,36 @@ public class SplashScreen extends AppCompatActivity {
                     editor.putString(key, json);
                     editor.apply();
                   //  Toasty.normal(getApplicationContext() , ModelArrayList.size()+" " , Toasty.LENGTH_LONG).show();
-
-                    Intent p = new Intent(getApplicationContext() , Home_Activity.class);
-                    startActivity(p);
-                    finish();
+                        goToHome() ;
 
                 } else {
+                    Toasty.error(getApplicationContext(), "Error : ReConnecting  " + response.code() ,Toasty.LENGTH_SHORT).show();  ;
+
                     loadTax();
                 }
             }
 
             @Override
             public void onFailure(Call<List<TaxREsp>> call, Throwable t) {
+                Toasty.error(getApplicationContext(), "Error : ReConnecting  " + t.getMessage() ,Toasty.LENGTH_SHORT).show();  ;
+
                 loadTax();
             }
         });
+    }
+
+    private void goToHome() {
+
+        if(SharedPrefManager.getInstance(getApplicationContext()).isUserLoggedIn()){
+            Intent p = new Intent(getApplicationContext() , Home_Activity.class);
+            startActivity(p);
+            finish();
+        }
+        else {
+            Intent p = new Intent(getApplicationContext() , Sign_in.class);
+            startActivity(p);
+            finish();
+        }
+
     }
 }

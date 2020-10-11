@@ -46,21 +46,23 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="@dimen/_8sdp"
                 android:text=""
+                android:fontFamily="@font/sf_pro"
                 android:textColor="@color/colorAccent01"
-                android:textSize="@dimen/_16sdp"
+                android:textSize="18sp"
                 android:textStyle="bold" />
 
 
             <TextView
                 android:id="@+id/person_email_tv"
+                android:fontFamily="@font/sf_pro"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/person_name_tv"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_3sdp"
                 android:text=""
                 android:textColor="@color/colorWhite"
-                android:textSize="@dimen/_16sdp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
         </RelativeLayout>

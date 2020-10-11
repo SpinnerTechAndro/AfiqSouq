@@ -31,6 +31,11 @@ public interface api {
     @POST("customers")
     Call<Recived_Sign_up> postUserRegister(@Header("Authorization") String authHeader, @Body SignUpResp body);
 
+    // get single data
+
+    @GET("customers/{id}")
+    Call<Recived_Sign_up> getSingleData(@Header("Authorization") String authHeader, @Path("id") int id );
+
     @GET("products")
     Call<List<ProductModel>> getAllProducts(@Header("Authorization") String authHeader,
                                             @Query("per_page") String per_page,

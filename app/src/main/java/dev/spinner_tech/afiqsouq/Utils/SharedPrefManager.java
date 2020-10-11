@@ -90,8 +90,6 @@ public class SharedPrefManager {
         editor.putString(KEY_USER_EMAIL, "null");
         editor.putString(IS_USER_LOGGED_IN, "no");
 
-
-
         editor.clear() ;
         editor.apply();
 
