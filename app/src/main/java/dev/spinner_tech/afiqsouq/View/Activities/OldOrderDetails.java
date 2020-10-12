@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -68,6 +69,11 @@ public class OldOrderDetails extends AppCompatActivity {
         deliveryChargeTV.setText(Constants.BDT_SIGN + " " + oldOrderModel.getShippingTotal());
         total.setText(Constants.BDT_SIGN + " " + subtotalStr);
 
-
+        findViewById(R.id.backBtn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 }

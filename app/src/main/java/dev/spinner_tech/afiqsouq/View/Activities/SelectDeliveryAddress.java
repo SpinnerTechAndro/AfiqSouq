@@ -23,6 +23,7 @@ import dev.spinner_tech.afiqsouq.Models.PrefUserModel;
 import dev.spinner_tech.afiqsouq.R;
 import dev.spinner_tech.afiqsouq.Utils.Constants;
 import dev.spinner_tech.afiqsouq.Utils.SharedPrefManager;
+import dev.spinner_tech.afiqsouq.database.CartDatabase;
 import dev.spinner_tech.afiqsouq.services.RetrofitClient;
 import es.dmoral.toasty.Toasty;
 import retrofit2.Call;
@@ -134,9 +135,24 @@ public class SelectDeliveryAddress extends AppCompatActivity {
 
                 Log.d("TAG", "onResponse: " + response.code());
                 if(response.code() == 201){
-                    Intent p = new Intent(getApplicationContext()  , OrderDone.class) ;
-                    startActivity(p);
-                    finish();
+
+                    CartDatabase.databaseWriteExecutor.execute(new Runnable() {
+                        @Override
+                        public void run() {
+                            CartDatabase.getDatabase(getApplicationContext()).dao().nukeCartTable();
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Intent p = new Intent(getApplicationContext()  , OrderDone.class) ;
+                                    startActivity(p);
+                                    finish();
+                                }
+                            });
+                        }
+
+                    });
+
+
                 }
                 else {
                     Toasty.error(getApplicationContext()  , "Something Went Wrong Try Again!! Code " + response.code() , 1 )

@@ -100,7 +100,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
 
                 } else {
 
-                    insertTheProduct(model);
+                    insertTheProduct(model  , position);
                 }
 
             }
@@ -116,7 +116,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
 
     }
 
-    private void insertTheProduct(ProductModel singelProduct) {
+    private void insertTheProduct(ProductModel singelProduct , int pos) {
 
         CartDbModel cartDbModel = new CartDbModel();
 
@@ -135,7 +135,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
                  price = Double.parseDouble(sale_price);
                  cartDbModel.unit_price = Double.parseDouble(price + "");
                  cartDbModel.qty = 1;
-                 cartDbModel.product_image = "imageLink";
+                 cartDbModel.product_image = mDataFiltered.get(pos).getImages().get(0).getSrc();
                  cartDbModel.product_id = singelProduct.getId();
                  cartDbModel.color = "NULL";
                  cartDbModel.size = "NULL";

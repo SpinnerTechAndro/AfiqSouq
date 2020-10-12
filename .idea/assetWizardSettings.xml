@@ -28,9 +28,10 @@
                         </option>
                         <option name="values">
                           <map>
+                            <entry key="assetSourceType" value="FILE" />
                             <entry key="color" value="ffffff" />
-                            <entry key="outputName" value="ic_baseline_category_24" />
-                            <entry key="sourceFile" value="F:\Running Projects\office\AfiqSouq" />
+                            <entry key="outputName" value="ic_bkash_bkash_logo" />
+                            <entry key="sourceFile" value="C:\Users\Null-_-\Desktop\BKash-bKash-Logo.wine.svg" />
                           </map>
                         </option>
                       </PersistentState>
