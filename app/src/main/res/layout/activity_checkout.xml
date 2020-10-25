@@ -64,7 +64,6 @@
 
 
         <RelativeLayout
-
             android:id="@+id/shipping_RL"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
