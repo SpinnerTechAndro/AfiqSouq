@@ -63,7 +63,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
     }
 
     public interface ItemClickListener {
-        void onItemClick(ProductModel model);
+        void onItemClick(ProductModel model , int id );
     }
 
     @Override
@@ -76,13 +76,20 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
     @Override
     public void onBindViewHolder(ProductListAdapter.ViewHolder holder, final int position) {
 
-        Log.d("TAG", "onBindViewHolder: " + mDataFiltered.size());
-        Glide.with(context)
-                .load(mDataFiltered.get(position).getImages().get(0).getSrc())
-                .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
+      //  Log.d("TAG", "onBindViewHolder: " + mDataFiltered.size());
+      try{
+          Glide.with(context)
+                  .load(mDataFiltered.get(position).getImages().get(0).getSrc())
+                  .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
 //                .placeholder(R.drawable.placeholder)
 //                .error(R.drawable.placeholder)
-                .into(holder.imageView);
+                  .into(holder.imageView);
+
+      }catch (Exception e){
+
+      }
+
+
         holder.title.setText(mDataFiltered.get(position).getName());
         String sale_price = mDataFiltered.get(position).getSalePrice();
         if (sale_price.equals("") || sale_price.isEmpty()) {
@@ -100,23 +107,28 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
 
                 } else {
 
-                    insertTheProduct(model  , position);
+
+
+                    insertTheProduct(model  , position , view.getId());
+
                 }
 
             }
         });
 
-        holder.itemView.setOnClickListener(v -> {
+        holder.container.setOnClickListener(v -> {
 
             ProductModel model = mDataFiltered.get(position);
-            itemClickListener.onItemClick(model);
+            itemClickListener.onItemClick(model , v.getId());
 
         });
 
 
+
+
     }
 
-    private void insertTheProduct(ProductModel singelProduct , int pos) {
+    private void insertTheProduct(ProductModel singelProduct , int pos , int view_id ) {
 
         CartDbModel cartDbModel = new CartDbModel();
 
@@ -146,7 +158,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
                      @Override
                      public void run() {
                          CartDatabase.getDatabase(context).dao().insertCartItem(cartDbModel);
-
+                         itemClickListener.onItemClick(singelProduct , view_id);
                      }
                  });
 
@@ -244,7 +256,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public ImageView imageView, cartImage;
+        public ImageView imageView, cartImage ;
         public CardView container;
         public TextView title, price;
         ItemClickListener itemClickListener;
@@ -255,6 +267,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
             title = itemView.findViewById(R.id.name);
             price = itemView.findViewById(R.id.textview_search_price);
             cartImage = itemView.findViewById(R.id.imageview_search_cart_fr);
+            container = itemView.findViewById(R.id.container) ;
 
 
         }

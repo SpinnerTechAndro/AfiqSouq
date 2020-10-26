@@ -100,6 +100,13 @@ public class CartListPage extends AppCompatActivity {
             }
         });
 
+        findViewById(R.id.button_mycart_shopnow).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
 
     }
 

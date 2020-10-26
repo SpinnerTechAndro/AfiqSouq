@@ -31,10 +31,10 @@ import retrofit2.Response;
 public class SignUP extends AppCompatActivity {
 
     AutoCompleteTextView districtList, countryList;
-    TextInputEditText namein, emailIn, passIn, deliveryAddress, phonein;
+    TextInputEditText fnamein, emailIn, passIn, deliveryAddress, phonein  , snamein;
     CheckBox terms;
     MaterialButton signUpBtn;
-    String name, email, pass, deliverAdress, country, district, ph;
+    String fname ,sname, email, pass, deliverAdress, country, district, ph;
     SpinKitView spinKitView;
 
 
@@ -46,7 +46,8 @@ public class SignUP extends AppCompatActivity {
         // set up view
         districtList = findViewById(R.id.dlist);
         countryList = findViewById(R.id.countryIn);
-        namein = findViewById(R.id.name);
+        fnamein = findViewById(R.id.fname);
+        snamein =findViewById(R.id.sname) ;
         emailIn = findViewById(R.id.email);
         passIn = findViewById(R.id.pass);
         deliveryAddress = findViewById(R.id.deliveryAddress);
@@ -70,7 +71,8 @@ public class SignUP extends AppCompatActivity {
             public void onClick(View view) {
 
                 if (terms.isChecked()) {
-                    name = namein.getText().toString();
+                    fname = fnamein.getText().toString();
+                    sname = snamein.getText().toString();
                     pass = passIn.getText().toString();
                     country = countryList.getText().toString();
                     district = districtList.getText().toString();
@@ -81,7 +83,7 @@ public class SignUP extends AppCompatActivity {
 
                     // check if thery are empty are not
 
-                    if (TextUtils.isEmpty(name) || TextUtils.isEmpty(pass) || TextUtils.isEmpty(country) || TextUtils.isEmpty(district) ||
+                    if (TextUtils.isEmpty(fname) || TextUtils.isEmpty(sname) || TextUtils.isEmpty(pass) || TextUtils.isEmpty(country) || TextUtils.isEmpty(district) ||
                             TextUtils.isEmpty(email) || TextUtils.isEmpty(deliverAdress) || TextUtils.isEmpty(ph)) {
                         Toasty.error(getApplicationContext(), "Fill Data Properly!!", 1).show();
                     } else {
@@ -99,78 +101,83 @@ public class SignUP extends AppCompatActivity {
     }
 
     public void RegisterUser() {
-        spinKitView.setVisibility(View.VISIBLE);
+        spinKitView.setVisibility(View.GONE);
         if (country.toLowerCase().equals("bangladesh")) {
             country = "BD";
         } else {
             country = "PH";
         }
 
-        String authHeader = "Basic " + Base64.encodeToString(Constants.BASE.getBytes(), Base64.NO_WRAP);
 
-        SignUpResp.Billing billingModel = new SignUpResp.Billing(name, ",", "",
+        SignUpResp.Billing billingModel = new SignUpResp.Billing(fname, sname, "",
                 deliverAdress, "", "" + district, "" + district, "", country, email
                 , ph);
 //String firstName, String lastName, String company, String address1, String address2, String city, String state, String postcode, String country
-        SignUpResp.Shipping shippingModel = new SignUpResp.Shipping("" + name, " ", " ",
+        SignUpResp.Shipping shippingModel = new SignUpResp.Shipping("" + fname, ""+sname, " ",
                 deliverAdress, "", district, "", "", country);
 
-        SignUpResp resp = new SignUpResp(email, pass, "" + name, ",", name, billingModel, shippingModel);
-        Call<Recived_Sign_up> call = RetrofitClient.getInstance().getApi().
-                postUserRegister(authHeader, resp);
+        SignUpResp resp = new SignUpResp(email, pass, "" + fname, "", sname, billingModel, shippingModel);
 
 
-        call.enqueue(new Callback<Recived_Sign_up>() {
-            @Override
-            public void onResponse(Call<Recived_Sign_up> call, Response<Recived_Sign_up> response) {
-                // Constants.PrintMsg("Error : CODE  " + response.code());
-                if (response.code() == 201) {
+//        Call<Recived_Sign_up> call = RetrofitClient.getInstance().getApi().
+//                postUserRegister(authHeader, resp);
+//
+//        call.enqueue(new Callback<Recived_Sign_up>() {
+//            @Override
+//            public void onResponse(Call<Recived_Sign_up> call, Response<Recived_Sign_up> response) {
+//                // Constants.PrintMsg("Error : CODE  " + response.code());
+//                if (response.code() == 201) {
+//
+//
+//                    Recived_Sign_up model = response.body();
+//                    SignUpResp.Shipping shippingMOdel = model.getShipping();
+//
+//
+//                    //  String id, String name, String email, String adress, String country, String ph, String state
+//
+//                    SharedPrefManager.getInstance(getApplicationContext()).userLogin(
+//                            model.getId() + "",
+//                            model.getUsername(),
+//                            model.getEmail(),
+//                            shippingMOdel.getAddress1(),
+//                            shippingMOdel.getCountry(),
+//                            model.getBilling().getPhone(),
+//                            shippingMOdel.getState()
+//
+//                    );
+//
+//                    SharedPrefManager.getInstance(getApplicationContext())
+//                            .saveUser(model.getEmail());
+//
+//                    spinKitView.setVisibility(View.GONE);
+//
+//                    // saved  the data
+//                    Intent p = new Intent(getApplicationContext(), Home_Activity.class);
+//                    startActivity(p);
+//
+//
+//                } else {
+//                    spinKitView.setVisibility(View.GONE);
+//                    Constants.PrintMsg("Error : CODE  " + response.code());
+//                    if (response.code() == 400) {
+//                        Toasty.error(getApplicationContext(), "An account is already registered with your email address or User name ",
+//                                1
+//                        ).show();
+//                    }
+//                }
+//
+//            }
+//
+//            @Override
+//            public void onFailure(Call<Recived_Sign_up> call, Throwable t) {
+//
+//                Constants.PrintMsg("Error : " + t.getMessage());
+//            }
+//        });
 
+        Intent p = new Intent(getApplicationContext(), otpAcitivity.class) ;
+        p.putExtra("MODELS" , resp) ;
+        startActivity(p);
 
-                    Recived_Sign_up model = response.body();
-                    SignUpResp.Shipping shippingMOdel = model.getShipping();
-
-
-                    //  String id, String name, String email, String adress, String country, String ph, String state
-
-                    SharedPrefManager.getInstance(getApplicationContext()).userLogin(
-                            model.getId() + "",
-                            model.getUsername(),
-                            model.getEmail(),
-                            shippingMOdel.getAddress1(),
-                            shippingMOdel.getCountry(),
-                            model.getBilling().getPhone(),
-                            shippingMOdel.getState()
-
-                    );
-
-                    SharedPrefManager.getInstance(getApplicationContext())
-                            .saveUser(model.getEmail());
-
-                    spinKitView.setVisibility(View.GONE);
-
-                    // saved  the data
-                    Intent p = new Intent(getApplicationContext(), Home_Activity.class);
-                    startActivity(p);
-
-
-                } else {
-                    spinKitView.setVisibility(View.GONE);
-                    Constants.PrintMsg("Error : CODE  " + response.code());
-                    if (response.code() == 400) {
-                        Toasty.error(getApplicationContext(), "An account is already registered with your email address or User name ",
-                                1
-                        ).show();
-                    }
-                }
-
-            }
-
-            @Override
-            public void onFailure(Call<Recived_Sign_up> call, Throwable t) {
-
-                Constants.PrintMsg("Error : " + t.getMessage());
-            }
-        });
     }
 }

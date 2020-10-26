@@ -25,6 +25,7 @@ public class OrderDone extends AppCompatActivity {
 
                 Intent p = new Intent(getApplicationContext(), Home_Activity.class);
                 startActivity(p);
+                finish();
             }
         });
 
@@ -34,6 +35,7 @@ public class OrderDone extends AppCompatActivity {
 
                 Intent p = new Intent(getApplicationContext(), Home_Activity.class);
                 startActivity(p);
+                finish();
             }
         });
     }

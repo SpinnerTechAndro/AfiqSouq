@@ -150,15 +150,20 @@ public class Top_Recent_List extends AppCompatActivity implements ProductListAda
     }
 
     @Override
-    public void onItemClick(ProductModel model) {
-        Intent p = new Intent(getApplicationContext(), ProductDetails.class);
-        p.putExtra("MODEL", model);
+    public void onItemClick(ProductModel model , int itemClicked ) {
 
-        startActivity(p);
+        if (itemClicked != R.id.imageview_search_cart_fr) {
+            Intent p = new Intent(getApplicationContext(), ProductDetails.class);
+            p.putExtra("MODEL", model);
+            //Toasty.error(getApplicationContext(), "T " + model.getId(), 1).show();
+            startActivity(p);
+
+        } else {
+            countCartItemNumber();
+        }
     }
 
-
-    @Override
+        @Override
     protected void onResume() {
         countCartItemNumber();
         super.onResume();

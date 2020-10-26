@@ -2,6 +2,7 @@ package dev.spinner_tech.afiqsouq.View.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -14,6 +15,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -96,7 +98,9 @@ public class SelectDeliveryAddress extends AppCompatActivity {
                     if(TextUtils.isEmpty(name)|| TextUtils.isEmpty(phone) ||TextUtils.isEmpty(address)){
                         Toasty.error(getApplicationContext(), "Please Enter The Value Correctly!!" , 1 ).show();
                     }
+
                     else {
+
                         CreateOrder(orderResp);
                     }
                 }
@@ -117,6 +121,9 @@ public class SelectDeliveryAddress extends AppCompatActivity {
     }
 
     private void CreateOrder(CreateOrderResp orderModel) {
+        ProgressDialog dialog = new ProgressDialog(SelectDeliveryAddress.this) ;
+        dialog.setMessage("Placing Your Order...");
+        dialog.show();
         orderModel.getShipping().setAddress1(addressTV.getText().toString());
         orderModel.getShipping().setFirstName(nameTV.getText().toString()) ;
 
@@ -143,6 +150,7 @@ public class SelectDeliveryAddress extends AppCompatActivity {
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
+                                    dialog.dismiss();
                                     Intent p = new Intent(getApplicationContext()  , OrderDone.class) ;
                                     startActivity(p);
                                     finish();
@@ -155,6 +163,7 @@ public class SelectDeliveryAddress extends AppCompatActivity {
 
                 }
                 else {
+                    dialog.dismiss();
                     Toasty.error(getApplicationContext()  , "Something Went Wrong Try Again!! Code " + response.code() , 1 )
                             .show();
                 }
@@ -163,6 +172,8 @@ public class SelectDeliveryAddress extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<OrderResp> call, Throwable t) {
+                dialog.dismiss();
+                Toasty.error(getApplicationContext() , "Error "+  t.getMessage()  , 1 ).show();
                 Log.d("TAG", "onFailure: " + t.getMessage());
             }
         });

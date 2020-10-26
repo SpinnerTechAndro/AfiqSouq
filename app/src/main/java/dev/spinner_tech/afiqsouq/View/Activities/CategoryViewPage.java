@@ -167,12 +167,19 @@ public class CategoryViewPage extends AppCompatActivity implements ProductListAd
     }
 
     @Override
-    public void onItemClick(ProductModel model) {
+    public void onItemClick(ProductModel model , int itemClicked ) {
 
-        Intent p = new Intent(getApplicationContext(), ProductDetails.class);
-        p.putExtra("MODEL", model);
-        //Toasty.error(getApplicationContext(), "T " + model.getId(), 1).show();
-        startActivity(p);
+        if(itemClicked!=R.id.imageview_search_cart_fr){
+            Intent p = new Intent(getApplicationContext(), ProductDetails.class);
+            p.putExtra("MODEL", model);
+            //Toasty.error(getApplicationContext(), "T " + model.getId(), 1).show();
+            startActivity(p);
+
+        }
+        else {
+            countCartItemNumber();
+        }
+
 
     }
 

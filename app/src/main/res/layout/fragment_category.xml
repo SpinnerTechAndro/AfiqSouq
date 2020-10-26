@@ -83,6 +83,9 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/list"
             android:layout_width="match_parent"
+            android:paddingBottom="120dp"
+            android:clipToPadding="false"
+            android:scrollbarStyle="outsideOverlay"
             android:layout_height="match_parent"/>
         <com.github.ybq.android.spinkit.SpinKitView
             xmlns:app="http://schemas.android.com/apk/res-auto"

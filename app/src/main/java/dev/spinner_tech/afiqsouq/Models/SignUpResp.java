@@ -3,7 +3,9 @@ package dev.spinner_tech.afiqsouq.Models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
- public class SignUpResp {
+import java.io.Serializable;
+
+public class SignUpResp  implements Serializable {
     @SerializedName("email")
     @Expose
     private String email;
@@ -94,7 +96,7 @@ import com.google.gson.annotations.SerializedName;
         this.shipping = shipping;
     }
 
-     public static class Shipping {
+     public static class Shipping  implements  Serializable{
 
          @SerializedName("first_name")
          @Expose
@@ -209,7 +211,7 @@ import com.google.gson.annotations.SerializedName;
          }
 
      }
-     public static class Billing {
+     public static class Billing implements  Serializable {
 
          @SerializedName("first_name")
          @Expose

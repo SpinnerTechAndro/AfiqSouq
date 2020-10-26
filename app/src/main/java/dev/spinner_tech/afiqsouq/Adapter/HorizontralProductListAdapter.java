@@ -65,12 +65,17 @@ public class HorizontralProductListAdapter extends RecyclerView.Adapter<Horizont
     public void onBindViewHolder(HorizontralProductListAdapter.ViewHolder holder, final int position) {
 
         Log.d("TAG", "onBindViewHolder: " + mDataFiltered.size());
-        Glide.with(context)
-                .load(mDataFiltered.get(position).getImages().get(0).getSrc())
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
+        try {
+            Glide.with(context)
+                    .load(mDataFiltered.get(position).getImages().get(0).getSrc())
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
 //                .placeholder(R.drawable.placeholder)
 //                .error(R.drawable.placeholder)
-                .into(holder.imageView);
+                    .into(holder.imageView);
+        } catch (Exception r) {
+
+        }
+
         holder.title.setText(mDataFiltered.get(position).getName());
         String sale_price = mDataFiltered.get(position).getSalePrice();
         if (sale_price.equals("") || sale_price.isEmpty()) {

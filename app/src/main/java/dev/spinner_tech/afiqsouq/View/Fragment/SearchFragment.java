@@ -26,6 +26,7 @@ import dev.spinner_tech.afiqsouq.Models.ProductModel;
 import dev.spinner_tech.afiqsouq.R;
 import dev.spinner_tech.afiqsouq.Utils.Constants;
 import dev.spinner_tech.afiqsouq.View.Activities.ProductDetails;
+import dev.spinner_tech.afiqsouq.View.Home_Activity;
 import dev.spinner_tech.afiqsouq.services.RetrofitClient;
 import es.dmoral.toasty.Toasty;
 import retrofit2.Call;
@@ -87,11 +88,12 @@ public class SearchFragment extends Fragment implements ProductListAdapter.ItemC
     TextView itemCountTv;
     SearchView searchView;
     List<ProductModel> pList = new ArrayList<>();
-    ProductListAdapter adapter  ;
+    ProductListAdapter adapter;
     int currentPage = 1;
     boolean isScrolling = false, isEnd = false;
     SpinKitView progress;
     int currentItems, totalItems, scrollOutItems;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -102,7 +104,7 @@ public class SearchFragment extends Fragment implements ProductListAdapter.ItemC
         searchView = view.findViewById(R.id.edittext_search_searchitem);
         progress = (SpinKitView) view.findViewById(R.id.spin_kit);
         context = view.getContext();
-        adapter = new ProductListAdapter(context , pList , this ) ;
+        adapter = new ProductListAdapter(context, pList, this);
         // load view
         recyclerView = view.findViewById(R.id.list);
         manager = new GridLayoutManager(context, 2);
@@ -132,30 +134,28 @@ public class SearchFragment extends Fragment implements ProductListAdapter.ItemC
                 .getApi()
                 .SearchProduct(
                         authHeader,
-                        query
+                        query, 100
                 );
 
         searchCall.enqueue(new Callback<List<ProductModel>>() {
             @Override
             public void onResponse(Call<List<ProductModel>> call, Response<List<ProductModel>> response) {
 
-                if(response.code() == 200){
+                if (response.code() == 200) {
 
                     // try for it
                     pList.clear();
                     pList.addAll(response.body());
-                    try{
-                       itemCountTv.setVisibility(View.VISIBLE);
-                       itemCountTv.setText(pList.size()+" products found");
-                    }
-                    catch (Exception e){
+                    try {
+                        itemCountTv.setVisibility(View.VISIBLE);
+                        itemCountTv.setText(pList.size() + " products found");
+                    } catch (Exception e) {
 
                     }
                     adapter.notifyDataSetChanged();
                     progress.setVisibility(View.GONE);
 
-                }
-                else {
+                } else {
                     progress.setVisibility(View.GONE);
                     Toasty.error(context, "Error" + response.code(), Toasty.LENGTH_LONG).show();
 
@@ -172,12 +172,36 @@ public class SearchFragment extends Fragment implements ProductListAdapter.ItemC
     }
 
     @Override
-    public void onItemClick(ProductModel model) {
+    public void onItemClick(ProductModel model, int itemClicked) {
 
-        Intent p = new Intent(context, ProductDetails.class) ;
-        p.putExtra("MODEL" , model) ;
-        //Toasty.error(getApplicationContext(), "T " + model.getId(), 1).show();
-        startActivity(p);
+        if (itemClicked != R.id.imageview_search_cart_fr) {
+            Intent p = new Intent(context, ProductDetails.class);
+            p.putExtra("MODEL", model);
+            //Toasty.error(getApplicationContext(), "T " + model.getId(), 1).show();
+            startActivity(p);
 
+        } else {
+            // countCartItemNumber();
+            try {
+                ((Home_Activity) getActivity()).countCartItemNumber();
+            }
+            catch (Exception e ){
+
+            }
+
+        }
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        try {
+            ((Home_Activity) getActivity()).setHeaderTitle("Search");
+        }
+        catch (Exception e ){
+
+        }
     }
 }

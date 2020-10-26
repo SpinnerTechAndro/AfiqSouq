@@ -50,7 +50,7 @@ public interface api {
     Call<List<ProductModel>> getAllFeaturedProducts(@Header("Authorization") String authHeader , @Query("per_page") int page );
 
     @GET("user/generate_auth_cookie")
-    Call<LoginResp> Login(@Query("username") String username, @Query("password") String pass);
+    Call<LoginResp> Login(@Query("email") String username, @Query("password") String pass);
 
     // get all the parent category   products/categories?parent=0
     @GET("products/categories?parent=0&per_page=100")
@@ -79,7 +79,8 @@ public interface api {
 
     @GET("products")
     Call<List<ProductModel>> SearchProduct(@Header("Authorization") String authHeader,
-                                                        @Query("search") String search
+                                                        @Query("search") String search,
+                                                        @Query("per_page") int per_page
     );
 
     //products/reviews?product=5151

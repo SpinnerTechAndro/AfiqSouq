@@ -93,21 +93,27 @@ public class ProductList extends AppCompatActivity implements ProductListAdapter
     private void decideWhatToLoad(String category, int page) {
         progress.setVisibility(View.VISIBLE);
         String authHeader = "Basic " + Base64.encodeToString(Constants.BASE.getBytes(), Base64.NO_WRAP);
-        if (category.isEmpty() || category == null) {
-            // load the product list
+       try{
+           if (category.isEmpty() || category == null || category.equals("NULL")) {
+               // load the product list
 
-            call = RetrofitClient.getInstance()
-                    .getApi()
-                    .getAllProducts(authHeader, "15", page);
+               call = RetrofitClient.getInstance()
+                       .getApi()
+                       .getAllProducts(authHeader, "15", page);
 
 
-        } else {
-            // load with product via category
-            call = RetrofitClient.getInstance()
-                    .getApi()
-                    .getAllProductViaCategoryID(authHeader, category, "15", page);
+           } else {
+               // load with product via category
+               call = RetrofitClient.getInstance()
+                       .getApi()
+                       .getAllProductViaCategoryID(authHeader, category, "15", page);
 
-        }
+           }
+       }catch (Exception r){
+           call = RetrofitClient.getInstance()
+                   .getApi()
+                   .getAllProducts(authHeader, "16", page);
+       }
 
         // load  the call
         call.enqueue(new Callback<List<ProductModel>>() {
@@ -194,14 +200,21 @@ public class ProductList extends AppCompatActivity implements ProductListAdapter
     }
 
     @Override
-    public void onItemClick(ProductModel model) {
-        Intent p = new Intent(getApplicationContext(), ProductDetails.class);
-        p.putExtra("MODEL", model);
+    public void onItemClick(ProductModel model , int itemClicked ) {
 
-        startActivity(p);
+        if (itemClicked != R.id.imageview_search_cart_fr) {
+            Intent p = new Intent(getApplicationContext(), ProductDetails.class);
+            p.putExtra("MODEL", model);
+            //Toasty.error(getApplicationContext(), "T " + model.getId(), 1).show();
+            startActivity(p);
+
+        } else {
+            countCartItemNumber();
+        }
     }
 
-    public void countCartItemNumber() {
+
+        public void countCartItemNumber() {
 
         try {
             List<CartDbModel> models = cartDatabase.dao().fetchAllTodos();

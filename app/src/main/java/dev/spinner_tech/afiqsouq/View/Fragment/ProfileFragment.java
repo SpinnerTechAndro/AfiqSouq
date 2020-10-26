@@ -19,6 +19,7 @@ import dev.spinner_tech.afiqsouq.R;
 import dev.spinner_tech.afiqsouq.Utils.SharedPrefManager;
 import dev.spinner_tech.afiqsouq.View.Activities.Sign_in;
 import dev.spinner_tech.afiqsouq.View.Activities.oldOrderList;
+import dev.spinner_tech.afiqsouq.View.Home_Activity;
 import es.dmoral.toasty.Toasty;
 
 /**
@@ -124,4 +125,15 @@ public class ProfileFragment extends Fragment {
         return view;
 
     }
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        try {
+            ((Home_Activity) getActivity()).setHeaderTitle("Profile");
+        }
+        catch (Exception e ){
+
+        }
+}
 }

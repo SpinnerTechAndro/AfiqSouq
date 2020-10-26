@@ -69,7 +69,7 @@
 
     <!--Thank you-->
     <string name="thanku">Thank you!</string>
-    <string name="order_track">Your payment is completed successfully.Please
+    <string name="order_track">Your Order is completed successfully.Please
         check the delivery status at Order Tracking</string>
     <string name="back">Back to Shop</string>
 
@@ -93,10 +93,13 @@
     <!--SMS verification-->
     <string name="SV">SMS Verification</string>
     <string name="enter_code">Enter the code below\n to verify phone number</string>
-    <string name="code_sent">A 6 digit verification code has been sent to ....5629</string>
+    <string name="code_sent">A 6 digit verification code has been sent to Your Phone</string>
     <string name="verify">Verify</string>
     <string name="cancel">Cancel</string>
     <string name="placed_on">\"Placed On : \"</string>
+    <string name="products">Products</string>
+    <string name="all_category">All Category</string>
+    <string name="top_product">Top Products</string>
 
     <string-array name="country">
 

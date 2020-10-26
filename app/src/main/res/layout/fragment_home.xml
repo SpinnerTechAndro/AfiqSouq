@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     android:orientation="vertical"
+    android:id="@+id/nestedScrollView"
    >
 
     <LinearLayout
@@ -36,6 +37,7 @@
         android:layout_width="match_parent"
         android:layout_height="180dp"
         android:layout_margin="12dp"
+        android:visibility="gone"
         android:background="@drawable/shape_rect_gray"
         android:orientation="vertical">
 
@@ -69,22 +71,24 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/featured"
+            android:text="@string/all_category"
             android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="5dp"/>
+            android:layout_marginTop="10dp"/>
 
         <TextView
-            android:id="@+id/textview_viewall_featured"
-            android:layout_width="wrap_content"
+            android:id="@+id/textview_viewall_category"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/view_all"
+            android:layout_marginTop="6dp"
             android:textColor="@color/cyan"
             android:textSize="14sp"
             android:textStyle="bold"
-            android:layout_marginLeft="225dp"
+            android:textAlignment="textEnd"
+            android:layout_marginEnd="5dp"
             android:drawableRight="@drawable/ic_baseline_keyboard_arrow_down_24" />
 
     </LinearLayout>
@@ -102,7 +106,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/new_arrivals"
+            android:text="@string/top_product"
             android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -111,12 +115,14 @@
 
         <TextView
             android:id="@+id/textview_viewall_newarrival"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/view_all"
             android:textColor="@color/cyan"
             android:textSize="14sp"
+            android:textAlignment="textEnd"
             android:textStyle="bold"
+            android:layout_marginEnd="5dp"
             android:layout_marginLeft="188dp"
             android:drawableRight="@drawable/ic_baseline_keyboard_arrow_down_24" />
 
@@ -127,9 +133,131 @@
         android:layout_width="match_parent"
         android:layout_height="245dp" />
 
-    <View
-       android:layout_width="match_parent"
-       android:layout_height="@dimen/_56sdp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Electronics"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"/>
+
+            <TextView
+                android:id="@+id/textview_viewall_electronics"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/view_all"
+                android:textColor="@color/cyan"
+                android:textSize="14sp"
+                android:textAlignment="textEnd"
+                android:textStyle="bold"
+                android:layout_marginEnd="5dp"
+                android:layout_marginLeft="188dp"
+                android:drawableRight="@drawable/ic_baseline_keyboard_arrow_down_24" />
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerview_electronics"
+            android:layout_width="match_parent"
+            android:layout_height="245dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Health &amp; Beauty"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"/>
+
+            <TextView
+                android:id="@+id/textview_viewall_health"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/view_all"
+                android:textColor="@color/cyan"
+                android:textSize="14sp"
+                android:textAlignment="textEnd"
+                android:textStyle="bold"
+                android:layout_marginEnd="5dp"
+                android:layout_marginLeft="188dp"
+                android:drawableRight="@drawable/ic_baseline_keyboard_arrow_down_24" />
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerview_health"
+            android:layout_width="match_parent"
+            android:layout_height="245dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/products"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"/>
+
+            <TextView
+                android:id="@+id/textview_viewall_all_product"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/view_all"
+                android:textColor="@color/cyan"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:layout_marginEnd="5dp"
+                android:textAlignment="textEnd"
+                android:layout_marginLeft="188dp"
+                android:drawableRight="@drawable/ic_baseline_keyboard_arrow_down_24" />
+
+        </LinearLayout>
+
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerview_Product"
+            android:nestedScrollingEnabled="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+           />
+
+        <com.github.ybq.android.spinkit.SpinKitView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/spin_kit"
+            style="@style/SpinKitView.Large.ThreeBounce"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            app:SpinKit_Color="@color/colorAccent" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_46sdp"/>
+
     </LinearLayout>
+
+
+
 </androidx.core.widget.NestedScrollView>
 

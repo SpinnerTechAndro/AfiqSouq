@@ -24,6 +24,7 @@ import dev.spinner_tech.afiqsouq.Models.CategoryResp;
 import dev.spinner_tech.afiqsouq.R;
 import dev.spinner_tech.afiqsouq.Utils.Constants;
 import dev.spinner_tech.afiqsouq.View.Activities.CategoryViewPage;
+import dev.spinner_tech.afiqsouq.View.Home_Activity;
 import dev.spinner_tech.afiqsouq.services.RetrofitClient;
 import es.dmoral.toasty.Toasty;
 import retrofit2.Call;
@@ -169,5 +170,15 @@ public class CategoryFragment extends Fragment {
                 Toasty.error(context, "Error : " + t.getMessage(), Toasty.LENGTH_LONG).show();
             }
         });
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        try {
+            ((Home_Activity) getActivity()).setHeaderTitle("Category");
+        } catch (Exception e) {
+
+        }
     }
 }

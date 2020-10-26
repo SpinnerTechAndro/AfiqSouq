@@ -268,10 +268,17 @@ public class Home_Activity extends AppCompatActivity {
 
         try {
             List<CartDbModel> models = cartDatabase.dao().fetchAllTodos();
-            cartCount.setText(models.size() + "");
+           runOnUiThread(new Runnable() {
+               @Override
+               public void run() {
+                   cartCount.setText(models.size() + "");
+               }
+           });
         } catch (Exception e) {
 
         }
+
+
     }
 
     @Override
