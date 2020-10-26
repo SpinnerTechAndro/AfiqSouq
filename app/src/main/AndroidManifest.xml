@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".RewardsActivity"></activity>
+        <activity android:name=".MainActivity"></activity>
         <activity android:name=".Transactions" />
         <activity android:name=".SettingsActivity" />
         <activity android:name=".WishListActivity" />
@@ -19,7 +19,7 @@
         <activity android:name=".CollectionsActivity" />
         <activity android:name=".CategoriesActivity" />
         <activity android:name=".SignInActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".RewardsActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
