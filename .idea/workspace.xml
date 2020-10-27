@@ -13,16 +13,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1ddbe2eb-dd24-4bdd-9a2f-bc1285aee196" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/crown_icon.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/app/dev.spinnertech.AfiqSouq.app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/dev.spinnertech.AfiqSouq.app.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/MyWalletActivity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/dev/spinner_tech/afiqsouq/TopUpAccountBalanceActivity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/bitcoin_icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/card_gray_background.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/current_blance_tv_shape.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/discover_card.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/gateway_button_background.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/gateway_card_shape.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/gateway_text.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/icon_card_white.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/icon_paypal_navy_blue.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/master_card.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/radious_corner_light_blue_rectangle_shape.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/visa_card_white.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_my_wallet.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_top_up_account_balance.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/crown.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/icon_crown.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/layesrlist_progressbar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/layesrlist_progressbar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/crown.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/crown_bright.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/star.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/starbright.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/star_icon.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_rewards.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_rewards.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/menu_dialog.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/menu_dialog.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,13 +95,16 @@
     <key name="android.template.-669401474">
       <recent name="dev.spinner_tech.afiqsouq" />
     </key>
-    <key name="android.template.-904629014">
-      <recent name="dev.spinner_tech.afiqsouq" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="F:\git_document\GitHub\AfiqSouq\app\src\main\res\drawable" />
       <recent name="C:\Users\kawcher\Documents\GitHub\AfiqSouq\app\src\main\res\drawable" />
       <recent name="C:\Users\kawcher\Documents\GitHub\AfiqSouq\app\src\main\res\layout" />
+    </key>
+    <key name="android.template.1972006596">
+      <recent name="dev.spinner_tech.afiqsouq" />
+    </key>
+    <key name="android.template.-904629014">
+      <recent name="dev.spinner_tech.afiqsouq" />
     </key>
   </component>
   <component name="RunManager">
@@ -171,14 +187,14 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="413" y="111" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1603641213180">
+    <state x="413" y="111" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1603777503152">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="413" y="111" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.728@0.0.1366.728" timestamp="1603641213180" />
-    <state x="483" y="146" key="AndroidCreateResourceFileDialog" timestamp="1603604592810">
+    <state x="413" y="111" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.728@0.0.1366.728" timestamp="1603777503152" />
+    <state x="483" y="146" key="AndroidCreateResourceFileDialog" timestamp="1603775786909">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="483" y="146" key="AndroidCreateResourceFileDialog/0.0.1366.728@0.0.1366.728" timestamp="1603604592810" />
+    <state x="483" y="146" key="AndroidCreateResourceFileDialog/0.0.1366.728@0.0.1366.728" timestamp="1603775786909" />
     <state x="541" y="177" key="AndroidCreateXmlResourceDialog" timestamp="1600096317968">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
