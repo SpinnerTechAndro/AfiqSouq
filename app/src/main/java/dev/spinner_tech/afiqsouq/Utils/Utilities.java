@@ -43,7 +43,19 @@ public class Utilities {
 
     }
 
+    public  String transFromDate(String olddate){
+        java.text.DateFormat originalFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+        java.text.DateFormat targetFormat = new SimpleDateFormat("MM");
+        Date date = null;
+        try {
+            date = originalFormat.parse(olddate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        String formattedDate = targetFormat.format(date);  // 20120821
 
+        return  formattedDate ;
+    }
     public String getCurrentDate() {
         Date c = Calendar.getInstance().getTime();
         System.out.println("Current time => " + c);

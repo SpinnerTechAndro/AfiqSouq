@@ -518,6 +518,18 @@ public class oldOrderModel implements Serializable {
         @Expose
         private Integer price;
 
+        @SerializedName("date")
+        @Expose
+        private String date;
+
+        public String getDate() {
+            return date;
+        }
+
+        public void setDate(String date) {
+            this.date = date;
+        }
+
         public Integer getId() {
             return id;
         }

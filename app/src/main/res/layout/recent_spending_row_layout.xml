@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginBottom="@dimen/_5sdp"
+    android:elevation="@dimen/_4sdp"
+    app:cardCornerRadius="@dimen/_8sdp"
+    android:background="@drawable/card_circleable_background"
+    android:layout_margin="@dimen/_5sdp"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:background="@drawable/card_circleable_background"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/prodct_image_id"
+            android:layout_width="@dimen/_60sdp"
+            android:layout_height="@dimen/_65sdp"
+            android:background="@drawable/roundable_image_background_01"
+            android:layout_centerVertical="true"
+            android:scaleType="fitXY"
+           android:layout_marginStart="@dimen/_5sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginBottom="@dimen/_5sdp"
+            />
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorBlack"
+            android:layout_toStartOf="@id/price_TV"
+            android:layout_marginEnd="@dimen/_20sdp"
+            android:text="Blue silk flare sleeved top"
+            android:layout_toEndOf="@id/prodct_image_id"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:textSize="16sp"
+            />
+        <TextView
+            android:id="@+id/tv_date_and_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="12Sep 2020-9:21 PM"
+            android:layout_below="@id/tv_title"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:layout_toEndOf="@id/prodct_image_id"
+            />
+
+        <TextView
+            android:id="@+id/price_TV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="-$150.00"
+            android:textColor="@color/red"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:layout_marginEnd="@dimen/_5sdp"
+            />
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

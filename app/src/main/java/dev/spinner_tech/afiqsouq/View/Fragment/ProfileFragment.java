@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
@@ -17,6 +18,7 @@ import com.mikhaellopez.circularimageview.CircularImageView;
 import dev.spinner_tech.afiqsouq.Models.PrefUserModel;
 import dev.spinner_tech.afiqsouq.R;
 import dev.spinner_tech.afiqsouq.Utils.SharedPrefManager;
+import dev.spinner_tech.afiqsouq.View.Activities.OldTransactions;
 import dev.spinner_tech.afiqsouq.View.Activities.Sign_in;
 import dev.spinner_tech.afiqsouq.View.Activities.oldOrderList;
 import dev.spinner_tech.afiqsouq.View.Home_Activity;
@@ -75,6 +77,7 @@ public class ProfileFragment extends Fragment {
     ImageView back, cart;
     CircularImageView profileImage;
     Context context;
+    LinearLayout transactionsList ;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -90,12 +93,9 @@ public class ProfileFragment extends Fragment {
         name = view.findViewById(R.id.textview_myacc_name);
         email = view.findViewById(R.id.textview_myacc_email);
         profile = view.findViewById(R.id.textview_myacc_myProfile);
-     //   wishlist = view.findViewById(R.id.textview_myacc_wishlist);
         order = view.findViewById(R.id.textview_myacc_myOrder);
+        transactionsList = view.findViewById(R.id.transactionList) ;
         payment = view.findViewById(R.id.textview_myacc_payment);
-        // address=view.findViewById(R.id.textview_myacc_address);
-     //   gift = view.findViewById(R.id.textview_myacc_giftcard);
-        // setting=view.findViewById(R.id.textview_myacc_setting);
         logout = view.findViewById(R.id.textview_myacc_logout);
 
         logout.setOnClickListener(new View.OnClickListener() {
@@ -105,6 +105,15 @@ public class ProfileFragment extends Fragment {
                 Intent p = new Intent(getContext(), Sign_in.class);
                 startActivity(p);
                 getActivity().finish();
+            }
+        });
+
+        transactionsList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent p = new Intent(getContext(), OldTransactions.class) ;
+                startActivity(p);
+
             }
         });
 

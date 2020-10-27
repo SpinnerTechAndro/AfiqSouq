@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:id="@+id/toolbarRL"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_margin="@dimen/_5sdp">
+
+                <com.google.android.material.appbar.AppBarLayout
+                    android:id="@+id/appBarLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.appcompat.widget.Toolbar
+                        android:layout_width="match_parent"
+                        android:background="@color/white"
+                        android:layout_height="match_parent">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <ImageView
+                                android:id="@+id/backBtn"
+                                android:layout_width="35dp"
+                                android:layout_height="35dp"
+                                android:src="@drawable/ic_baseline_arrow_back_24"
+                                android:layout_alignParentStart="true"
+                                android:layout_centerVertical="true"
+                                />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginEnd="164dp"
+                                android:layout_marginRight="164dp"
+                                android:text="@string/transactions"
+                                android:textAllCaps="false"
+                                android:textColor="@color/textColor"
+                                style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+
+                                android:textStyle="bold"
+                                android:layout_centerInParent="true" />
+
+                            <ImageView
+                                android:id="@+id/imageView_discover_cart"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_alignParentEnd="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginEnd="15dp"
+                                android:background="@drawable/cart_icon"
+                                />
+
+                            <TextView
+                                android:id="@+id/textview_discover_cartNumber"
+                                android:layout_width="15dp"
+                                android:layout_height="15dp"
+                                android:background="@drawable/shape_round_cyan"
+                                android:text="0"
+                                android:textStyle="bold"
+                                android:textSize="10sp"
+                                android:gravity="center"
+                                android:textColor="@color/white"
+                                android:layout_alignParentEnd="true"
+                                android:layout_marginEnd="6dp"
+                                android:layout_above="@+id/imageView_discover_cart"/>
+
+                        </RelativeLayout>
+
+                    </androidx.appcompat.widget.Toolbar>
+
+                </com.google.android.material.appbar.AppBarLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/label_statics"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/toolbarRL"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_5sdp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Spend Statistics"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:textColor="@color/colorBlack" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:background="@color/bank_transfer_background_color"
+                    android:drawableRight="@drawable/ic_expand_accent"
+                    android:drawablePadding="@dimen/_5sdp"
+                    android:padding="@dimen/_4sdp"
+                    android:text="Week"
+                    android:textColor="@color/navy_blue"
+                    android:visibility="invisible" />
+
+
+            </RelativeLayout>
+
+
+            <LinearLayout
+                android:layout_below="@id/label_statics"
+                android:id="@+id/cube_line1s"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_280sdp">
+
+                <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/cube_lines"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+
+
+                    />
+            </LinearLayout>
+
+
+
+            <RelativeLayout
+                android:id="@+id/recent_spending_RL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/cube_line1s"
+                android:layout_margin="@dimen/_5sdp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="Recent Spendings"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:textColor="@color/colorBlack" />
+
+                <ImageButton
+                    android:id="@+id/expand_icon_IB"
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/_3sdp"
+                    android:background="@null"
+                    android:src="@drawable/ic_expand_accent" />
+
+            </RelativeLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recent_spendings_rv"
+                android:layout_width="match_parent"
+                android:nestedScrollingEnabled="true"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/recent_spending_RL"
+                android:layout_margin="@dimen/_5sdp"
+                tools:listitem="@layout/recent_spending_row_layout" />
+
+        </RelativeLayout>
+
+
+    </androidx.core.widget.NestedScrollView>
+
+    <com.github.ybq.android.spinkit.SpinKitView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/spin_kit22"
+        style="@style/SpinKitView.Large.ThreeBounce"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        app:SpinKit_Color="@color/colorAccent" />
+
+
+</FrameLayout>

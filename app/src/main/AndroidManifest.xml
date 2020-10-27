@@ -15,11 +15,11 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:replace="android:allowBackup">
-        <activity android:name=".View.Activities.otpAcitivity"></activity>
-        <activity android:name=".LiveChat">
+        <activity android:name=".View.Activities.OldTransactions">
 
         </activity>
-
+        <activity android:name=".View.Activities.otpAcitivity" />
+        <activity android:name=".LiveChat"></activity>
         <activity android:name=".View.Activities.OldOrderDetails" />
         <activity android:name=".View.Activities.oldOrderList" />
         <activity android:name=".View.Activities.Add_Review" />
@@ -32,8 +32,11 @@
         <activity android:name=".View.Activities.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+
         </activity>
         <activity android:name=".View.Activities.CartListPage" />
         <activity android:name=".View.Activities.ProductList" />

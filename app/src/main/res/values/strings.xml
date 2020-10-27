@@ -100,6 +100,7 @@
     <string name="products">Products</string>
     <string name="all_category">All Category</string>
     <string name="top_product">Top Products</string>
+    <string name="transactions">Transactions</string>
 
     <string-array name="country">
 
