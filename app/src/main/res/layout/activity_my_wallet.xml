@@ -73,14 +73,306 @@
 
 
     <TextView
+        android:layout_marginTop="@dimen/_5sdp"
+        android:id="@+id/balance_label_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/_10sdp"
-        android:text="Balance"
-        android:textColor="@color/colorBlack"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:layout_below="@id/appBarLayout"
-        />
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginBottom="@dimen/_2sdp"
+        android:text="Balance"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@color/colorBlack" />
+
+
+    <RelativeLayout
+        android:id="@+id/balance_Rl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/balance_label_tv"
+        android:layout_marginEnd="@dimen/_10sdp">
+
+        <TextView
+            android:id="@+id/balance_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:text="$680.00"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="@color/cyan"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/top_up_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/top_up_button_shape"
+            android:drawableStart="@drawable/ic_add_cyan"
+            android:gravity="center"
+            android:paddingStart="@dimen/_20sdp"
+            android:text="Top Up"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/cyan" />
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/card_Rl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/balance_Rl"
+        android:layout_margin="@dimen/_10sdp"
+        android:background="@drawable/mywallet_cardbackground">
+
+
+        <RelativeLayout
+            android:id="@+id/rl_icon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_12sdp">
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/card_white_circuler_icon" />
+
+
+            <ImageButton
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:background="@drawable/my_wallet_card_icon2" />
+
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_card_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rl_icon"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/_30sdp"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:layout_marginEnd="@dimen/_30sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:text="4525\t 38383\t 3343\t 4585"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/gray_brown"
+            android:textStyle="bold" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_card_number"
+            android:layout_marginStart="@dimen/_17sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginEnd="@dimen/_18sdp">
+
+            <TextView
+                android:id="@+id/label_ch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CARD HOLDER"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/card_holder_brown_color"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_card_holder_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/label_ch"
+                android:layout_marginTop="@dimen/_3sdp"
+                android:text="Faruk Ahmed"
+                android:textAllCaps="true"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="@color/gray_brown"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_expires_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:text="Expires"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="@color/card_holder_brown_color"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_card_expires_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_expires_label"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="@dimen/_3sdp"
+                android:text="06/21"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="@color/card_holder_brown_color"
+                android:textStyle="bold" />
+
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:id="@+id/button_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/card_Rl"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:layout_marginBottom="@dimen/_10sdp">
+
+        <Button
+            android:id="@+id/add_to_card_btn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_3sdp"
+            android:layout_weight="1"
+            android:background="@drawable/reedem_button_shape"
+            android:text="Add Card"
+            android:textAllCaps="false"
+            android:textColor="@color/cyan" />
+
+        <Button
+            android:id="@+id/edit_card_btn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_3sdp"
+            android:layout_weight="1"
+            android:background="@drawable/round_button_accent_color_background"
+            android:text="Edit Card"
+            android:textAllCaps="false"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/active_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/button_ll"
+        android:layout_margin="@dimen/_10sdp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="Status: "
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/active_status_tv"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:drawableStart="@drawable/active_icon"
+            android:drawablePadding="@dimen/_5sdp"
+            android:text="Active"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/colorBlack"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/active_ll"
+        >
+
+        <RelativeLayout
+            android:id="@+id/rl_spent_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/icon_bg"
+                android:src="@drawable/icon_bag_cyan"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:padding="@dimen/_8sdp"
+                android:background="@drawable/gray_cyan_circle_shape"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Spent"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_toEndOf="@id/icon_bg"
+                android:textColor="@color/colorBlack"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                />
+
+        </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_label_spent2"
+                android:layout_marginStart="@dimen/_35sdp"
+                android:layout_below="@id/rl_spent_label"
+                android:layout_width="wrap_content"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/spent_ammount_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="$3674.27"
+                    android:textColor="@color/cyan"
+                    android:textStyle="bold"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_purchases_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="on 284 purchases"
+                    />
+
+            </LinearLayout>
+
+
+
+
+
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/cube_lines"
+            android:layout_toEndOf="@id/ll_label_spent2"
+            android:layout_width="match_parent"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rl_spent_label"
+             />
+
+
+        </RelativeLayout>
+
+
+
+
+
+
+<meow.bottomnavigation.MeowBottomNavigation
+    android:layout_width="match_parent"
+    android:id="@+id/bottomNavigation"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    />
 
 
 

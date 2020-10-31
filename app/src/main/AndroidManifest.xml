@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MyWalletActivity"></activity>
+        <activity android:name=".RewardsActivity"></activity>
         <activity android:name=".TopUpAccountBalanceActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".Transactions" />
@@ -21,10 +21,9 @@
         <activity android:name=".CollectionsActivity" />
         <activity android:name=".CategoriesActivity" />
         <activity android:name=".SignInActivity" />
-        <activity android:name=".RewardsActivity">
+        <activity android:name=".MyWalletActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
