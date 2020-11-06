@@ -9,11 +9,14 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -26,6 +29,7 @@ import java.util.List;
 
 import dev.spinner_tech.afiqsouq.Adapter.CartListAdapter;
 import dev.spinner_tech.afiqsouq.Models.CartDbModel;
+import dev.spinner_tech.afiqsouq.Models.CouponResp;
 import dev.spinner_tech.afiqsouq.Models.CreateOrderResp;
 import dev.spinner_tech.afiqsouq.Models.PrefUserModel;
 import dev.spinner_tech.afiqsouq.Models.TaxREsp;
@@ -43,19 +47,24 @@ import retrofit2.Response;
 public class CartListPage extends AppCompatActivity {
 
 
-    public TextView cartNumber, tax_fee, coupon_no, sub_total, deliveryChargeTV, total, discount, paid, product_name, product_price;
+    public TextView cartNumber, tax_fee, sub_total, deliveryChargeTV, total, discount, paid, product_name, product_price;
     Button checkoutout, apply_couppon;
     RecyclerView rv_shoppingCart;
     List<CartDbModel> cartList = new ArrayList<>();
     List<CartDbModel> orderList = new ArrayList<>();
+    List<CreateOrderResp.coupon_lines> coupon_lines = new ArrayList<>() ;
+    EditText coupon_no;
+
     CartListAdapter adapter;
     double toatalAmount;
     double rate = 0.0;
     String method_title = "Flat rate", method_Id = "flat_rate", deliveryCharge = "50";
     DecimalFormat dec = new DecimalFormat("#0.0");
     int delivery_charge = 50;
-    AlertDialog alert ;
-    LinearLayout cartLayout , emptyCartLayout ;
+    AlertDialog alert;
+    LinearLayout cartLayout, emptyCartLayout;
+    double totalCharge  = 0 ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,8 +83,8 @@ public class CartListPage extends AppCompatActivity {
         paid = findViewById(R.id.textview_shoppingcart_tobe_paid_amount);
         checkoutout = findViewById(R.id.button_shoppingcart_checkoutd);
         deliveryChargeTV = findViewById(R.id.deliveryCharge);
-        emptyCartLayout = findViewById(R.id.emptyContainer) ;
-        cartLayout = findViewById(R.id.cartContainer) ;
+        emptyCartLayout = findViewById(R.id.emptyContainer);
+        cartLayout = findViewById(R.id.cartContainer);
         cartLayout.setVisibility(View.GONE);
         rate = loadTaxFormCache();
         rv_shoppingCart.setLayoutManager(new LinearLayoutManager(this));
@@ -107,6 +116,88 @@ public class CartListPage extends AppCompatActivity {
             }
         });
 
+        apply_couppon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String coupon = coupon_no.getText().toString();
+
+                if (TextUtils.isEmpty(coupon)) {
+                    Toasty.warning(getApplicationContext(), "Please Enter a Valid Coupon !!!", 1).show();
+                } else {
+                    getCoupon(coupon);
+                }
+            }
+        });
+
+    }
+
+    private void getCoupon(String coupon) {
+        ProgressDialog dialog  = new ProgressDialog( CartListPage.this ) ;
+        dialog.setMessage("Checking For Coupon ...");
+        String authHeader = "Basic " + Base64.encodeToString(Constants.BASE.getBytes(), Base64.NO_WRAP);
+        dialog.setCancelable(false);
+        dialog.show();
+
+        Call<List<CouponResp>> getCall = RetrofitClient.getInstance().getApi()
+                .getTheCoupon(
+                        authHeader, coupon
+                );
+
+        getCall.enqueue(new Callback<List<CouponResp>>() {
+            @Override
+            public void onResponse(Call<List<CouponResp>> call, Response<List<CouponResp>> response) {
+                if (response.code() == 200) {
+                    // check the list
+                    List<CouponResp> couponList = response.body();
+                    try {
+                        if(couponList.size() > 0 ){
+                            dialog.dismiss();
+                            CouponResp couponModel = couponList.get(0) ;
+
+                            setUpCoupon(couponModel) ;
+                        }
+                        else {
+                            dialog.dismiss();
+                            Toasty.error(getApplicationContext(), "Coupon Error : There is no such Coupon", 1).show();
+
+                        }
+                    } catch (Exception e) {
+                        dialog.dismiss();
+                        Toasty.error(getApplicationContext(), "Error Msg : " + e.getMessage(), 1).show();
+
+                    }
+                } else {
+                    dialog.dismiss();
+                    Toasty.error(getApplicationContext(), "Error Code : " + response.code(), 1).show();
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<CouponResp>> call, Throwable t) {
+                dialog.dismiss();
+                Toasty.error(getApplicationContext(), "Error Msg : " + t.getMessage(), 1).show();
+            }
+        });
+    }
+
+    private void setUpCoupon(CouponResp couponModel) {
+        double minTotalTheresHold  = Double.parseDouble(couponModel.getMinimumAmount()) ;
+
+        if(totalCharge<minTotalTheresHold){
+            coupon_no.setText("");
+            Toasty.warning(getApplicationContext(), "To Avail this Coupon Please Spend At Least BDT "+ minTotalTheresHold , 1).show();
+        }
+        else {
+            Toasty.success(getApplicationContext(), "Coupon Applied SuccessFully !!!" , 1).show();
+
+            discount.setTextColor(Color.RED);
+            discount.setText("-"+ Constants.BDT_SIGN + couponModel.getAmount());
+            totalCharge -= Double.parseDouble(couponModel.getAmount()) ;
+            paid.setText(Constants.BDT_SIGN + totalCharge);
+            // create model
+            coupon_lines.add(new CreateOrderResp.coupon_lines(couponModel.getCode()));
+        }
 
     }
 
@@ -114,7 +205,7 @@ public class CartListPage extends AppCompatActivity {
     private void loadAllCartItem() {
         deliveryChargeTV.setText(Constants.BDT_SIGN + deliveryCharge);
         delivery_charge = Integer.parseInt(deliveryCharge);
-       // countCartItem();
+        // countCartItem();
         CartDatabase.databaseWriteExecutor.execute(new Runnable() {
             @Override
             public void run() {
@@ -130,42 +221,38 @@ refresh.post(new Runnable() {
 })
 
                      */
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
+                runOnUiThread(() -> {
+                    if (cartList != null && !cartList.isEmpty()) // i know its werid but thats r8 cheaking list is popluted
+                    {
+                        cartLayout.setVisibility(View.VISIBLE);
+                        emptyCartLayout.setVisibility(View.GONE);
+                        orderList.clear();
+                        orderList.addAll(cartList);
 
+                        adapter = new CartListAdapter(cartList, CartListPage.this, delivery_charge, rate);
+                        rv_shoppingCart.setAdapter(adapter);
 
-                            if (cartList != null && !cartList.isEmpty()) // i know its werid but thats r8 cheaking list is popluted
-                            {
-                                cartLayout.setVisibility(View.VISIBLE);
-                                emptyCartLayout.setVisibility(View.GONE);
-                                orderList.clear();
-                                orderList.addAll(cartList);
+                        // total
+                        double totalMoney = calculateTotal(cartList);
+                        //setting sub amount
+                        sub_total.setText(Constants.BDT_SIGN + Math.round(totalMoney));
 
-                                adapter = new CartListAdapter(cartList, CartListPage.this, delivery_charge, rate);
-                                rv_shoppingCart.setAdapter(adapter);
+                        Log.d("TAG", "run: " + "totall" + totalMoney + ((totalMoney * (rate / 100))));
+                        // calculating tax
 
-                                // total
-                                double totalMoney = calculateTotal(cartList);
-                                //setting sub amount
-                                sub_total.setText(Constants.BDT_SIGN + Math.round(totalMoney));
+                        tax_fee.setText(Constants.BDT_SIGN + dec.format(totalMoney * (rate / 100)));
+                        totalMoney = totalMoney + ((totalMoney * (rate / 100)));
+                        totalCharge = Math.round(totalMoney + delivery_charge) ;
+                        total.setText(Constants.BDT_SIGN +totalCharge );
 
-                                Log.d("TAG", "run: " + "totall" + totalMoney + ((totalMoney * (rate / 100))));
-                                // calculating tax
+                        paid.setText(Constants.BDT_SIGN + totalCharge);
+                    } else {
+                        // show  empty layout
+                        cartLayout.setVisibility(View.INVISIBLE);
+                        emptyCartLayout.setVisibility(View.VISIBLE);
 
-                                tax_fee.setText(Constants.BDT_SIGN + dec.format(totalMoney * (rate / 100)));
-                                totalMoney = totalMoney + ((totalMoney * (rate / 100)));
-                                total.setText(Constants.BDT_SIGN + Math.round(totalMoney + delivery_charge));
-                                paid.setText(Constants.BDT_SIGN + Math.round(totalMoney + delivery_charge));
-                            }
-                            else {
-                                // show  empty layout
-                                cartLayout.setVisibility(View.INVISIBLE);
-                                emptyCartLayout.setVisibility(View.VISIBLE);
-
-                            }
-                        }
-                    });
+                    }
+                });
 
 
             }
@@ -295,8 +382,17 @@ refresh.post(new Runnable() {
         Log.d("TAG", "BuildOrderModel: " + userModel.getId());
         // create the final model
         //String paymentMethod, String paymentMethodTitle, Boolean setPaid, Billing billing, Shipping shipping, List<LineItem> lineItems, List<ShippingLine> shippingLines
+
+        try{
+            if(coupon_lines.size()== 0){
+                coupon_lines = null;
+            }
+        }catch (Exception r){
+            coupon_lines = null ;
+        }
+
         CreateOrderResp orderModel = new CreateOrderResp(Constants.COD, Constants.cashOnDelivery, false,
-                billingModel, shipping, itemList, shippingLineList , userModel.getId());
+                billingModel, shipping, itemList, shippingLineList, coupon_lines, userModel.getId());
 
         //   CreateOrder(orderModel);
 
@@ -308,14 +404,12 @@ refresh.post(new Runnable() {
     protected void onStart() {
 
         // check if  the user  id
-        if(SharedPrefManager.getInstance(getApplicationContext()).isUserLoggedIn()){
+        if (SharedPrefManager.getInstance(getApplicationContext()).isUserLoggedIn()) {
             checkForDeliveryCharge();
-        }
-        else {
+        } else {
             // user not loagged in
-            TriggerDilogue() ;
+            TriggerDilogue();
         }
-
 
 
         super.onStart();
@@ -331,16 +425,15 @@ refresh.post(new Runnable() {
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         //do things
-                        try{
+                        try {
                             alert.dismiss();
                             finish();
-                        }
-                        catch (Exception r ){
+                        } catch (Exception r) {
                             finish();
                         }
                     }
                 });
-         alert = builder.create();
+        alert = builder.create();
         alert.show();
     }
 

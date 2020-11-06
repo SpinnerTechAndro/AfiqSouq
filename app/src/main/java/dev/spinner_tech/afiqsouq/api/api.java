@@ -4,6 +4,7 @@ import java.util.List;
 
 import dev.spinner_tech.afiqsouq.Models.CartModel;
 import dev.spinner_tech.afiqsouq.Models.CategoryResp;
+import dev.spinner_tech.afiqsouq.Models.CouponResp;
 import dev.spinner_tech.afiqsouq.Models.CreateOrderResp;
 import dev.spinner_tech.afiqsouq.Models.CreateReviewRep;
 import dev.spinner_tech.afiqsouq.Models.DebugModel;
@@ -111,4 +112,10 @@ public interface api {
     @POST("products/reviews")
     Call<ReviewResp> CreateReviews(@Header("Authorization") String authHeader,
                                    @Body CreateReviewRep body);
+
+    // get Coupon
+    @GET("coupons")
+    Call<List<CouponResp>> getTheCoupon(@Header("Authorization") String authHeader,
+                                        @Query("code") String c_id) ;
+
 }

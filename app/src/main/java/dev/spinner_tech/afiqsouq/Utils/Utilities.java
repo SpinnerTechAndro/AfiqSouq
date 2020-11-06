@@ -43,6 +43,20 @@ public class Utilities {
 
     }
 
+    public  String GetYearFromDate(String olddate){
+        java.text.DateFormat originalFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+        java.text.DateFormat targetFormat = new SimpleDateFormat("yyyy");
+        Date date = null;
+        try {
+            date = originalFormat.parse(olddate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        String formattedDate = targetFormat.format(date);  // 20120821
+
+        return  formattedDate ;
+    }
+
     public  String transFromDate(String olddate){
         java.text.DateFormat originalFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
         java.text.DateFormat targetFormat = new SimpleDateFormat("MM");

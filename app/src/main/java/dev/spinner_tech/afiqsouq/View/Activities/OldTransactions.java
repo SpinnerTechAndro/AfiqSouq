@@ -1,6 +1,7 @@
 package dev.spinner_tech.afiqsouq.View.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.motion.utils.Easing;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -31,12 +32,14 @@ import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.ybq.android.spinkit.SpinKitView;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 
 import dev.spinner_tech.afiqsouq.Adapter.PastOrderListAdapter;
 import dev.spinner_tech.afiqsouq.Adapter.PastTransactionListAdapter;
 import dev.spinner_tech.afiqsouq.Models.CartDbModel;
+import dev.spinner_tech.afiqsouq.Models.GraphDataSetModel;
 import dev.spinner_tech.afiqsouq.Models.oldOrderModel;
 import dev.spinner_tech.afiqsouq.R;
 import dev.spinner_tech.afiqsouq.Utils.Constants;
@@ -60,6 +63,7 @@ public class OldTransactions extends AppCompatActivity implements PastTransactio
     ImageView cartIcon;
     TextView cartCountTv;
     CartDatabase cartDatabase;
+    float thisYear = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,7 +82,8 @@ public class OldTransactions extends AppCompatActivity implements PastTransactio
         chart.setBackgroundColor(Color.WHITE);
         cartIcon = findViewById(R.id.imageView_discover_cart);
         cartCountTv = findViewById(R.id.textview_discover_cartNumber);
-
+        thisYear = Calendar.getInstance().get(Calendar.YEAR);
+        Log.d("TAG", "onCreate: " + thisYear);
         setUpChart();
 //        chart.animateXY(2000, 2000);
 //
@@ -145,7 +150,7 @@ public class OldTransactions extends AppCompatActivity implements PastTransactio
             public String getAxisLabel(float value, AxisBase axis) {
 
 
-                return   "  " + getMonthName(value );
+                return "  " + getMonthName(value);
             }
         });
         YAxis y = chart.getAxisLeft();
@@ -157,15 +162,13 @@ public class OldTransactions extends AppCompatActivity implements PastTransactio
         y.setTextSize(14);
 
         y.setAxisLineColor(Color.GRAY);
-        y.setLabelCount(6 , true);
+        y.setLabelCount(6, true);
         y.setValueFormatter(new ValueFormatter() {
             @Override
-            public String getAxisLabel(float value, AxisBase axis)
-            {
-                if(value == 0 ){
+            public String getAxisLabel(float value, AxisBase axis) {
+                if (value == 0) {
                     return "";
-                }
-                else {
+                } else {
                     return Constants.BDT_SIGN + " " + Math.round(value);
                 }
 
@@ -173,7 +176,8 @@ public class OldTransactions extends AppCompatActivity implements PastTransactio
         });
         chart.getAxisRight().setEnabled(false);
         chart.getLegend().setEnabled(false);
-        chart.animateXY(1000, 1000);}
+        chart.animateXY(1000, 1000);
+    }
 
 
     private void loadOrderList() {
@@ -232,17 +236,18 @@ public class OldTransactions extends AppCompatActivity implements PastTransactio
     }
 
 
-    private void setData(List<Float> dataSet) {
+    private void setData(List<GraphDataSetModel> dataSet, List<Float> priceList) {
 //int count, float range, List<oldOrderModel.LineItem> list, List<String> dateList
-        float maxValue = Collections.max(dataSet);
-        float minValue = Collections.min(dataSet);
+        float maxValue = Collections.max(priceList);
+        //  float minValue = Collections.min(priceList);
 
-        int a = (int) maxValue % 100;
-
+        //int a = (int) maxValue % 100;
+        // fillter the list for the year
 
         chart.getAxisLeft().setAxisMinimum(0);
         chart.getAxisLeft().setAxisMaximum(maxValue);
-        chart.animateXY(1000, 1000);
+        chart.animateY(1500);
+
         chart.invalidate();
 
         ArrayList<Entry> values = new ArrayList<>();
@@ -251,21 +256,28 @@ public class OldTransactions extends AppCompatActivity implements PastTransactio
         for (int i = 1; i < dataSet.size(); i++) {
 //            values.add(new Entry(Float.valueOf(utilities.transFromDate(dateList.get(i)))
 //                    , Float.valueOf(list.get(i).getTotal())));
-            // Log.d("TAG", "MONTH: " + dataSet.size());
+            //  Log.d("TAG", i + " Year: " + dataSet.get(i).getYear() + " THis Year - " + thisYear);
+            if (thisYear != dataSet.get(i).getYear()) {
+                dataSet.get(i).setPrice((float) 0);
 
-            values.add(new Entry(i, dataSet.get(i)));
+            }
+            GraphDataSetModel model = dataSet.get(i);
+           values.add(new Entry(i, model.getPrice()));
+
 
 
         }
-//        values.add(new Entry(1, 300));
-//        values.add(new Entry(2, 200));
+      //  values.add(new Entry(8, 830));
+        values.add(new Entry(11, 500));
+        values.add(new Entry(12, 230));
+
+
+
 //        values.add(new Entry(4, 100));
 //        values.add(new Entry(5, 450));
 //        values.add(new Entry(6, 300));
 //        values.add(new Entry(8, 800));
-//        values.add(new Entry(10, 1300));
-//        values.add(new Entry(11, 200));
-//        values.add(new Entry(12, 3000));
+
 
 
         LineDataSet set1;
@@ -276,10 +288,11 @@ public class OldTransactions extends AppCompatActivity implements PastTransactio
             set1.setValues(values);
             chart.getData().notifyDataChanged();
             chart.notifyDataSetChanged();
+            Log.d("TAG", "iam o  NoT NUll");
         } else {
             // create a dataset and give it a type
             set1 = new LineDataSet(values, "DataSet 1");
-
+            Log.d("TAG", "iam o   NUll");
             set1.setMode(LineDataSet.Mode.CUBIC_BEZIER);
             set1.setCubicIntensity(0.2f);
             set1.setDrawFilled(true);
@@ -324,21 +337,29 @@ public class OldTransactions extends AppCompatActivity implements PastTransactio
 
         Utilities utilities = new Utilities();
         // creating data set
-        List<Float> dataSet = new ArrayList<>();
+        List<GraphDataSetModel> dataSet = new ArrayList<>();
+        List<Float> priceList = new ArrayList<>();
+        // creating data set
+
         for (int i = 0; i <= 13; i++) {
-            dataSet.add((float) 0);
+            dataSet.add(new GraphDataSetModel((float) 0, (float) 0, (float) 0));
+            priceList.add((float) 0);
         }
         // here we  filter
         for (int i = 0; i < list.size(); i++) {
             // get the month number
             String numberOfMonthStr = utilities.transFromDate(dateList.get(i));
+            String numberOfYear = utilities.GetYearFromDate(dateList.get(i));
             int numberOfMonth = Integer.parseInt(numberOfMonthStr);
-            float newData = dataSet.get(numberOfMonth) + list.get(i).getPrice();
-            dataSet.set(numberOfMonth, newData);
+            float year = Float.parseFloat(numberOfYear);
+            Log.d("TAG", "filterDataForMonth: " + numberOfYear);
+            float newData = dataSet.get(numberOfMonth).getPrice() + list.get(i).getPrice();
+            dataSet.set(numberOfMonth, new GraphDataSetModel(newData, (float) numberOfMonth, year));
+            priceList.add(numberOfMonth, newData);
         }
 
-
-        setData(dataSet);
+       // dataSet.set(12 , new GraphDataSetModel((float)300 , (float)12 , (float)2020 )) ;
+        setData(dataSet, priceList);
 
     }
 

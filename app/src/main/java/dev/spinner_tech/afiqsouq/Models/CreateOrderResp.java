@@ -29,12 +29,15 @@ public class CreateOrderResp implements Serializable {
     @SerializedName("shipping_lines")
     @Expose
     private List<ShippingLine> shippingLines = null;
+    @SerializedName("coupon_lines")
+    @Expose
+    private List<coupon_lines> coupon_lines = null;
     @SerializedName("customer_id")
     @Expose
     private String customer_id = null;
 
 
-    public CreateOrderResp(String paymentMethod, String paymentMethodTitle, Boolean setPaid, Billing billing, Shipping shipping, List<LineItem> lineItems, List<ShippingLine> shippingLines, String customer_id) {
+    public CreateOrderResp(String paymentMethod, String paymentMethodTitle, Boolean setPaid, Billing billing, Shipping shipping, List<LineItem> lineItems, List<ShippingLine> shippingLines, List<CreateOrderResp.coupon_lines> coupon_lines, String customer_id) {
         this.paymentMethod = paymentMethod;
         this.paymentMethodTitle = paymentMethodTitle;
         this.setPaid = setPaid;
@@ -42,6 +45,23 @@ public class CreateOrderResp implements Serializable {
         this.shipping = shipping;
         this.lineItems = lineItems;
         this.shippingLines = shippingLines;
+        this.coupon_lines = coupon_lines;
+        this.customer_id = customer_id;
+    }
+
+    public List<CreateOrderResp.coupon_lines> getCoupon_lines() {
+        return coupon_lines;
+    }
+
+    public void setCoupon_lines(List<CreateOrderResp.coupon_lines> coupon_lines) {
+        this.coupon_lines = coupon_lines;
+    }
+
+    public String getCustomer_id() {
+        return customer_id;
+    }
+
+    public void setCustomer_id(String customer_id) {
         this.customer_id = customer_id;
     }
 
@@ -246,6 +266,23 @@ public class CreateOrderResp implements Serializable {
             this.country = country;
         }
 
+    }
+    public  static  class  coupon_lines implements  Serializable{
+        @SerializedName("code")
+        @Expose
+        private String code;
+
+        public coupon_lines(String code) {
+            this.code = code;
+        }
+
+        public String getCode() {
+            return code;
+        }
+
+        public void setCode(String code) {
+            this.code = code;
+        }
     }
     public static class LineItem implements Serializable {
 

@@ -531,8 +531,8 @@ public class ProductDetails extends AppCompatActivity {
             public void run() {
                 CartDatabase.getDatabase(getApplicationContext()).dao().insertCartItem(cartDbModel);
 
-                Intent p = new Intent(getApplicationContext(), CartListPage.class);
-                startActivity(p);
+//                Intent p = new Intent(getApplicationContext(), CartListPage.class);
+//                startActivity(p);
             }
         });
 
