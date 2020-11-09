@@ -1,6 +1,7 @@
 package dev.spinner_tech.afiqsouq.View;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
 import androidx.viewpager.widget.ViewPager;
@@ -9,6 +10,7 @@ import androidx.viewpager2.widget.ViewPager2;
 import android.animation.ValueAnimator;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -36,6 +38,7 @@ import java.util.List;
 
 import dev.spinner_tech.afiqsouq.Adapter.viewPager2_adapter;
 import dev.spinner_tech.afiqsouq.Helper.CurvedBottomNavigationView;
+import dev.spinner_tech.afiqsouq.LiveChat;
 import dev.spinner_tech.afiqsouq.Models.CartDbModel;
 import dev.spinner_tech.afiqsouq.Models.PrefUserModel;
 import dev.spinner_tech.afiqsouq.Models.TaxREsp;
@@ -74,7 +77,7 @@ public class Home_Activity extends AppCompatActivity {
         floatingActionButton = findViewById(R.id.fav);
         sideBar = findViewById(R.id.imageview_discover_toolbar_left);
         cartCount = findViewById(R.id.textview_discover_cartNumber);
-
+        writeOnSharedPref();
         cartDatabase = Room.databaseBuilder(getApplicationContext(),
                 CartDatabase.class, CartDatabase.DB_NAME)
                 .fallbackToDestructiveMigration()
@@ -153,8 +156,23 @@ public class Home_Activity extends AppCompatActivity {
         });
     }
 
+
+    @Override
+    public void onBackPressed() {
+        new AlertDialog.Builder(Home_Activity.this)
+                .setMessage("Are you sure you want to exit?")
+                .setCancelable(false)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        Home_Activity.super.onBackPressed();
+                    }
+                })
+                .setNegativeButton("No", null)
+                .show();
+    }
+
     private void openDialogue() {
-        LinearLayout categoryTv, recentTv, topDealsTv;
+        LinearLayout categoryTv, recentTv, topDealsTv, chatTv;
         TextView name, email;
         CircularImageView cancelBtn;
         Dialog dialog = new Dialog(Home_Activity.this);
@@ -164,6 +182,7 @@ public class Home_Activity extends AppCompatActivity {
         // views of  the dialogue
         categoryTv = dialog.findViewById(R.id.categories_tv);
         recentTv = dialog.findViewById(R.id.new_arrivals_tv);
+        chatTv = dialog.findViewById(R.id.help_tv) ;
         name = dialog.findViewById(R.id.person_name_tv);
         email = dialog.findViewById(R.id.person_email_tv);
         cancelBtn = dialog.findViewById(R.id.close_btn_id);
@@ -184,7 +203,13 @@ public class Home_Activity extends AppCompatActivity {
             }
         });
 
-
+        chatTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent p = new Intent(getApplicationContext(), LiveChat.class);
+                startActivity(p);
+            }
+        });
         categoryTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -278,6 +303,15 @@ public class Home_Activity extends AppCompatActivity {
 
         }
 
+
+    }
+
+    public  void   writeOnSharedPref()
+    {
+        SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putBoolean("firstStart", false);
+        editor.apply();
 
     }
 

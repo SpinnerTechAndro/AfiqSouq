@@ -2,14 +2,13 @@ package dev.spinner_tech.afiqsouq.api;
 
 import java.util.List;
 
-import dev.spinner_tech.afiqsouq.Models.CartModel;
 import dev.spinner_tech.afiqsouq.Models.CategoryResp;
 import dev.spinner_tech.afiqsouq.Models.CouponResp;
 import dev.spinner_tech.afiqsouq.Models.CreateOrderResp;
 import dev.spinner_tech.afiqsouq.Models.CreateReviewRep;
-import dev.spinner_tech.afiqsouq.Models.DebugModel;
 import dev.spinner_tech.afiqsouq.Models.LoginResp;
 import dev.spinner_tech.afiqsouq.Models.OrderResp;
+import dev.spinner_tech.afiqsouq.Models.PreviousWalletTransModel;
 import dev.spinner_tech.afiqsouq.Models.ProductModel;
 import dev.spinner_tech.afiqsouq.Models.Recived_Sign_up;
 import dev.spinner_tech.afiqsouq.Models.ReviewResp;
@@ -42,8 +41,17 @@ public interface api {
                                             @Query("per_page") String per_page,
                                             @Query("page") int page);
 
+    // getting the balance
+    @GET("current_balance/{id}")
+    Call<String>getCurrentBal(@Header("Authorization") String authHeader,
+                                    @Path("id") String  user_id) ;
+
+    // transactionList
+    @GET("wallet/{id}")
+    Call<List<PreviousWalletTransModel>>getTransList(@Header("Authorization") String authHeader,
+                                                     @Path("id") String  user_id) ;
+
     // popular product list
-    //
     @GET("products?per_page=10&orderby=date&order=desc")
     Call<List<ProductModel>> getAllRecentProducts(@Header("Authorization") String authHeader
             , @Query("per_page") int page);

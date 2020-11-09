@@ -30,10 +30,12 @@ import retrofit2.Retrofit;
 public class SplashScreen extends AppCompatActivity {
     SharedPreferences shref;
     SharedPreferences.Editor editor;
+    boolean isFirst = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
+
         TextView versioNumber = findViewById(R.id.versionNumber) ;
         versioNumber.setText("V"+BuildConfig.VERSION_NAME);
 
@@ -93,9 +95,25 @@ public class SplashScreen extends AppCompatActivity {
             finish();
         }
         else {
-            Intent p = new Intent(getApplicationContext() , Sign_in.class);
-            startActivity(p);
-            finish();
+
+            SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
+            isFirst = prefs.getBoolean("firstStart", true);
+            if (isFirst) {
+                Intent o = new Intent(getApplicationContext(), Intro.class);
+                o.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(o);
+                finish();
+            } else {
+
+                Intent p = new Intent(getApplicationContext() , Sign_in.class);
+                p.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(p);
+                finish();
+
+
+            }
+
+
         }
 
     }

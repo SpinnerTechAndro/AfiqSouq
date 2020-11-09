@@ -19,7 +19,6 @@ public class LiveChat extends AppCompatActivity {
         webView = findViewById(R.id.webView) ;
         WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
-
-        webView.loadUrl("https://afiqsouq.com/faqs");
+        webView.loadUrl("https://afiqsouq.com/chat-page/");
     }
 }

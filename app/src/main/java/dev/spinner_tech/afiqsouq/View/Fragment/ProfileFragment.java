@@ -15,10 +15,14 @@ import androidx.fragment.app.Fragment;
 
 import com.mikhaellopez.circularimageview.CircularImageView;
 
+import dev.spinner_tech.afiqsouq.Adapter.PastWalletTransactionListAdapter;
 import dev.spinner_tech.afiqsouq.Models.PrefUserModel;
 import dev.spinner_tech.afiqsouq.R;
 import dev.spinner_tech.afiqsouq.Utils.SharedPrefManager;
+import dev.spinner_tech.afiqsouq.View.Activities.EditProfileActivity;
+import dev.spinner_tech.afiqsouq.View.Activities.MyWallet;
 import dev.spinner_tech.afiqsouq.View.Activities.OldTransactions;
+import dev.spinner_tech.afiqsouq.View.Activities.RewardActivity;
 import dev.spinner_tech.afiqsouq.View.Activities.Sign_in;
 import dev.spinner_tech.afiqsouq.View.Activities.oldOrderList;
 import dev.spinner_tech.afiqsouq.View.Home_Activity;
@@ -77,7 +81,7 @@ public class ProfileFragment extends Fragment {
     ImageView back, cart;
     CircularImageView profileImage;
     Context context;
-    LinearLayout transactionsList ;
+    LinearLayout transactionsList , wallerContainer , rewardContainer  ;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -96,8 +100,25 @@ public class ProfileFragment extends Fragment {
         order = view.findViewById(R.id.textview_myacc_myOrder);
         transactionsList = view.findViewById(R.id.transactionList) ;
         payment = view.findViewById(R.id.textview_myacc_payment);
+        wallerContainer = view.findViewById(R.id.walletContainer);
         logout = view.findViewById(R.id.textview_myacc_logout);
+        rewardContainer = view.findViewById(R.id.rewardContainer) ;
 
+        profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent p = new Intent(getContext(), EditProfileActivity.class) ;
+                startActivity(p);
+            }
+        });
+
+        rewardContainer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent p = new Intent(getContext(), RewardActivity.class);
+                startActivity(p);
+            }
+        });
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -108,6 +129,13 @@ public class ProfileFragment extends Fragment {
             }
         });
 
+        wallerContainer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent p = new Intent(getContext(), MyWallet.class) ;
+                startActivity(p);
+            }
+        });
         transactionsList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

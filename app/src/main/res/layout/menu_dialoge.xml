@@ -237,7 +237,7 @@
                 </LinearLayout>
                 <LinearLayout
                     android:id="@+id/help_tv"
-                    android:visibility="invisible"
+                    android:visibility="visible"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_12sdp"
@@ -253,14 +253,19 @@
 
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Help"
+                        android:text="Chat With Us"
                         android:textColor="@color/colorBlack"
                         android:layout_gravity="center_vertical"
                         android:layout_marginStart="@dimen/_8sdp"
                         android:textSize="17sp"
                         />
 
+
+
                 </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_10sdp"/>
 
             </LinearLayout>
         </ScrollView>

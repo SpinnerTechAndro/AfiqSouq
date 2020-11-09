@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:background="@color/white"
         android:orientation="vertical"
+
         android:layout_height="wrap_content">
         <LinearLayout
             android:layout_width="match_parent"
@@ -90,7 +91,8 @@
         </LinearLayout>
 
         <LinearLayout
-            android:visibility="gone"
+            android:id="@+id/rewardContainer"
+            android:visibility="visible"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
@@ -98,10 +100,10 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_width="14dp"
-                android:layout_height="14dp"
-                android:layout_marginTop="2dp"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
                 android:backgroundTint="#20D3C2"
+                android:layout_gravity="center_vertical"
                 android:background="@drawable/icon_heart_1"/>
 
             <TextView
@@ -109,11 +111,12 @@
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
+
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="5dp"
-                android:text="@string/wishlist"
+                android:text="Reward"
                 android:textColor="@color/deep_blue"
-                android:textSize="14sp"
+                android:textSize="17sp"
                 android:textStyle="bold" />
 
         </LinearLayout>
@@ -178,11 +181,12 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/walletContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:layout_marginLeft="80dp"
-            android:visibility="gone"
+            android:visibility="visible"
             android:layout_marginTop="8dp"
             android:orientation="horizontal">
 
@@ -200,9 +204,9 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="5dp"
-                android:text="@string/payment"
+                android:text="My Wallet"
                 android:textColor="@color/deep_blue"
-                android:textSize="13sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
         </LinearLayout>
