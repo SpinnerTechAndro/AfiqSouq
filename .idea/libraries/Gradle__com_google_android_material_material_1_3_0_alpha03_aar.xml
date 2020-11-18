@@ -1,0 +1,16 @@
+<component name="libraryTable">
+  <library name="Gradle: com.google.android.material:material:1.3.0-alpha03@aar">
+    <ANNOTATIONS>
+      <root url="jar://E:/.gradle/caches/transforms-2/files-2.1/df5139107d12736f9dba794dc2e09b3f/material-1.3.0-alpha03/annotations.zip!/" />
+    </ANNOTATIONS>
+    <CLASSES>
+      <root url="jar://E:/.gradle/caches/transforms-2/files-2.1/df5139107d12736f9dba794dc2e09b3f/material-1.3.0-alpha03/jars/classes.jar!/" />
+      <root url="file://E:/.gradle/caches/transforms-2/files-2.1/df5139107d12736f9dba794dc2e09b3f/material-1.3.0-alpha03/res" />
+      <root url="file://E:/.gradle/caches/transforms-2/files-2.1/df5139107d12736f9dba794dc2e09b3f/material-1.3.0-alpha03/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://E:/.gradle/caches/modules-2/files-2.1/com.google.android.material/material/1.3.0-alpha03/a0831ff8b42b99b5084c203070690505b638b7d2/material-1.3.0-alpha03-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

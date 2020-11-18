@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#F1ECEC"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.vipulasri.ticketview.TicketView
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:id="@+id/ticketView"
+        app:ticketBackgroundColor="@color/cyan"
+        android:layout_centerInParent="true"
+        app:ticketOrientation="horizontal"
+        app:ticketScallopRadius="8dp"
+        app:ticketShowBorder="false"
+        app:ticketScallopPositionPercent="50"
+        app:ticketShowDivider="false"
+        app:ticketDividerType="dash"
+        app:ticketDividerPadding="0dp"
+        app:ticketElevation="14dp">
+
+    </com.vipulasri.ticketview.TicketView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:text="Title OF The Coupon"
+        android:layout_marginTop="12dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="20dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:textColor="@color/white"
+        android:id="@+id/title"
+        android:layout_height="wrap_content"/>
+
+
+    <TextView
+        android:id="@+id/code"
+        android:layout_width="wrap_content"
+        android:text="Coupon Code : "
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="45dp"
+        android:layout_marginRight="20dp"
+        android:layout_alignParentStart="true"
+        android:layout_below="@id/title"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:textColor="@color/white"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/value"
+        android:layout_width="wrap_content"
+        android:text="50"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="55dp"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_below="@id/title"
+        android:textStyle="bold"
+        android:textSize="30sp"
+        android:textColor="@color/white"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+
+        android:layout_width="wrap_content"
+        android:text="off"
+        android:layout_marginEnd="55dp"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@id/value"
+        android:textStyle="normal"
+        android:textSize="20sp"
+        android:textColor="@color/white"
+        android:layout_height="wrap_content"/>
+
+
+</RelativeLayout>

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "70049720208",
+    "firebase_url": "https://afiqsouq-35fd1.firebaseio.com",
+    "project_id": "afiqsouq-35fd1",
+    "storage_bucket": "afiqsouq-35fd1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:70049720208:android:ec49f7c5acafb5863db515",
+        "android_client_info": {
+          "package_name": "dev.mobile.afiqsouq"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "70049720208-c7i1hpj5url7338rcs7glnf91i7f3qil.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB1bt1Wampj_W9sZPpa-WubZSVtOrX4vho"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "70049720208-c7i1hpj5url7338rcs7glnf91i7f3qil.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

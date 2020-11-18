@@ -5,125 +5,143 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/gray2"
-    android:orientation="vertical"
-    >
+    android:id="@+id/nestedScrollView"
+    android:orientation="vertical">
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-
-
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appBarLayout"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <androidx.appcompat.widget.Toolbar
-            android:layout_width="match_parent"
-            android:background="@color/white"
-            android:layout_height="match_parent">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <ImageView
-                    android:id="@+id/backBtn"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:src="@drawable/ic_baseline_arrow_back_24"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/categories"
-                    android:textAllCaps="false"
-                    android:textColor="@color/textColor"
-                    style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
-                    android:id="@+id/header_title"
-                    android:textStyle="bold"
-                    android:layout_centerInParent="true" />
-
-                <ImageView
-                    android:id="@+id/imageView_discover_cart"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginEnd="15dp"
-                    android:background="@drawable/cart_icon"
-                    />
-
-                <TextView
-                    android:id="@+id/textview_discover_cartNumber"
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
-                    android:background="@drawable/shape_round_cyan"
-                    android:text="0"
-                    android:textStyle="bold"
-                    android:textSize="10sp"
-                    android:gravity="center"
-                    android:textColor="@color/white"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginEnd="6dp"
-                    android:layout_above="@+id/imageView_discover_cart"/>
-
-            </RelativeLayout>
-
-        </androidx.appcompat.widget.Toolbar>
-
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/_5sdp"
-        android:orientation="vertical">
-
-
-        <!-- tools:listitem="@layout/average_row_women_layout"-->
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/SubCateogryList"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_3sdp"
-            android:scrollbars="horizontal" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="Featured"
-                android:textColor="@color/colorBlack"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/appBarLayout"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.appcompat.widget.Toolbar
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/white">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/backBtn"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/ic_baseline_arrow_back_24" />
+
+                        <TextView
+                            android:id="@+id/header_title"
+                            style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:text="@string/categories"
+                            android:textAllCaps="false"
+                            android:textColor="@color/textColor"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:id="@+id/imageView_discover_cart"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginEnd="15dp"
+                            android:background="@drawable/cart_icon" />
+
+                        <TextView
+                            android:id="@+id/textview_discover_cartNumber"
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:layout_above="@+id/imageView_discover_cart"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginEnd="6dp"
+                            android:background="@drawable/shape_round_cyan"
+                            android:gravity="center"
+                            android:text="0"
+                            android:textColor="@color/white"
+                            android:textSize="10sp"
+                            android:textStyle="bold" />
+
+                    </RelativeLayout>
+
+                </androidx.appcompat.widget.Toolbar>
+
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/_5sdp"
+                android:orientation="vertical">
+
+
+                <!-- tools:listitem="@layout/average_row_women_layout"-->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/SubCateogryList"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_158sdp"
+                    android:nestedScrollingEnabled="false"
+                    android:layout_marginTop="@dimen/_3sdp"
+                    android:scrollbars="horizontal" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="Featured"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <!--tools:listitem="@layout/featured_row_layout"-->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/productList"
+                    android:nestedScrollingEnabled="false"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <!--tools:listitem="@layout/featured_row_layout"-->
+                <com.github.ybq.android.spinkit.SpinKitView
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/spin_kit_review1"
+                    style="@style/SpinKitView.Large.ThreeBounce"
+                    android:layout_width="wrap_content"
+                    android:nestedScrollingEnabled="true"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal|bottom"
+                    android:visibility="visible"
+                    app:SpinKit_Color="@color/colorAccent" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_46sdp"/>
+            </LinearLayout>
+
 
         </LinearLayout>
 
-        <!--tools:listitem="@layout/featured_row_layout"-->
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/productList"
-            android:layout_width="match_parent"
-            android:nestedScrollingEnabled="true"
-            android:layout_height="match_parent" />
 
-        <!--tools:listitem="@layout/featured_row_layout"-->
-
-    </LinearLayout>
-
-    </LinearLayout>
-
+    </FrameLayout>
 </androidx.core.widget.NestedScrollView>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="dev.spinner_tech.afiqsouq">
+    package="dev.mobile.afiqsouq">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -10,11 +10,19 @@
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:name=".MyApp"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:hardwareAccelerated="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:replace="android:allowBackup">
+        <activity android:name=".View.Activities.VouchersList"></activity>
+        <activity android:name=".View.SSLGateWay.sslgateWayPage" />
+        <activity android:name=".View.Activities.ResetPassword" />
+        <activity android:name=".View.Activities.SettingsActivity" />
+        <activity android:name=".View.Activities.RecoverOtp" />
+        <activity android:name=".View.Activities.ForgetPassword" />
         <activity android:name=".View.Activities.RewardActivity" />
         <activity android:name=".View.Activities.EditProfileActivity" />
         <activity android:name=".View.Activities.MyWallet" />
@@ -52,6 +60,18 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".MainActivity" />
+
+        <service
+            android:name=".services.persistant_service"
+            android:enabled="true"
+            android:exported="true" />
+
+        <meta-data
+            android:name="com.onesignal.NotificationOpened.DEFAULT"
+            android:value="ENABLE" />
+        <meta-data
+            android:name="com.onesignal.NotificationAccentColor.DEFAULT"
+            android:value="FF2471A3" />
     </application>
 
 </manifest>

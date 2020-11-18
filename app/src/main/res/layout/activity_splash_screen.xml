@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/splash_back"
-    tools:context="dev.spinner_tech.afiqsouq.View.Activities.SplashScreen">
+    tools:context="dev.mobile.afiqsouq.View.Activities.SplashScreen">
 
 
 

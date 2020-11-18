@@ -4,9 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gray1">
-
+    android:background="@color/white">
+    <ImageView
+        android:layout_marginTop="@dimen/_13sdp"
+        android:layout_width="match_parent"
+        android:background="@drawable/logo"
+        android:layout_height="220dp"/>
     <LinearLayout
+
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -17,7 +22,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:backgroundTint="@color/cyan"
-            app:cardCornerRadius="30dp"></androidx.cardview.widget.CardView>
+            app:cardCornerRadius="30dp" />
 
     </LinearLayout>
 
@@ -118,7 +123,7 @@
                 android:text="Sign In"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
-                android:textSize="@dimen/_17sdp"
+                android:textSize="18sp"
                 android:textStyle="bold"
                 app:backgroundTint="@color/cyan" />
 
@@ -157,11 +162,12 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="@dimen/_5sdp"
                     android:fontFamily="@font/sf_pro"
+                    android:layout_centerVertical="true"
                     android:text="Forget Password?"
                     android:textColor="@color/colorAccent01"
                     android:textSize="@dimen/_12sdp"
                     android:textStyle="bold"
-                    android:visibility="gone" />
+                    android:visibility="visible" />
 
             </RelativeLayout>
 

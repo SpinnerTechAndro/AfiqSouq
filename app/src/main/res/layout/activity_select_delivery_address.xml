@@ -272,7 +272,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Bank transfer"
+                            android:text="Payment Gateway"
                             android:textAlignment="center"
 
                             android:textColor="@color/colorBlack"
@@ -335,7 +335,7 @@
                 android:weightSum="2">
 
                 <RelativeLayout
-                    android:id="@+id/paypalRL"
+                    android:id="@+id/bkashRl"
                     android:layout_width="0dp"
                     android:layout_height="120dp"
                     android:layout_margin="@dimen/_5sdp"
@@ -416,7 +416,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Master Card"
+                            android:text=" Use Your Wallet"
                             android:textColor="@color/colorBlack"
                             android:textSize="15sp" />
 

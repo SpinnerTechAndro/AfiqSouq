@@ -117,7 +117,7 @@
 
 
 
-            <dev.spinner_tech.afiqsouq.Helper.CurvedBottomNavigationView
+            <dev.mobile.afiqsouq.Helper.CurvedBottomNavigationView
                 android:id="@+id/bottom_navigation_"
                 android:layout_width="match_parent"
                 android:layout_height="52dp"

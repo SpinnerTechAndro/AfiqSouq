@@ -325,15 +325,15 @@
         </LinearLayout>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/button_shoppingcart_checkoutd"
+            android:id="@+id/button_cancel"
             android:layout_width="350dp"
             android:layout_height="45dp"
-            android:text="@string/checkout"
+            android:text="Cancel This Order"
             android:textAllCaps="false"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="30dp"
             android:textColor="@color/white"
-            android:visibility="gone"
+            android:visibility="visible"
             android:textSize="16sp"
             app:backgroundTint="@color/cyan"
             android:background="@drawable/resetpass_btn_rect"/>

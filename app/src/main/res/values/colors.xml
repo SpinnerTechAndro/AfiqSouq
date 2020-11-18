@@ -28,6 +28,7 @@
     <color name="red">#fe4545</color>
     <color name="orange">#F2F88E47</color>
     <color name="cyan">#20d3c2</color>
+    <color name="light_cyan">#5020d3c2</color>
     <color name="deep_blue">#0e153d</color>
     <color name="white">#ffffff</color>
     <color name="purple">#8FDA7FEF</color>

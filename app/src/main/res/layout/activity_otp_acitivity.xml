@@ -22,12 +22,13 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/_5sdp"
                 android:layout_height="match_parent">
 
                 <ImageView
                     android:id="@+id/imageview_verification_back"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:layout_marginLeft="16dp"
                     android:src="@drawable/ic_back_accent"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -44,8 +45,9 @@
                     android:textAllCaps="false"
                     style="@style/TextAppearance.AppCompat.Title"
                     android:textColor="@color/black"
-                    android:textSize="17sp"
-                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:textStyle="normal"
+                    android:fontFamily="@font/sf_pro"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.4"
@@ -62,9 +64,9 @@
     <ImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
-
         android:layout_gravity="center"
-        android:layout_marginTop="40dp"/>
+        android:src="@drawable/phone_icon"
+        android:layout_marginTop="40dp" />
 
     <TextView
         android:layout_width="match_parent"

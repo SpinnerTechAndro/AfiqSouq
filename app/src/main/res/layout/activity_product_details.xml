@@ -108,7 +108,7 @@
                 android:elevation="8dp"
 
                 android:layout_height="match_parent">
-                <ImageView
+                <com.github.chrisbanes.photoview.PhotoView
                     android:id="@+id/main_image"
                     android:scaleType="centerCrop"
                     android:layout_centerInParent="true"
@@ -179,7 +179,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
-
                     android:background="@drawable/shape_rect_gray"
                     />
 
