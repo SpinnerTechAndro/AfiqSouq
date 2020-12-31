@@ -49,14 +49,30 @@
 <!--            android:textSize="10sp" />-->
 
         <TextView
+            android:id="@+id/textview_discount_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="1dp"
+            android:text="0.00"
+            android:layout_above="@+id/textview_search_price"
+            android:fontFamily="@font/sf_pro"
+            android:textColor="@color/white"
+            android:textSize="17sp"
+            android:textStyle="bold"/>
+
+        <TextView
             android:id="@+id/textview_search_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_margin="15dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginBottom="15dp"
             android:text="$150.00"
             android:textColor="@color/white"
-            android:textSize="18sp"
+            android:textSize="17sp"
             android:textStyle="bold"/>
 
         <ImageView

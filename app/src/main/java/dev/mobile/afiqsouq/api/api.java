@@ -102,6 +102,12 @@ public interface api {
                                                         @Query("per_page") String per_page,
                                                         @Query("page") int page
     );
+    @GET("products")
+    Call<List<ProductModel>> getAllProductViaCategoryIDForLaunch(@Header("Authorization") String authHeader,
+                                                        @Query("category") String category,
+                                                        @Query("per_page") String per_page,
+                                                        @Query("page") int page
+    );
 
     @GET("products")
     Call<List<ProductModel>> SearchProduct(@Header("Authorization") String authHeader,

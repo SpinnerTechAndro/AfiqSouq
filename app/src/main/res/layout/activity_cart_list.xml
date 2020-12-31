@@ -287,7 +287,7 @@
                     android:id="@+id/textview_shoppingcart_discount_amount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="$0.0"
+                    android:text="0.0"
                     android:textColor="@color/deep_blue"
                     android:textAllCaps="true"
                     android:layout_marginLeft="112dp"/>
@@ -324,7 +324,7 @@
                     android:id="@+id/textview_shoppingcart_tobe_paid_amount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="$0.00"
+                    android:text="0.00"
                     android:textColor="@color/cyan"
                     android:textStyle="bold"
                     android:textAllCaps="true"

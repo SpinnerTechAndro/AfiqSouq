@@ -39,18 +39,17 @@
         <LinearLayout
             android:layout_marginTop="@dimen/_8sdp"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_170sdp"
-            android:layout_margin="12dp"
+            android:layout_height="@dimen/_175sdp"
+            android:layout_margin="8dp"
             android:background="#FFFFFF">
             <com.smarteist.autoimageslider.SliderView
                 android:id="@+id/imageSlider"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_170sdp"
+                android:layout_height="@dimen/_175sdp"
                 android:background="@color/grey"
                 app:sliderAnimationDuration="800"
                 app:sliderAutoCycleDirection="back_and_forth"
                 app:sliderAutoCycleEnabled="true"
-
                 app:sliderIndicatorAnimationDuration="600"
                 app:sliderIndicatorGravity="center_horizontal|bottom"
                 app:sliderIndicatorOrientation="horizontal"
@@ -102,7 +101,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/top_product"
+                android:text="Discounted Items "
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold"
@@ -241,6 +240,7 @@
                 android:nestedScrollingEnabled="false"
                 android:paddingBottom="@dimen/_90sdp"
                 android:layout_width="match_parent"
+
                 android:layout_height="match_parent"
                 />
 

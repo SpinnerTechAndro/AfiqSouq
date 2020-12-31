@@ -1,10 +1,5 @@
 package dev.mobile.afiqsouq.View.Activities;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -19,6 +14,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -52,18 +52,19 @@ public class CartListPage extends AppCompatActivity {
     RecyclerView rv_shoppingCart;
     List<CartDbModel> cartList = new ArrayList<>();
     List<CartDbModel> orderList = new ArrayList<>();
-    List<CreateOrderResp.coupon_lines> coupon_lines = new ArrayList<>() ;
+    List<CreateOrderResp.coupon_lines> coupon_lines = new ArrayList<>();
     EditText coupon_no;
-
+    boolean isCouponUsed = false;
     CartListAdapter adapter;
     double toatalAmount;
+    double disCountValue = 0;
     double rate = 0.0;
-    String method_title = "Flat rate", method_Id = "flat_rate", deliveryCharge = "50";
+    String method_title = "Flat rate", method_Id = "flat_rate", deliveryCharge = "50", deliveryChargeWithOutTax = "100";
     DecimalFormat dec = new DecimalFormat("#0.0");
-    int delivery_charge = 50;
+    double delivery_charge = 50;
     AlertDialog alert;
     LinearLayout cartLayout, emptyCartLayout;
-    double totalCharge  = 0 ;
+    double totalCharge = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,10 +96,9 @@ public class CartListPage extends AppCompatActivity {
             public void onClick(View view) {
                 Intent p = new Intent(getApplicationContext(), SelectDeliveryAddress.class);
                 p.putExtra("MODEL", BuildOrderModel());
-                p.putExtra("TOTAL" , paid.getText().toString());
+                p.putExtra("TOTAL", paid.getText().toString());
                 startActivity(p);
                 //   BuildOrderModel();
-
 
             }
         });
@@ -133,7 +133,7 @@ public class CartListPage extends AppCompatActivity {
     }
 
     private void getCoupon(String coupon) {
-        ProgressDialog dialog  = new ProgressDialog( CartListPage.this ) ;
+        ProgressDialog dialog = new ProgressDialog(CartListPage.this);
         dialog.setMessage("Checking For Coupon ...");
         String authHeader = "Basic " + Base64.encodeToString(Constants.BASE.getBytes(), Base64.NO_WRAP);
         dialog.setCancelable(false);
@@ -151,13 +151,15 @@ public class CartListPage extends AppCompatActivity {
                     // check the list
                     List<CouponResp> couponList = response.body();
                     try {
-                        if(couponList.size() > 0 ){
+                        if (couponList.size() > 0) {
                             dialog.dismiss();
-                            CouponResp couponModel = couponList.get(0) ;
+                            CouponResp couponModel = couponList.get(0);
 
-                            setUpCoupon(couponModel) ;
-                        }
-                        else {
+                            if (!isCouponUsed) {
+                                setUpCoupon(couponModel);
+                            }
+
+                        } else {
                             dialog.dismiss();
                             Toasty.error(getApplicationContext(), "Coupon Error : There is no such Coupon", 1).show();
 
@@ -183,18 +185,21 @@ public class CartListPage extends AppCompatActivity {
     }
 
     private void setUpCoupon(CouponResp couponModel) {
-        double minTotalTheresHold  = Double.parseDouble(couponModel.getMinimumAmount()) ;
+        double minTotalTheresHold = Double.parseDouble(couponModel.getMinimumAmount());
+        double maxTotalTheresHold = Double.parseDouble(couponModel.getMaximumAmount());
 
-        if(totalCharge<minTotalTheresHold){
+        if (totalCharge < minTotalTheresHold) {
             coupon_no.setText("");
-            Toasty.warning(getApplicationContext(), "To Avail this Coupon Please Spend At Least BDT "+ minTotalTheresHold , 1).show();
-        }
-        else {
-            Toasty.success(getApplicationContext(), "Coupon Applied SuccessFully !!!" , 1).show();
-
+            Toasty.warning(getApplicationContext(), "To Avail this Coupon Please Spend At Least BDT " + minTotalTheresHold, 1).show();
+        } else {
+            Toasty.success(getApplicationContext(), "Coupon Applied SuccessFully !!!", 1).show();
+            isCouponUsed = true;
             discount.setTextColor(Color.RED);
-            discount.setText("-"+ Constants.BDT_SIGN + couponModel.getAmount());
-            totalCharge -= Double.parseDouble(couponModel.getAmount()) ;
+            discount.setText("-" + Constants.BDT_SIGN + couponModel.getAmount());
+            disCountValue = Double.parseDouble(couponModel.getAmount());
+            totalCharge = Double.parseDouble(paid.getText().toString());
+            totalCharge -= Double.parseDouble(couponModel.getAmount());
+
             paid.setText("" + totalCharge);
             // create model
             coupon_lines.add(new CreateOrderResp.coupon_lines(couponModel.getCode()));
@@ -205,7 +210,7 @@ public class CartListPage extends AppCompatActivity {
 
     private void loadAllCartItem() {
         deliveryChargeTV.setText(Constants.BDT_SIGN + deliveryCharge);
-        delivery_charge = Integer.parseInt(deliveryCharge);
+        delivery_charge = Double.parseDouble(deliveryCharge);
         // countCartItem();
         CartDatabase.databaseWriteExecutor.execute(new Runnable() {
             @Override
@@ -229,24 +234,23 @@ refresh.post(new Runnable() {
                         emptyCartLayout.setVisibility(View.GONE);
                         orderList.clear();
                         orderList.addAll(cartList);
-
                         adapter = new CartListAdapter(cartList, CartListPage.this, delivery_charge, rate);
                         rv_shoppingCart.setAdapter(adapter);
-
                         // total
                         double totalMoney = calculateTotal(cartList);
                         //setting sub amount
                         sub_total.setText(Constants.BDT_SIGN + Math.round(totalMoney));
-
                         Log.d("TAG", "run: " + "totall" + totalMoney + ((totalMoney * (rate / 100))));
                         // calculating tax
-
                         tax_fee.setText(Constants.BDT_SIGN + dec.format(totalMoney * (rate / 100)));
                         totalMoney = totalMoney + ((totalMoney * (rate / 100)));
-                        totalCharge = Math.round(totalMoney + delivery_charge) ;
-                        total.setText(Constants.BDT_SIGN +totalCharge );
 
-                        paid.setText(""+ totalCharge);
+
+                        totalCharge = Math.round(totalMoney + delivery_charge);
+
+                        total.setText(Constants.BDT_SIGN + totalCharge);
+
+                        paid.setText("" + (totalCharge + (disCountValue * (-1))));
                     } else {
                         // show  empty layout
                         cartLayout.setVisibility(View.INVISIBLE);
@@ -371,7 +375,7 @@ refresh.post(new Runnable() {
 
         // shipping lines
         List<CreateOrderResp.ShippingLine> shippingLineList = new ArrayList<>();
-        CreateOrderResp.ShippingLine shippingLineModel = new CreateOrderResp.ShippingLine(method_Id, method_title, deliveryCharge + "");
+        CreateOrderResp.ShippingLine shippingLineModel = new CreateOrderResp.ShippingLine(method_Id, method_title, deliveryChargeWithOutTax + "");
         shippingLineList.add(shippingLineModel);
         // billing model
         //String firstName, String lastName, String address1, String address2, String city, String state, String postcode, String country, String email, String phone
@@ -384,12 +388,12 @@ refresh.post(new Runnable() {
         // create the final model
         //String paymentMethod, String paymentMethodTitle, Boolean setPaid, Billing billing, Shipping shipping, List<LineItem> lineItems, List<ShippingLine> shippingLines
 
-        try{
-            if(coupon_lines.size()== 0){
+        try {
+            if (coupon_lines.size() == 0) {
                 coupon_lines = null;
             }
-        }catch (Exception r){
-            coupon_lines = null ;
+        } catch (Exception r) {
+            coupon_lines = null;
         }
 
         CreateOrderResp orderModel = new CreateOrderResp(Constants.COD, Constants.cashOnDelivery, false,
@@ -405,6 +409,7 @@ refresh.post(new Runnable() {
     protected void onStart() {
 
         // check if  the user  id
+        rate = loadTaxFormCache();
         if (SharedPrefManager.getInstance(getApplicationContext()).isUserLoggedIn()) {
             checkForDeliveryCharge();
         } else {
@@ -471,7 +476,13 @@ refresh.post(new Runnable() {
                     try {
                         method_Id = deliveryZoneRespList.get(0).getMethodId();
                         method_title = deliveryZoneRespList.get(0).getMethodTitle();
+
                         deliveryCharge = deliveryZoneRespList.get(0).getSettings().getCost().getValue();
+                        deliveryChargeWithOutTax = deliveryCharge;
+
+                        //calculate with tax
+                        double charge = Double.parseDouble(deliveryCharge);
+                        deliveryCharge = String.valueOf(charge + (charge * (rate / 100)));
                         dialog.dismiss();
                         loadAllCartItem();
 
@@ -501,5 +512,9 @@ refresh.post(new Runnable() {
             }
         });
 
+    }
+
+    public void setPaid(double value) {
+        paid.setText("" + (value + (disCountValue * (-1))));
     }
 }

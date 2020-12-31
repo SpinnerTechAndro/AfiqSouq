@@ -79,7 +79,7 @@ public class OldOrderDetails extends AppCompatActivity {
         String subtotalStr = oldOrderModel.getTotal();
         String totalTax = oldOrderModel.getTotalTax();
 
-        int subtotal = (int) (Integer.parseInt(subtotalStr) - (Integer.parseInt(totalTax)));
+        int subtotal = (int) (Integer.parseInt(subtotalStr) - (Integer.parseInt(totalTax)) - Integer.parseInt(oldOrderModel.getShippingTotal()));
         sub_total.setText(Constants.BDT_SIGN + " " + subtotal);
         tax_fee.setText(Constants.BDT_SIGN + " " + totalTax);
         deliveryChargeTV.setText(Constants.BDT_SIGN + " " + oldOrderModel.getShippingTotal());

@@ -1,6 +1,7 @@
 package dev.mobile.afiqsouq.Adapter;
 
 import android.content.Context;
+import android.graphics.Paint;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -79,11 +80,38 @@ public class HorizontralProductListAdapter extends RecyclerView.Adapter<Horizont
         }
 
         holder.title.setText(mDataFiltered.get(position).getName());
-        String sale_price = mDataFiltered.get(position).getSalePrice();
+        String sale_price = mDataFiltered.get(position).getPrice();
+//        if (sale_price.equals("") || sale_price.isEmpty()) {
+//            holder.price.setText(mDataFiltered.get(position).getPrice() + "৳");
+//        } else {
+//            holder.price.setText(mDataFiltered.get(position).getSalePrice() + "৳");
+//        }
+
         if (sale_price.equals("") || sale_price.isEmpty()) {
+            // there is no sale
+            holder.price.setVisibility(View.VISIBLE);
+            holder.discountedPrice.setVisibility(View.INVISIBLE);
             holder.price.setText(mDataFiltered.get(position).getPrice() + "৳");
-        } else {
-            holder.price.setText(mDataFiltered.get(position).getSalePrice() + "৳");
+        }
+        else {
+            if(sale_price.equals(mDataFiltered.get(position).getRegularPrice())){
+                holder.price.setVisibility(View.VISIBLE);
+                holder.discountedPrice.setVisibility(View.INVISIBLE);
+                holder.price.setText(mDataFiltered.get(position).getPrice() + "৳");
+            }
+            else {
+                holder.price.setVisibility(View.VISIBLE);
+                holder.discountedPrice.setVisibility(View.VISIBLE);
+            /*
+            there is discount cut thrught the price
+             */
+
+                holder.discountedPrice.setText(mDataFiltered.get(position).getPrice() + "৳");
+                holder.price.setText(mDataFiltered.get(position).getRegularPrice() + "৳");
+
+                holder.price.setPaintFlags(holder.price.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+            }
+
         }
 
 
@@ -98,7 +126,7 @@ public class HorizontralProductListAdapter extends RecyclerView.Adapter<Horizont
     }
     @Override
     public void onViewRecycled(@NonNull HorizontralProductListAdapter.ViewHolder holder) {
-        Log.d("TAG", "onViewRecycled: "+ "yes !!!!");
+     //   Log.d("TAG", "onViewRecycled: "+ "yes !!!!");
     }
 
     @Override
@@ -158,7 +186,7 @@ public class HorizontralProductListAdapter extends RecyclerView.Adapter<Horizont
     public class ViewHolder extends RecyclerView.ViewHolder {
         public ImageView imageView;
         public CardView container;
-        public TextView title, price;
+        public TextView title, price ,discountedPrice;
         ItemClickListener itemClickListener;
 
         public ViewHolder(View itemView, ItemClickListener itemClickListener) {
@@ -166,6 +194,7 @@ public class HorizontralProductListAdapter extends RecyclerView.Adapter<Horizont
             imageView = (ImageView) itemView.findViewById(R.id.imageview_search_favourite);
             title = itemView.findViewById(R.id.name);
             price = itemView.findViewById(R.id.textview_search_price);
+            discountedPrice = itemView.findViewById(R.id.textview_discount_price);
 
 
         }

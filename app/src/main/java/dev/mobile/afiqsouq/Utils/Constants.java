@@ -8,8 +8,8 @@ public  class Constants {
     public static final String IMAGE_URL = "https://afiqsouq.com/";
     public static final String TAG = "AFIQSOQ";
     public static final String CREATED_AT_FORMAT = "yyyy-MM-dd";
-    public  static final String USER = "ck_62eed78870531071b419c0dca0b1dd9acf277227";
-    public static final String KEY = "cs_a5b646ab7513867890dd63f2c504af98f00cee53";
+    public  static final String USER = "ck_174c19562ef4a473934f3cec2eeeae1900662d2e";
+    public static final String KEY = "cs_799bcbd98605696b4a71eca9703f308fa5cd0dca";
     public static final String BASE = USER + ":"+KEY ;
     public static final String BDT_SIGN = "৳" ;
     public static  final  String COD = "cod" ;

@@ -54,7 +54,6 @@
     </com.google.android.material.appbar.AppBarLayout>
 
 
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -85,8 +84,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="@dimen/_3sdp"
                 android:background="@null"
-                android:scaleType="fitXY"
-              />
+                android:scaleType="fitXY" />
 
         </RelativeLayout>
 
@@ -150,8 +148,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginStart="@dimen/_5sdp"
                     android:layout_toRightOf="@id/active_status_IV"
-                    android:text=""
-                    android:background="@null"
+                    android:background="@android:color/transparent"
                     android:textColor="@color/colorBlack"
                     android:textSize="17sp" />
 
@@ -164,7 +161,7 @@
                     android:layout_marginTop="@dimen/_5sdp"
                     android:layout_marginRight="@dimen/_50sdp"
                     android:maxLines="4"
-                    android:background="@null"
+                    android:background="@android:color/transparent"
                     android:text=""
                     android:textColor="@color/colorBlack"
                     android:textSize="15sp" />
@@ -176,7 +173,7 @@
                     android:layout_marginStart="@dimen/_5sdp"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:text=""
-                    android:background="@null"
+                    android:background="@android:color/transparent"
                     android:textColor="@color/colorBlack"
                     android:textSize="14sp" />
             </LinearLayout>
@@ -284,28 +281,29 @@
                 </RelativeLayout>
 
                 <RelativeLayout
-                    android:id="@+id/cash_on_delivery_RL"
+                    android:id="@+id/master_card_RL"
                     android:layout_width="0dp"
                     android:layout_height="120dp"
                     android:layout_margin="@dimen/_5sdp"
                     android:layout_weight="1"
-                    android:background="@drawable/cash_on_delivery_card_background">
+                    android:backgroundTint="@color/gray2"
+                    android:background="@drawable/master_card_background">
 
 
                     <ImageView
-                        android:id="@+id/cash_on_delivery_image"
+                        android:id="@+id/master_card_image"
                         android:layout_width="@dimen/_30sdp"
-                        android:layout_height="@dimen/_40sdp"
+                        android:layout_height="@dimen/_30sdp"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="@dimen/_15sdp"
-                        android:src="@drawable/icon_cash" />
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:background="@drawable/icon_card" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_below="@id/master_card_image"
                         android:layout_alignParentStart="true"
                         android:layout_alignParentEnd="true"
-                        android:layout_below="@id/cash_on_delivery_image"
                         android:layout_marginBottom="@dimen/_10sdp"
                         android:gravity="center">
 
@@ -313,13 +311,12 @@
                             android:layout_width="@dimen/_20sdp"
                             android:layout_height="@dimen/_20sdp"
                             android:layout_gravity="center_vertical"
-                            android:backgroundTint="@color/cyan"
-                            android:src="@drawable/ic_check_color_accent" />
+                            android:src="@drawable/ic_check_gray" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Cash On Delivery"
+                            android:text=" Use Your Wallet"
                             android:textColor="@color/colorBlack"
                             android:textSize="15sp" />
 
@@ -327,6 +324,8 @@
                     </LinearLayout>
 
                 </RelativeLayout>
+
+
             </LinearLayout>
 
             <LinearLayout
@@ -381,29 +380,29 @@
                 </RelativeLayout>
 
                 <RelativeLayout
-                    android:id="@+id/master_card_RL"
+                    android:id="@+id/cash_on_delivery_RL"
                     android:layout_width="0dp"
                     android:layout_height="120dp"
                     android:layout_margin="@dimen/_5sdp"
                     android:layout_weight="1"
-                    android:backgroundTint="@color/gray2"
-                    android:background="@drawable/master_card_background">
+                    android:visibility="gone"
+                    android:background="@drawable/cash_on_delivery_card_background">
 
 
                     <ImageView
-                        android:id="@+id/master_card_image"
+                        android:id="@+id/cash_on_delivery_image"
                         android:layout_width="@dimen/_30sdp"
-                        android:layout_height="@dimen/_30sdp"
+                        android:layout_height="@dimen/_40sdp"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="@dimen/_20sdp"
-                        android:background="@drawable/icon_card" />
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:src="@drawable/icon_cash" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/master_card_image"
                         android:layout_alignParentStart="true"
                         android:layout_alignParentEnd="true"
+                        android:layout_below="@id/cash_on_delivery_image"
                         android:layout_marginBottom="@dimen/_10sdp"
                         android:gravity="center">
 
@@ -411,12 +410,13 @@
                             android:layout_width="@dimen/_20sdp"
                             android:layout_height="@dimen/_20sdp"
                             android:layout_gravity="center_vertical"
-                            android:src="@drawable/ic_check_gray" />
+                            android:backgroundTint="@color/cyan"
+                            android:src="@drawable/ic_check_color_accent" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text=" Use Your Wallet"
+                            android:text="Cash On Delivery"
                             android:textColor="@color/colorBlack"
                             android:textSize="15sp" />
 
@@ -424,6 +424,8 @@
                     </LinearLayout>
 
                 </RelativeLayout>
+
+
             </LinearLayout>
         </LinearLayout>
 

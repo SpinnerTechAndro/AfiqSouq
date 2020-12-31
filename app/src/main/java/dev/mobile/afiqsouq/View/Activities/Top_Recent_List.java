@@ -92,7 +92,8 @@ public class Top_Recent_List extends AppCompatActivity implements ProductListAda
             titleView.setText("Top Deals");
             popularProduct = RetrofitClient.getInstance()
                     .getApi()
-                    .getAllProductViaCategoryID(authHeader , "942" , "100" ,1   );
+                 //   .getAllProductViaCategoryID(authHeader , "942" , "100" ,1   );
+                    .getAllProductViaCategoryID(authHeader , "325" , "100" ,1   );
         }
 
 

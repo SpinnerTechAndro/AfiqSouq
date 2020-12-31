@@ -23,7 +23,8 @@ public interface Dao {
     @Query("SELECT * FROM " + CartDatabase.TABLE_NAME_CART + " WHERE product_id = :product_ID LIMIT 1 ")
     CartDbModel fetchCartByID(Integer product_ID);
 
-
+    @Query("SELECT * FROM " + CartDatabase.TABLE_NAME_CART )
+    List<CartDbModel>  fetchCartCountByCatgoryID();
 
 
     @Update

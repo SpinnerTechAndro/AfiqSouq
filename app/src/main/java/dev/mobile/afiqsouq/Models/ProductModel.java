@@ -84,7 +84,7 @@ public  class ProductModel implements Serializable {
     private Boolean purchasable;
     @SerializedName("total_sales")
     @Expose
-    private Integer totalSales;
+    private String totalSales;
     @SerializedName("virtual")
     @Expose
     private Boolean virtual;
@@ -117,7 +117,7 @@ public  class ProductModel implements Serializable {
     private Boolean manageStock;
     @SerializedName("stock_quantity")
     @Expose
-    private Object stockQuantity;
+    private int  stockQuantity;
     @SerializedName("stock_status")
     @Expose
     private String stockStatus;
@@ -398,11 +398,11 @@ public  class ProductModel implements Serializable {
         this.purchasable = purchasable;
     }
 
-    public Integer getTotalSales() {
+    public String getTotalSales() {
         return totalSales;
     }
 
-    public void setTotalSales(Integer totalSales) {
+    public void setTotalSales(String totalSales) {
         this.totalSales = totalSales;
     }
 
@@ -486,11 +486,11 @@ public  class ProductModel implements Serializable {
         this.manageStock = manageStock;
     }
 
-    public Object getStockQuantity() {
+    public int  getStockQuantity() {
         return stockQuantity;
     }
 
-    public void setStockQuantity(Object stockQuantity) {
+    public void setStockQuantity(int stockQuantity) {
         this.stockQuantity = stockQuantity;
     }
 

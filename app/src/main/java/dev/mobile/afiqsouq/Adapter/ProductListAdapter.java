@@ -1,6 +1,7 @@
 package dev.mobile.afiqsouq.Adapter;
 
 import android.content.Context;
+import android.graphics.Paint;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,8 +18,6 @@ import androidx.room.Room;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
-import com.bumptech.glide.request.target.Target;
-
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,12 +35,12 @@ import es.dmoral.toasty.Toasty;
 
 public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.ViewHolder> implements Filterable {
 
+    Context context;
+    CartDatabase database;
     private List<ProductModel> mData = new ArrayList<>();
     private List<ProductModel> mDataFiltered = new ArrayList<>();
     private LayoutInflater mInflater;
     private ItemClickListener itemClickListener;
-    Context context;
-    CartDatabase database;
 
     public ProductListAdapter(Context context, List<ProductModel> productList, ItemClickListener itemClickListener) {
         this.mInflater = LayoutInflater.from(context);
@@ -63,10 +62,6 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
         notifyDataSetChanged();
     }
 
-    public interface ItemClickListener {
-        void onItemClick(ProductModel model , int id );
-    }
-
     @Override
     public ProductListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = mInflater.inflate(R.layout.item_product
@@ -77,18 +72,18 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
     @Override
     public void onBindViewHolder(ProductListAdapter.ViewHolder holder, final int position) {
 
-      //  Log.d("TAG", "onBindViewHolder: " + mDataFiltered.size());
-      try{
+        //  Log.d("TAG", "onBindViewHolder: " + mDataFiltered.size());
+        try {
 
-          Glide.with(context)
-                  .load(mDataFiltered.get(position).getImages().get(0).getSrc())
+            Glide.with(context)
+                    .load(mDataFiltered.get(position).getImages().get(0).getSrc())
 //                .placeholder(R.drawable.placeholder)
 //                .error(R.drawable.placeholder)
-                  .apply(new RequestOptions().override(170, 170))
-                  .diskCacheStrategy(DiskCacheStrategy.ALL)
-                  .placeholder(R.drawable.placeholder)
-                  .centerCrop()
-                  .into(holder.imageView);
+                    .apply(new RequestOptions().override(170, 170))
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .placeholder(R.drawable.placeholder)
+                    .centerCrop()
+                    .into(holder.imageView);
 
 //          Picasso.get()
 //                  .load(mDataFiltered.get(position).getImages().get(0).getSrc())
@@ -96,30 +91,73 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
 //                  .centerCrop()
 //                  .into(holder.imageView) ;
 
-      }catch (Exception e){
-      }
+        } catch (Exception e) {
+        }
 
 
         holder.title.setText(mDataFiltered.get(position).getName());
-        String sale_price = mDataFiltered.get(position).getSalePrice();
+        String sale_price = mDataFiltered.get(position).getPrice();
+
         if (sale_price.equals("") || sale_price.isEmpty()) {
+            // there is no sale
+            holder.price.setVisibility(View.VISIBLE);
+            holder.discountedPrice.setVisibility(View.INVISIBLE);
             holder.price.setText(mDataFiltered.get(position).getPrice() + "৳");
         } else {
-            holder.price.setText(mDataFiltered.get(position).getSalePrice() + "৳");
+            if (sale_price.equals(mDataFiltered.get(position).getRegularPrice())) {
+                holder.price.setVisibility(View.VISIBLE);
+                holder.discountedPrice.setVisibility(View.INVISIBLE);
+                holder.price.setText(mDataFiltered.get(position).getPrice() + "৳");
+            } else {
+                holder.price.setVisibility(View.VISIBLE);
+                holder.discountedPrice.setVisibility(View.VISIBLE);
+            /*
+            there is discount cut thrught the price
+             */
+
+                holder.discountedPrice.setText(mDataFiltered.get(position).getPrice() + "৳");
+                holder.price.setText(mDataFiltered.get(position).getRegularPrice() + "৳");
+
+                holder.price.setPaintFlags(holder.price.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+            }
+
         }
+
 
         holder.cartImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 ProductModel model = mDataFiltered.get(position);
                 if (checkIfItemAllreadyExist(model.getId())) {
-                    Toasty.error(context, "You Already Added The Product" , Toasty.LENGTH_SHORT).show();
+                    Toasty.error(context, "You Already Added The Product", Toasty.LENGTH_SHORT).show();
 
                 } else {
 
+                    int cat_id;
+                    try {
+                        List<ProductModel.Category> categoryList = model.getCategories();
+                        if (categoryList.size() == 0) {
+                            cat_id = 0;
+                        } else {
+                            Log.d("TAG", "insertIntoCart: " + categoryList.get(0).getId() + " Last Item " +
+                                    categoryList.get(categoryList.size() - 1).getId());
+                            cat_id = categoryList.get(0).getId();
 
+                        }
 
-                    insertTheProduct(model  , position , view.getId());
+                    } catch (Exception e) {
+                        Log.d("TAG", "onClick: " + e.getMessage());
+                        cat_id = 0;
+                    }
+
+                    if (!checkIfItemCtegoryLogic(cat_id)) {
+                        insertTheProduct(model, position, view.getId());
+                    } else {
+                        Toasty.error(context, "You Can Only Order  Max 2 Items At a time", Toasty.LENGTH_LONG).show();
+
+                    }
+
+                    // insertTheProduct(model  , position , view.getId());
 
                 }
 
@@ -129,85 +167,118 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
         holder.container.setOnClickListener(v -> {
 
             ProductModel model = mDataFiltered.get(position);
-            itemClickListener.onItemClick(model , v.getId());
+            itemClickListener.onItemClick(model, v.getId());
 
         });
 
 
-
-
     }
 
-    private void insertTheProduct(ProductModel singelProduct , int pos , int view_id ) {
+    public boolean checkIfItemCtegoryLogic(int cid) {
+        int count = 0;
+        List<CartDbModel> singleCartItem;
+        if (database != null) {
+
+            singleCartItem = database.dao().fetchCartCountByCatgoryID();
+            count = singleCartItem.size();
+
+        } else {
+            Log.d("TAG", "Count Getting Zero : ");
+            count = 0;
+        }
+
+        Log.d("TAG", "checkIfItemCtegoryLogic:=" + count + " : Cat ID =  " + cid);
+        if (count >= 2) {
+            return true;
+        } else {
+
+            return false;
+        }
+    }
+
+    private void insertTheProduct(ProductModel singelProduct, int pos, int view_id) {
 
         CartDbModel cartDbModel = new CartDbModel();
+        int cat_id = 0;
+        List<ProductModel.Category> categoryList = singelProduct.getCategories();
+        try {
+            if (categoryList.size() == 0) {
+                cat_id = 0;
+            } else {
+                Log.d("TAG", "insertIntoCart: " + categoryList.get(0).getId() + " Last Item " +
+                        categoryList.get(categoryList.size() - 1).getId());
+                cat_id = categoryList.get(0).getId();
 
-         List<ProductModel.Attribute> attrList = singelProduct.getAttributes() ;
+            }
 
-         try{
-             if(attrList.size()==0){
-                 cartDbModel.title = singelProduct.getName();
-                 String sale_price = singelProduct.getSalePrice();
-                 double price = 0.0;
+        } catch (Exception e) {
+            Log.d("TAG", "onClick: " + e.getMessage());
+            cat_id = 0;
+        }
 
-                 if (sale_price.equals("") || sale_price.isEmpty()) {
-                     sale_price = singelProduct.getPrice();
-                 }
+        List<ProductModel.Attribute> attrList = singelProduct.getAttributes();
 
-                 price = Double.parseDouble(sale_price);
-                 cartDbModel.unit_price = Double.parseDouble(price + "");
-                 cartDbModel.qty = 1;
-                 cartDbModel.product_image = mDataFiltered.get(pos).getImages().get(0).getSrc();
-                 cartDbModel.product_id = singelProduct.getId();
-                 cartDbModel.color = "NULL";
-                 cartDbModel.size = "NULL";
-                 cartDbModel.variation_id = 0;
-                 cartDbModel.sub_total = (double) (price * 1);
+        try {
+            if (attrList.size() == 0) {
+                cartDbModel.title = singelProduct.getName();
+                String sale_price = singelProduct.getSalePrice();
+                double price = 0.0;
 
-                 CartDatabase.databaseWriteExecutor.execute(new Runnable() {
-                     @Override
-                     public void run() {
-                         CartDatabase.getDatabase(context).dao().insertCartItem(cartDbModel);
-                         itemClickListener.onItemClick(singelProduct , view_id);
-                     }
-                 });
+                if (sale_price.equals("") || sale_price.isEmpty()) {
+                    sale_price = singelProduct.getPrice();
+                }
+
+                price = Double.parseDouble(sale_price);
+                cartDbModel.unit_price = Double.parseDouble(price + "");
+                cartDbModel.qty = 1;
+                cartDbModel.product_image = mDataFiltered.get(pos).getImages().get(0).getSrc();
+                cartDbModel.product_id = singelProduct.getId();
+                cartDbModel.color = "NULL";
+                cartDbModel.size = "NULL";
+                cartDbModel.cat_id = cat_id ;
+                cartDbModel.variation_id = 0;
+                cartDbModel.sub_total = (double) (price * 1);
+
+                CartDatabase.databaseWriteExecutor.execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        CartDatabase.getDatabase(context).dao().insertCartItem(cartDbModel);
+                        itemClickListener.onItemClick(singelProduct, view_id);
+                    }
+                });
 
 
-                 Toasty.success(context, "Added To Cart", Toasty.LENGTH_SHORT).show();
+                Toasty.success(context, "Added To Cart", Toasty.LENGTH_SHORT).show();
 
-             }
-             else {
-                 Toasty.warning(context , "This Product Has Different Type Of Variation\n Plz Choose it " , Toasty.LENGTH_LONG).show();
+            } else {
+                Toasty.warning(context, "This Product Has Different Type Of Variation\n Plz Choose it ", Toasty.LENGTH_LONG).show();
 
-             }
+            }
 
-         }catch (Exception r ){
-             Toasty.warning(context , "This Product Has Different Type Of Variation\n Plz Choose it " , Toasty.LENGTH_LONG).show();
-         }
-
+        } catch (Exception r) {
+            Toasty.warning(context, "This Product Has Different Type Of Variation\n Plz Choose it ", Toasty.LENGTH_LONG).show();
+        }
 
 
     }
 
     public boolean checkIfItemAllreadyExist(int pid) {
-        CartDbModel  singleCartItem ;
-        if(database != null){
+        CartDbModel singleCartItem;
+        if (database != null) {
 
 
-             singleCartItem = database.dao().fetchCartByID(pid) ;
+            singleCartItem = database.dao().fetchCartByID(pid);
 
+        } else {
+            singleCartItem = null;
         }
-        else {
-            singleCartItem = null ;
-        }
 
-        if(singleCartItem!= null){
+        if (singleCartItem != null) {
             Log.d("TAG", "checkIfProductExist: " + singleCartItem.title);
-            return  true  ;
-        }
-        else {
-            Log.d("TAG", "checkIfProductExist: NO DATA" );
-            return  false ;
+            return true;
+        } else {
+            Log.d("TAG", "checkIfProductExist: NO DATA");
+            return false;
         }
     }
 
@@ -265,10 +336,14 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
 
     }
 
+    public interface ItemClickListener {
+        void onItemClick(ProductModel model, int id);
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public ImageView imageView, cartImage ;
+        public ImageView imageView, cartImage;
         public CardView container;
-        public TextView title, price;
+        public TextView title, price, discountedPrice;
         ItemClickListener itemClickListener;
 
         public ViewHolder(View itemView, ItemClickListener itemClickListener) {
@@ -277,7 +352,8 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
             title = itemView.findViewById(R.id.name);
             price = itemView.findViewById(R.id.textview_search_price);
             cartImage = itemView.findViewById(R.id.imageview_search_cart_fr);
-            container = itemView.findViewById(R.id.container) ;
+            container = itemView.findViewById(R.id.container);
+            discountedPrice = itemView.findViewById(R.id.textview_discount_price);
 
 
         }

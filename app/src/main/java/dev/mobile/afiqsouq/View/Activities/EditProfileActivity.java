@@ -7,6 +7,7 @@ import android.util.Base64;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.CheckBox;
+import android.widget.Toast;
 
 import com.github.ybq.android.spinkit.SpinKitView;
 import com.google.android.material.button.MaterialButton;
@@ -47,7 +48,12 @@ public class EditProfileActivity extends AppCompatActivity {
         phonein = findViewById(R.id.phone);
         spinKitView = findViewById(R.id.spin_kit);
         spinKitView.setVisibility(View.VISIBLE);
-        requestForDetails(Integer.parseInt(SharedPrefManager.getInstance(getApplicationContext()).getUser().getId()));
+       try{
+           requestForDetails(Integer.parseInt(SharedPrefManager.getInstance(getApplicationContext()).getUser().getId()));
+       }
+       catch (Exception r ){
+           Toasty.error(getApplicationContext() , "" +r.getMessage() ,1 ).show();
+       }
     }
 
     private void requestForDetails(int id) {

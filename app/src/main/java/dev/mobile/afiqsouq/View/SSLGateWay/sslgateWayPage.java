@@ -141,6 +141,7 @@ public class sslgateWayPage extends AppCompatActivity implements TransactionResp
     private void uploadItToTheServer(String amount, String getTranId) {
         ProgressDialog progressDialog = new ProgressDialog(sslgateWayPage.this);
         progressDialog.setMessage("Adding Balance ...");
+        progressDialog.setCancelable(false);
         progressDialog.show();
         String authHeader = "Basic " + Base64.encodeToString(Constants.BASE.getBytes(), Base64.NO_WRAP);
         Retrofit retrofit = new Retrofit.Builder()

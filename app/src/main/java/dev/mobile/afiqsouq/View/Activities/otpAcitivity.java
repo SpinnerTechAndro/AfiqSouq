@@ -9,6 +9,7 @@ import android.os.StrictMode;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.chaos.view.PinView;
@@ -40,8 +41,10 @@ public class otpAcitivity extends AppCompatActivity {
     MaterialButton verifyBtn;
     SignUpResp user_model;
     String ph_num;
+    TextView errorTv;
+
     SpinKitView spinKitView;
-    String verification_code = "000";
+    String verification_code = "000" ;
     int IS_RECOVER = 0 ;
 
     @Override
@@ -52,13 +55,32 @@ public class otpAcitivity extends AppCompatActivity {
         verifyBtn = findViewById(R.id.button_verification_verify);
         spinKitView = findViewById(R.id.spin_kit);
         spinKitView.setVisibility(View.GONE);
-
+        errorTv = findViewById(R.id.error) ;
         user_model = (SignUpResp) getIntent().getSerializableExtra("MODELS");
-
         if (user_model != null) {
             ph_num = user_model.getBilling().getPhone();
             sendOtp(ph_num);
         }
+
+        findViewById(R.id.imageview_verification_back).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        findViewById(R.id.resendBtn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                user_model = (SignUpResp) getIntent().getSerializableExtra("MODELS");
+                if (user_model != null) {
+                    Toasty.success(getApplicationContext() ,"OTP Send " , Toasty.LENGTH_LONG).show();
+                    ph_num = user_model.getBilling().getPhone();
+                    sendOtp(ph_num);
+                }
+            }
+        });
+
 
         verifyBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,7 +117,7 @@ public class otpAcitivity extends AppCompatActivity {
                     StrictMode.setThreadPolicy(policy);
                     try {
                         verification_code = getRandomNumberString();
-                        String msg = "Welcome To Afiq Souq!!. Your Code is ";
+                        String msg = "afiqsouq.com OTP is ";
                         msg += verification_code;
 
                         // seend the otp to the user
@@ -109,12 +131,13 @@ public class otpAcitivity extends AppCompatActivity {
                                 .addHeader("Content-Type", "application/x-www-form-urlencoded")
                                 .build();
                         Response response = client.newCall(request).execute();
-                        //Log.d("TAG", "response Code: " + response.code());
-                     //   Log.d("TAG", "response Code: " + response.body().toString());
+                       // Log.d("TAG", "response Code: " + response.code());
+                       // Log.d("TAG" , "response code " + response.body());
+
                     }
 
                     catch (Throwable t ) {
-                        Toast.makeText(getApplicationContext(), t.getMessage() + " " ,Toast.LENGTH_LONG).show();
+                        Log.d("TAG", "error: " +t.getMessage());
                     }
 
                 }
@@ -176,9 +199,11 @@ public class otpAcitivity extends AppCompatActivity {
                     spinKitView.setVisibility(View.GONE);
                     Constants.PrintMsg("Error : CODE  " + response.code());
                     if (response.code() == 400) {
-                        Toasty.error(getApplicationContext(), "An account is already registered with your email address or User name ",
-                                1
+                        Toasty.error(getApplicationContext(), "An account is already registered with your email address or UserName ",
+                                2
                         ).show();
+                        errorTv.setText("There is User With Same Email or UserName Please Use a Unique One Email Or UserName");
+
                     }
                 }
             }
@@ -199,5 +224,18 @@ public class otpAcitivity extends AppCompatActivity {
 
         // this will convert any number sequence into 6 character.
         return String.format("%06d", number);
+    }
+
+    @Override
+    protected void onStart() {
+
+
+        super.onStart();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
     }
 }

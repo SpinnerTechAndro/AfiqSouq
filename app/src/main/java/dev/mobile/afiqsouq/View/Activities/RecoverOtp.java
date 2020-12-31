@@ -108,7 +108,7 @@ public class RecoverOtp extends AppCompatActivity {
                     StrictMode.setThreadPolicy(policy);
                     try {
                         verification_code = getRandomNumberString();
-                        String msg = "Welcome To Afiq Souq!!. Your Recover Code is :  ";
+                        String msg = "afiqsouq.com OTP is ";
                         msg += verification_code;
 
                         // seend the otp to the user

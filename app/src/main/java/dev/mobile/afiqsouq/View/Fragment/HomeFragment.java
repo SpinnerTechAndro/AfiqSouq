@@ -3,13 +3,6 @@ package dev.mobile.afiqsouq.View.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.core.widget.NestedScrollView;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,11 +11,18 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import androidx.core.widget.NestedScrollView;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
 import com.smarteist.autoimageslider.SliderAnimations;
 import com.smarteist.autoimageslider.SliderView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import dev.mobile.afiqsouq.Adapter.HorizontralCateGoryAdapter;
@@ -58,7 +58,19 @@ public class HomeFragment extends Fragment implements HorizontralProductListAdap
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
+    View view;
+    TextView search, viewAllFeature, viewAllPopular, AllProduct, AllElectronics, AllHealth;
+    RecyclerView popularRecyclerViewList, featuredList, recyclerView, electronicRcv, healthRcv;
+    Context context;
+    boolean isScrolling = false, isEnd = false;
+    LinearLayoutManager manager;
+    int currentPage = 1, currentItems, totalItems, scrollOutItems;
+    ProductListDifferAdapter adapter;
+    List<ProductModel> pList = new ArrayList<>();
+    NestedScrollView nestedScrollView;
+    ProgressBar proGressBar;
+    HorizontralCateGoryAdapter.ItemClickListener categoryItemClickListener;
+    List<CategoryResp> CateGoryResp = new ArrayList<>();
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -94,19 +106,6 @@ public class HomeFragment extends Fragment implements HorizontralProductListAdap
         }
     }
 
-    View view;
-    TextView search, viewAllFeature, viewAllPopular, AllProduct , AllElectronics , AllHealth ;
-    RecyclerView popularRecyclerViewList, featuredList, recyclerView, electronicRcv , healthRcv;
-    Context context;
-    boolean isScrolling = false, isEnd = false;
-    LinearLayoutManager manager;
-    int currentPage = 1, currentItems, totalItems, scrollOutItems;
-    ProductListDifferAdapter adapter;
-    List<ProductModel> pList = new ArrayList<>();
-    NestedScrollView nestedScrollView;
-    ProgressBar proGressBar;
-    HorizontralCateGoryAdapter.ItemClickListener categoryItemClickListener;
-    List<CategoryResp> CateGoryResp = new ArrayList<>();
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -119,18 +118,18 @@ public class HomeFragment extends Fragment implements HorizontralProductListAdap
         popularRecyclerViewList = view.findViewById(R.id.recyclerview_new_arrival);
         featuredList = view.findViewById(R.id.recyclerview_featured);
         recyclerView = view.findViewById(R.id.recyclerview_Product);
-       // recyclerView.setHasFixedSize(true);
-        setUpSlider(view)  ;
+        // recyclerView.setHasFixedSize(true);
+        setUpSlider(view);
 
         nestedScrollView = view.findViewById(R.id.nestedScrollView);
         AllProduct = view.findViewById(R.id.textview_viewall_all_product);
-        electronicRcv =view.findViewById(R.id.recyclerview_electronics) ;
-        AllElectronics = view.findViewById(R.id.textview_viewall_electronics) ;
-        AllHealth = view.findViewById(R.id.textview_viewall_health)  ;
-        healthRcv = view.findViewById(R.id.recyclerview_health) ;
-        healthRcv.setLayoutManager(new LinearLayoutManager(context , RecyclerView.HORIZONTAL , false));
-        electronicRcv.setLayoutManager(new LinearLayoutManager(context , RecyclerView.HORIZONTAL , false));
-        
+        electronicRcv = view.findViewById(R.id.recyclerview_electronics);
+        AllElectronics = view.findViewById(R.id.textview_viewall_electronics);
+        AllHealth = view.findViewById(R.id.textview_viewall_health);
+        healthRcv = view.findViewById(R.id.recyclerview_health);
+        healthRcv.setLayoutManager(new LinearLayoutManager(context, RecyclerView.HORIZONTAL, false));
+        electronicRcv.setLayoutManager(new LinearLayoutManager(context, RecyclerView.HORIZONTAL, false));
+
         manager = new GridLayoutManager(context, 2);
         manager.setAutoMeasureEnabled(false);
         recyclerView.setLayoutManager(manager);
@@ -169,7 +168,7 @@ public class HomeFragment extends Fragment implements HorizontralProductListAdap
                 String name = "Health & Beauty";
                 Intent p = new Intent(context, CategoryViewPage.class);
                 p.putExtra("cat_name", name);
-                p.putExtra("parent_id",  "330");
+                p.putExtra("parent_id", "330");
                 startActivity(p);
             }
         });
@@ -181,7 +180,7 @@ public class HomeFragment extends Fragment implements HorizontralProductListAdap
                 String name = "Electronic Accessories";
                 Intent p = new Intent(context, CategoryViewPage.class);
                 p.putExtra("cat_name", name);
-                p.putExtra("parent_id",  "440");
+                p.putExtra("parent_id", "440");
                 startActivity(p);
             }
         });
@@ -221,13 +220,13 @@ public class HomeFragment extends Fragment implements HorizontralProductListAdap
         };
 
         adapter = new ProductListDifferAdapter(context, HomeFragment.this);
-      //  adapter.setHasStableIds(true);
+        //  adapter.setHasStableIds(true);
         recyclerView.setAdapter(adapter);
-      //  adapter.submitList(pList);
+        //  adapter.submitList(pList);
         loadAllPopularProducts();
         loadAllCategory();
-        loadAllElectronics() ;
-        loadAllHealth() ;
+        loadAllElectronics();
+        loadAllHealth();
         loadAllProducts(currentPage);
         initScrollListener();
         return view;
@@ -257,19 +256,18 @@ public class HomeFragment extends Fragment implements HorizontralProductListAdap
         String authHeader = "Basic " + Base64.encodeToString(Constants.BASE.getBytes(), Base64.NO_WRAP);
         Call<List<ProductModel>> calla = RetrofitClient.getInstance()
                 .getApi()
-                .getAllProductViaCategory(authHeader, "330" , "15" ,1);
+                .getAllProductViaCategory(authHeader, "330", "15", 1);
         calla.enqueue(new Callback<List<ProductModel>>() {
             @Override
             public void onResponse(Call<List<ProductModel>> call, Response<List<ProductModel>> response) {
 
-                if(response.code()== 200){
+                if (response.code() == 200) {
                     // now load the data
                     List<ProductModel> productModelList = response.body();
                     //load the data
-                    healthRcv.setAdapter(new HorizontralProductListAdapter(getContext(), productModelList, HomeFragment.this));
+                    healthRcv.setAdapter(new HorizontralProductListAdapter(context, productModelList, HomeFragment.this));
 
-                }
-                else {
+                } else {
 
                 }
             }
@@ -284,37 +282,38 @@ public class HomeFragment extends Fragment implements HorizontralProductListAdap
 
     private void loadAllElectronics() {
         String authHeader = "Basic " + Base64.encodeToString(Constants.BASE.getBytes(), Base64.NO_WRAP);
-         Call<List<ProductModel>> call = RetrofitClient.getInstance()
+        Call<List<ProductModel>> call = RetrofitClient.getInstance()
                 .getApi()
-                .getAllProductViaCategory(authHeader, "440" , "15" ,1);
-         call.enqueue(new Callback<List<ProductModel>>() {
-             @Override
-             public void onResponse(Call<List<ProductModel>> call, Response<List<ProductModel>> response) {
+                .getAllProductViaCategory(authHeader, "440", "15", 1);
+        call.enqueue(new Callback<List<ProductModel>>() {
+            @Override
+            public void onResponse(Call<List<ProductModel>> call, Response<List<ProductModel>> response) {
 
-                 if(response.code()== 200){
-                     // now load the data
-                     List<ProductModel> productModelList = response.body();
-                     //load the data
-                     electronicRcv.setAdapter(new HorizontralProductListAdapter(getContext(), productModelList, HomeFragment.this));
+                if (response.code() == 200) {
+                    // now load the data
+                    List<ProductModel> productModelList = response.body();
+                    //load the data
+                    electronicRcv.setAdapter(new HorizontralProductListAdapter(getContext(), productModelList, HomeFragment.this));
 
-                 }
-                 else {
+                } else {
 
-                 }
-             }
+                }
+            }
 
-             @Override
-             public void onFailure(Call<List<ProductModel>> call, Throwable t) {
-                 Toasty.error(context, "Something Went Wrong !! Msg : " + t.getMessage(), Toasty.LENGTH_LONG).show();
+            @Override
+            public void onFailure(Call<List<ProductModel>> call, Throwable t) {
+                Toasty.error(context, "Something Went Wrong !! Msg : " + t.getMessage(), Toasty.LENGTH_LONG).show();
 
-             }
-         });
+            }
+        });
     }
+
     public void loadAllPopularProducts() {
         String authHeader = "Basic " + Base64.encodeToString(Constants.BASE.getBytes(), Base64.NO_WRAP);
         Call<List<ProductModel>> popularProduct = RetrofitClient.getInstance()
                 .getApi()
-                .getAllFeaturedProducts(authHeader, 10);
+                .getAllProductViaCategoryID(authHeader, "325", "24", 1);
+        // .getAllFeaturedProducts(authHeader, 10);
 
         popularProduct.enqueue(new Callback<List<ProductModel>>() {
             @Override
@@ -323,6 +322,7 @@ public class HomeFragment extends Fragment implements HorizontralProductListAdap
                     // now load the data
                     List<ProductModel> productModelList = response.body();
                     //load the data
+                    popularRecyclerViewList.setLayoutManager(new LinearLayoutManager(context, RecyclerView.HORIZONTAL, false));
                     popularRecyclerViewList.setAdapter(new HorizontralProductListAdapter(getContext(), productModelList, HomeFragment.this));
 
                 } else {
@@ -333,11 +333,12 @@ public class HomeFragment extends Fragment implements HorizontralProductListAdap
 
             @Override
             public void onFailure(Call<List<ProductModel>> call, Throwable t) {
-                Toasty.error(context, "Something Went Wrong !! ", Toasty.LENGTH_LONG).show();
+                Toasty.error(context, "Something Went Wrong !! " + t.getMessage(), Toasty.LENGTH_LONG).show();
             }
         });
 
     }
+
     public void loadAllCategory() {
         String authHeader = "Basic " + Base64.encodeToString(Constants.BASE.getBytes(), Base64.NO_WRAP);
         Call<List<CategoryResp>> popularProduct = RetrofitClient.getInstance()
@@ -366,78 +367,155 @@ public class HomeFragment extends Fragment implements HorizontralProductListAdap
         });
 
     }
+
     public void loadAllProducts(int page) {
-        String order = "desc" ;
-        if(page%2!=0){
-            order = "asc" ;
-        }
-        else {
-            order = "desc" ;
+        String order = "desc";
+        if (page % 2 != 0) {
+            order = "asc";
+        } else {
+            order = "desc";
         }
         proGressBar.setVisibility(View.VISIBLE);
         String authHeader = "Basic " + Base64.encodeToString(Constants.BASE.getBytes(), Base64.NO_WRAP);
-        Call<List<ProductModel>> popularProduct = RetrofitClient.getInstance()
-                .getApi()
-                .getAllProducts(authHeader, "24"  , page , "title" ,order );
+        if (page != 1) {
+            Call<List<ProductModel>> popularProduct = RetrofitClient.getInstance()
+                    .getApi()
+                    .getAllProducts(authHeader, "24", page, "title", order);
 
-        popularProduct.enqueue(new Callback<List<ProductModel>>() {
-            @Override
-            public void onResponse(Call<List<ProductModel>> call, Response<List<ProductModel>> response) {
-                if (response.code() == 200) {
+            popularProduct.enqueue(new Callback<List<ProductModel>>() {
+                @Override
+                public void onResponse(Call<List<ProductModel>> call, Response<List<ProductModel>> response) {
+                    if (response.code() == 200) {
 //                List<ProductModel> list =  new ArrayList<>() ;
 //                list = response.body() ;
-                    try {
-                        if (response.code() == 200) {
-                            int oldSize = pList.size();
-                            // try for it
-                            pList.addAll(response.body());
+                        try {
+                            if (response.code() == 200) {
+                                int oldSize = pList.size();
+                                // try for it
+                                pList.addAll(response.body());
 
-                            if (oldSize == pList.size()) {
-                                isEnd = true;
+                                if (oldSize == pList.size()) {
+                                    isEnd = true;
 
-                            } else {
-                                isEnd = false;
-                            }
+                                } else {
+                                    isEnd = false;
+                                }
 
-                            getActivity().runOnUiThread(new Runnable() {
+                                try {
+                                    getActivity().runOnUiThread(new Runnable() {
 
-                                @Override
-                                public void run() {
+                                        @Override
+                                        public void run() {
 
-                                    // Stuff that updates the UI
-                                  //  proGressBar.clearAnimation();
-                                    proGressBar.setVisibility(View.GONE);
-                                    adapter.submitlist(pList);
-                                 //   Toasty.success(context, "Error : " + adapter.getItemCount(), 1).show();
-                                   // adapter.notifyDataSetChanged();
+                                            // Stuff that updates the UI
+                                            //  proGressBar.clearAnimation();
+                                            proGressBar.setVisibility(View.GONE);
+                                            adapter.submitlist(pList);
+                                            //   Toasty.success(context, "Error : " + adapter.getItemCount(), 1).show();
+                                            // adapter.notifyDataSetChanged();
 
+
+                                        }
+                                    });
+
+                                } catch (Exception e) {
 
                                 }
-                            });
 
 
-
-                        } else {
+                            } else {
+                                proGressBar.setVisibility(View.GONE);
+                                Toasty.error(context, "Error : " + response.code(), 1).show();
+                                //progress.setVisibility(View.GONE);
+                            }
+                        } catch (Exception r) {
                             proGressBar.setVisibility(View.GONE);
-                            Toasty.error(context, "Error : " + response.code(), 1).show();
-                            //progress.setVisibility(View.GONE);
+                            Toasty.error(context, "Error :  Something Went Wrong !! ", 1).show();
                         }
-                    } catch (Exception r) {
+                    } else {
                         proGressBar.setVisibility(View.GONE);
-                        Toasty.error(context, "Error :  Something Went Wrong !! ", 1).show();
+                        Toasty.error(context, "Error :  Code " + response.code(), 1).show();
                     }
-                } else {
-                    proGressBar.setVisibility(View.GONE);
-                    Toasty.error(context, "Error :  Code " + response.code(), 1).show();
                 }
-            }
 
-            @Override
-            public void onFailure(Call<List<ProductModel>> call, Throwable t) {
-                proGressBar.setVisibility(View.GONE);
-                Toasty.error(context, "Error : " + t.getMessage(), 1).show();
-            }
-        });
+                @Override
+                public void onFailure(Call<List<ProductModel>> call, Throwable t) {
+                    proGressBar.setVisibility(View.GONE);
+                    Toasty.error(context, "Error : " + t.getMessage(), 1).show();
+                }
+            });
+        } else {
+// only for launch day
+            Call<List<ProductModel>> popularProduct = RetrofitClient.getInstance()
+                    .getApi()
+                    .getAllProductViaCategoryIDForLaunch(authHeader, "325,119", "24", 1);
+            // .getAllFeaturedProducts(authHeader, 10);
+
+            popularProduct.enqueue(new Callback<List<ProductModel>>() {
+                @Override
+                public void onResponse(Call<List<ProductModel>> call, Response<List<ProductModel>> response) {
+                    if (response.code() == 200) {
+//                List<ProductModel> list =  new ArrayList<>() ;
+//                list = response.body() ;
+                        try {
+                            if (response.code() == 200) {
+                                int oldSize = pList.size();
+                                // try for it
+                                List<ProductModel> pList1 =  response.body() ;
+                                Collections.shuffle(pList1);
+                                pList.addAll(pList1) ;
+
+                                if (oldSize == pList.size()) {
+                                    isEnd = false;
+
+                                } else {
+                                    isEnd = false;
+                                }
+
+                                try {
+                                    getActivity().runOnUiThread(new Runnable() {
+
+                                        @Override
+                                        public void run() {
+
+                                            // Stuff that updates the UI
+                                            //  proGressBar.clearAnimation();
+                                            proGressBar.setVisibility(View.GONE);
+
+
+                                            adapter.submitlist(pList);
+                                            //   Toasty.success(context, "Error : " + adapter.getItemCount(), 1).show();
+                                            // adapter.notifyDataSetChanged();
+                                        }
+                                    });
+
+                                } catch (Exception e) {
+
+                                }
+
+
+                            } else {
+                                proGressBar.setVisibility(View.GONE);
+                                Toasty.error(context, "Error : " + response.code(), 1).show();
+                                //progress.setVisibility(View.GONE);
+                            }
+                        } catch (Exception r) {
+                            proGressBar.setVisibility(View.GONE);
+                            Toasty.error(context, "Error :  Something Went Wrong !! ", 1).show();
+                        }
+                    } else {
+                        proGressBar.setVisibility(View.GONE);
+                        Toasty.error(context, "Error :  Code " + response.code(), 1).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<List<ProductModel>> call, Throwable t) {
+                    proGressBar.setVisibility(View.GONE);
+                    Toasty.error(context, "Error : " + t.getMessage(), 1).show();
+                }
+            });
+        }
 
 
     }

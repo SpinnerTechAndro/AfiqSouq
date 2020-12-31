@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Base64;
@@ -18,6 +19,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.sslwireless.sslcommerzlibrary.model.initializer.CustomerInfoInitializer;
 import com.sslwireless.sslcommerzlibrary.model.initializer.SSLCommerzInitialization;
 import com.sslwireless.sslcommerzlibrary.model.response.TransactionInfoModel;
 import com.sslwireless.sslcommerzlibrary.model.util.CurrencyType;
@@ -70,7 +72,7 @@ public class SelectDeliveryAddress extends AppCompatActivity implements Transact
 
         //image Button
         backIB = findViewById(R.id.backIB);
-        //     addToCartIB=findViewById(R.id.addTocartIB);
+        //addToCartIB=findViewById(R.id.addTocartIB);
         shippingExpandIB = findViewById(R.id.expand_icon_IB);
         deleteIB = findViewById(R.id.delete_IB);
         editIB = findViewById(R.id.edit_IB);
@@ -99,13 +101,13 @@ public class SelectDeliveryAddress extends AppCompatActivity implements Transact
             @Override
             public void onClick(View v) {
                 if (orderResp == null) {
-                    Toasty.error(getApplicationContext(), "Something went Wrong", 1).show();
+                    Toasty.error(getApplicationContext(), "Something went Wrong", 2).show();
                 } else {
                     String name = nameTV.getText().toString();
                     String address = addressTV.getText().toString();
                     String phone = phoneTV.getText().toString();
                     if (TextUtils.isEmpty(name) || TextUtils.isEmpty(phone) || TextUtils.isEmpty(address)) {
-                        Toasty.error(getApplicationContext(), "Please Enter The Value Correctly!!", 1).show();
+                        Toasty.error(getApplicationContext(), "Please Enter The Value Correctly!!", 2).show();
                     } else {
 
                         CreateOrder(orderResp);
@@ -146,7 +148,7 @@ public class SelectDeliveryAddress extends AppCompatActivity implements Transact
                     String address = addressTV.getText().toString();
                     String phone = phoneTV.getText().toString();
                     if (TextUtils.isEmpty(name) || TextUtils.isEmpty(phone) || TextUtils.isEmpty(address)) {
-                        Toasty.error(getApplicationContext(), "Please Enter The Value Correctly!!", 1).show();
+                        Toasty.error(getApplicationContext(), "Please Enter The Value Correctly!!", 2).show();
                     } else {
 
                         CreateOrder(orderResp);
@@ -173,6 +175,9 @@ public class SelectDeliveryAddress extends AppCompatActivity implements Transact
 
     private void loadUserDataFromCache() {
         PrefUserModel model = SharedPrefManager.getInstance(getApplicationContext()).getUser();
+        nameTV.setTextColor(Color.BLACK);
+        addressTV.setTextColor(Color.BLACK);
+        phoneTV.setTextColor(Color.BLACK);
         nameTV.setText(model.getName());
         addressTV.setText(model.getDeliveryAddress());
         phoneTV.setText(model.getPh());
@@ -182,6 +187,7 @@ public class SelectDeliveryAddress extends AppCompatActivity implements Transact
     private void CreateOrder(CreateOrderResp orderModel) {
         ProgressDialog dialog = new ProgressDialog(SelectDeliveryAddress.this);
         dialog.setMessage("Placing Your Order...");
+        dialog.setCancelable(false);
         dialog.show();
         orderModel.getShipping().setAddress1(addressTV.getText().toString());
         orderModel.getShipping().setFirstName(nameTV.getText().toString());
@@ -222,7 +228,7 @@ public class SelectDeliveryAddress extends AppCompatActivity implements Transact
 
                 } else {
                     dialog.dismiss();
-                    Toasty.error(getApplicationContext(), "Something Went Wrong Try Again!! Code " + response.code(), 1)
+                    Toasty.error(getApplicationContext(), "Something Went Wrong Try Again!! Code " + response.code(), 2)
                             .show();
                 }
 
@@ -231,7 +237,7 @@ public class SelectDeliveryAddress extends AppCompatActivity implements Transact
             @Override
             public void onFailure(Call<OrderResp> call, Throwable t) {
                 dialog.dismiss();
-                Toasty.error(getApplicationContext(), "Error " + t.getMessage(), 1).show();
+                Toasty.error(getApplicationContext(), "Error : " + t.getMessage(), 2).show();
                 Log.d("TAG", "onFailure: " + t.getMessage());
             }
         });
@@ -304,7 +310,7 @@ public class SelectDeliveryAddress extends AppCompatActivity implements Transact
                         Toasty.error(getApplicationContext(), "Your Balance is Low !! ", Toasty.LENGTH_LONG).show();
                     }
                 } catch (Exception e) {
-                    Toasty.error(getApplicationContext(), "Error : " + e.getMessage(), 1).show();
+                    Toasty.error(getApplicationContext(), "Error : " + e.getMessage(), 2).show();
                 }
 
             }
@@ -351,7 +357,7 @@ public class SelectDeliveryAddress extends AppCompatActivity implements Transact
                     }
                 } else {
                     progressDialog.dismiss();
-                    Toasty.error(getApplicationContext(), "Payment Did Not Completed Error :  " + response.code(), 1).show();
+                    Toasty.error(getApplicationContext(), "Payment Did Not Completed Error :  " + response.code(), 2).show();
 
                 }
             }
@@ -359,7 +365,7 @@ public class SelectDeliveryAddress extends AppCompatActivity implements Transact
             @Override
             public void onFailure(Call<PaymentDone> call, Throwable t) {
                 progressDialog.dismiss();
-                Toasty.error(getApplicationContext(), "Payment Did not Completed Error :  " + t.getMessage(), 1).show();
+                Toasty.error(getApplicationContext(), "Payment Did not Completed Error :  " + t.getMessage(), 2).show();
             }
         });
 
@@ -367,14 +373,30 @@ public class SelectDeliveryAddress extends AppCompatActivity implements Transact
     }
 
     private void doPay(double f) {
+      PrefUserModel model =   SharedPrefManager.getInstance(getApplicationContext())
+                .getUser() ;
+//        SSLCCustomerInfoInitializer(&quot;customer name&quot;, &quot;customer email&quot;,
+//&quot;address&quot;, &quot;dhaka&quot;, &quot;1214&quot;, &quot;Bangladesh&quot;, “phoneNumber”);
+        final CustomerInfoInitializer customerInfoInitializer = new CustomerInfoInitializer(
+              model.getName() ,
+              model.getMail(),
+              model.getDeliveryAddress(),
+              model.getState() ,
+              "1",
+                model.getCountry() ,
+                model.getPh()
+        ) ;
+                                                                      //metac5c8299fbcbb15 metac5c8299fbcbb15@ssl
 
-
+//        final SSLCommerzInitialization sslCommerzInitialization = new SSLCommerzInitialization("afiqsouqlive", "5FA907E4DA48684914"
+//                , f, CurrencyType.BDT, "SSL : " + System.currentTimeMillis(), "Package", SdkType.LIVE);
         final SSLCommerzInitialization sslCommerzInitialization = new SSLCommerzInitialization("afiqsouqlive", "5FA907E4DA48684914"
                 , f, CurrencyType.BDT, "SSL : " + System.currentTimeMillis(), "Package", SdkType.LIVE);
 
 
         IntegrateSSLCommerz.getInstance(SelectDeliveryAddress.this)
                 .addSSLCommerzInitialization(sslCommerzInitialization)
+                .addCustomerInfoInitializer(customerInfoInitializer)
                 .buildApiCall(SelectDeliveryAddress.this);
     }
 
@@ -415,5 +437,17 @@ public class SelectDeliveryAddress extends AppCompatActivity implements Transact
     public void merchantValidationError(String s) {
         Toasty.error(getApplicationContext(), "Transaction Failed " + s , 2).show();
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadUserDataFromCache();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        loadUserDataFromCache();
     }
 }

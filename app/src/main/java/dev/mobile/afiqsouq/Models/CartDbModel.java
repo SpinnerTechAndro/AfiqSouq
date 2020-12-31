@@ -17,12 +17,14 @@ public class CartDbModel {
     public String title;
     public Double unit_price;
     public Double sub_total;
+    public Integer stock_qty ;
     public Integer qty;
     public Integer product_id;
     public Integer customer_id;
     public String product_image;
     public String color;
     public String size;
+    public Integer cat_id ;
     public int variation_id ;
 
 

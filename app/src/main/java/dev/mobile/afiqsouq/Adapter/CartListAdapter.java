@@ -29,15 +29,16 @@ import dev.mobile.afiqsouq.Utils.Constants;
 import dev.mobile.afiqsouq.Utils.Utilities;
 import dev.mobile.afiqsouq.View.Activities.CartListPage;
 import dev.mobile.afiqsouq.database.CartDatabase;
+import es.dmoral.toasty.Toasty;
 
 
 public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.ViewHolder> {
 
     CartDbModel UpdateItem;
-    private LayoutInflater mInflater;
     List<CartDbModel> cartList = new ArrayList<>();
     CartListPage cartPage;
     double deliveryCharge, tax;
+    private LayoutInflater mInflater;
 
 
     public CartListAdapter(List<CartDbModel> cartList, CartListPage context, double deliveryCharge, double tax) {
@@ -88,12 +89,12 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.ViewHo
 
             UpdateItem.qty = newValue;
 
-            UpdateItem.sub_total = (double) (Math.round(cartItem.unit_price) * newValue);
-
-            // UpdateItem.title = cartList.get(position).title ;
-            //   holder.textPrice.setText(cartList.get(position).price * newValue + ""); // setting the item price in the row
-            //UpdateItem.product_id = cartList.get(position).product_id ;
-            //UpdateItem.cart_id = cartList.get(position).cart_id ;
+            if (newValue <= UpdateItem.stock_qty) {
+                UpdateItem.sub_total = (double) (Math.round(cartItem.unit_price) * newValue);
+                // UpdateItem.title = cartList.get(position).title ;
+                //   holder.textPrice.setText(cartList.get(position).price * newValue + ""); // setting the item price in the row
+                //UpdateItem.product_id = cartList.get(position).product_id ;
+                //UpdateItem.cart_id = cartList.get(position).cart_id ;
 
 
 //                new AsyncTask<CartDbModel, Void, Integer>() {
@@ -109,32 +110,35 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.ViewHo
 //
 //                    }
 //                }.execute(UpdateItem);
+                CartDatabase.databaseWriteExecutor.execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        CartDatabase.getDatabase(cartPage).dao().updateCart(UpdateItem);
+                    }
+
+                });
 
 
-            CartDatabase.databaseWriteExecutor.execute(new Runnable() {
-                @Override
-                public void run() {
-                    CartDatabase.getDatabase(cartPage).dao().updateCart(UpdateItem);
-                }
-
-            });
-
-
-            Utilities utilities = new Utilities();
-            double total = utilities.calculateTotal(cartList);
+                Utilities utilities = new Utilities();
+                double total = utilities.calculateTotal(cartList);
 //                        cartPage.totalview.setText(utilities.calculateTotal(cartList)+ " .Tk");
 //                        cartPage.totalPrice.setText(Math.round(utilities.calculateTotal(cartList) +deliveryCharge )  + " ");
 
-            //calculate total tax
+                //calculate total tax
 
 
-            cartPage.sub_total.setText(Constants.BDT_SIGN + total);
-            DecimalFormat dec = new DecimalFormat("#0.0");
-            cartPage.tax_fee.setText(Constants.BDT_SIGN + dec.format(total * (tax / 100)));
-            total = total + ((total * (tax / 100)));
-            Log.d("TAG", " adapter run: " + ((total * (tax / 100))));
-            cartPage.total.setText( Constants.BDT_SIGN +(total + deliveryCharge));
-            cartPage.paid.setText("" +(total + deliveryCharge));
+                cartPage.sub_total.setText(Constants.BDT_SIGN + total);
+                DecimalFormat dec = new DecimalFormat("#0.0");
+                cartPage.tax_fee.setText(Constants.BDT_SIGN + dec.format(total * (tax / 100)));
+                total = total + ((total * (tax / 100)));
+                Log.d("TAG", " adapter run: " + ((total * (tax / 100))));
+                cartPage.total.setText(Constants.BDT_SIGN + (total + deliveryCharge));
+                // cartPage.paid.setText("" +(total + deliveryCharge));
+                cartPage.setPaid(total + deliveryCharge);
+            } else {
+                holder.numberButton.setNumber(oldValue+"");
+                Toasty.info(cartPage, "Stock Limit Reached !!", Toasty.LENGTH_SHORT).show();
+            }
 
 
         });
@@ -163,7 +167,8 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.ViewHo
                 cartPage.tax_fee.setText(Constants.BDT_SIGN + dec.format(total * (tax / 100)));
                 total = total + ((total * (tax / 100)));
                 cartPage.total.setText(Constants.BDT_SIGN + (total + deliveryCharge));
-                cartPage.paid.setText("" + (total + deliveryCharge));
+                // cartPage.paid.setText("" + (total + deliveryCharge));
+                cartPage.setPaid(total + deliveryCharge);
             }
         });
 

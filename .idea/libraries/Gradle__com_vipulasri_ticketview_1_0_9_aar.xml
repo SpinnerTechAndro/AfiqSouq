@@ -2,11 +2,15 @@
   <library name="Gradle: com.vipulasri:ticketview:1.0.9@aar">
     <ANNOTATIONS>
       <root url="jar://E:/.gradle/caches/transforms-2/files-2.1/b0dbf141ca149029562483756db39bca/jetified-ticketview-1.0.9/annotations.zip!/" />
+      <root url="jar://E:/.gradle/caches/transforms-2/files-2.1/b83edef5d6754d6cb5645bc5742691b3/jetified-ticketview-1.0.9/annotations.zip!/" />
     </ANNOTATIONS>
     <CLASSES>
-      <root url="file://E:/.gradle/caches/transforms-2/files-2.1/b0dbf141ca149029562483756db39bca/jetified-ticketview-1.0.9/AndroidManifest.xml" />
-      <root url="file://E:/.gradle/caches/transforms-2/files-2.1/b0dbf141ca149029562483756db39bca/jetified-ticketview-1.0.9/res" />
       <root url="jar://E:/.gradle/caches/transforms-2/files-2.1/b0dbf141ca149029562483756db39bca/jetified-ticketview-1.0.9/jars/classes.jar!/" />
+      <root url="file://E:/.gradle/caches/transforms-2/files-2.1/b0dbf141ca149029562483756db39bca/jetified-ticketview-1.0.9/res" />
+      <root url="file://E:/.gradle/caches/transforms-2/files-2.1/b0dbf141ca149029562483756db39bca/jetified-ticketview-1.0.9/AndroidManifest.xml" />
+      <root url="jar://E:/.gradle/caches/transforms-2/files-2.1/b83edef5d6754d6cb5645bc5742691b3/jetified-ticketview-1.0.9/jars/classes.jar!/" />
+      <root url="file://E:/.gradle/caches/transforms-2/files-2.1/b83edef5d6754d6cb5645bc5742691b3/jetified-ticketview-1.0.9/AndroidManifest.xml" />
+      <root url="file://E:/.gradle/caches/transforms-2/files-2.1/b83edef5d6754d6cb5645bc5742691b3/jetified-ticketview-1.0.9/res" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://E:/.gradle/caches/modules-2/files-2.1/com.vipulasri/ticketview/1.0.9/5da6e8fe33719484718ac9bc8f84734b2227424e/ticketview-1.0.9-javadoc.jar!/" />

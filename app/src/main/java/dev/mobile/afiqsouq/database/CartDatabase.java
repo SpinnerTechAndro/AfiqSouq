@@ -13,7 +13,7 @@ import dev.mobile.afiqsouq.Models.CartDbModel;
 import dev.mobile.afiqsouq.Models.recentDbModel;
 
 
-@Database(entities = {CartDbModel.class, recentDbModel.class}, version = 16, exportSchema = false)
+@Database(entities = {CartDbModel.class, recentDbModel.class}, version = 20, exportSchema = false)
 
 public abstract class CartDatabase extends RoomDatabase {
 
@@ -28,7 +28,7 @@ public abstract class CartDatabase extends RoomDatabase {
     public abstract RecentDao recentDao();
 
     private static volatile CartDatabase INSTANCE;
-    private static final int NUMBER_OF_THREADS = 1;
+    private static final int NUMBER_OF_THREADS = 2;
     public static final ExecutorService databaseWriteExecutor =
             Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 

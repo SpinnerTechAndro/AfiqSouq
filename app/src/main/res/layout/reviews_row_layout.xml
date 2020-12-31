@@ -42,6 +42,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
                     android:text="NM Kawcher-"
+                    android:fontFamily="@font/sf_pro"
                     android:layout_gravity="center_vertical"
                     android:id="@+id/rater_person_name_tv"
                     />
@@ -53,6 +54,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_5sdp"
                     android:text="18 may,2017"
+                    android:fontFamily="@font/sf_pro"
                     android:layout_toEndOf="@id/rater_person_name_tv"
                     />
 

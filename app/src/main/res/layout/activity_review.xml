@@ -25,6 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
+            android:fontFamily="@font/sf_pro"
             android:text="Reviews"
             android:textColor="@color/navy_blue"
             style="@style/TextAppearance.AppCompat.Widget.ActionMode.Title" />

@@ -21,10 +21,10 @@ import es.dmoral.toasty.Toasty;
 public class SignUP extends AppCompatActivity {
 
     AutoCompleteTextView districtList, countryList;
-    TextInputEditText fnamein, emailIn, passIn, deliveryAddress, phonein  , snamein;
+    TextInputEditText fnamein, emailIn, passIn, deliveryAddress, phonein  , snamein , userName;
     CheckBox terms;
     MaterialButton signUpBtn;
-    String fname ,sname, email, pass, deliverAdress, country, district, ph;
+    String fname ,sname, email, pass, deliverAdress, country, district, ph , username;
     SpinKitView spinKitView;
 
 
@@ -46,6 +46,8 @@ public class SignUP extends AppCompatActivity {
         phonein = findViewById(R.id.phone);
         spinKitView = findViewById(R.id.spin_kit);
         spinKitView.setVisibility(View.GONE);
+        userName = findViewById(R.id.userName) ;
+
 
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
@@ -70,11 +72,12 @@ public class SignUP extends AppCompatActivity {
                     email = emailIn.getText().toString();
                     deliverAdress = deliveryAddress.getText().toString();
                     ph = phonein.getText().toString();
+                    username= userName.getText().toString() ;
 
                     // check if thery are empty are not
 
                     if (TextUtils.isEmpty(fname) || TextUtils.isEmpty(sname) || TextUtils.isEmpty(pass) || TextUtils.isEmpty(country) || TextUtils.isEmpty(district) ||
-                            TextUtils.isEmpty(email) || TextUtils.isEmpty(deliverAdress) || TextUtils.isEmpty(ph)) {
+                            TextUtils.isEmpty(email) || TextUtils.isEmpty(deliverAdress) || TextUtils.isEmpty(ph)|| TextUtils.isEmpty(username)) {
                         Toasty.error(getApplicationContext(), "Fill Data Properly!!", 1).show();
                     } else {
 
@@ -106,7 +109,7 @@ public class SignUP extends AppCompatActivity {
         SignUpResp.Shipping shippingModel = new SignUpResp.Shipping("" + fname, ""+sname, " ",
                 deliverAdress, "", district, "", "", country);
 
-        SignUpResp resp = new SignUpResp(email, pass, "" + fname, "", sname, billingModel, shippingModel);
+        SignUpResp resp = new SignUpResp(email, pass, "" + fname,"" +sname, ""+username, billingModel, shippingModel);
 
 
 //        Call<Recived_Sign_up> call = RetrofitClient.getInstance().getApi().

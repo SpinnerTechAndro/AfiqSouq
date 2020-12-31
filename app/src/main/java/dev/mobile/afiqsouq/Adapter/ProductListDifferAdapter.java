@@ -1,6 +1,7 @@
 package dev.mobile.afiqsouq.Adapter;
 
 import android.content.Context;
+import android.graphics.Paint;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -50,10 +51,6 @@ public class ProductListDifferAdapter extends RecyclerView.Adapter<ProductListDi
         public boolean areContentsTheSame(ProductModel oldItem, ProductModel newItem) {
             return oldItem.getName().equals(newItem.getName()) && oldItem.getShortDescription().equals(newItem.getShortDescription());
         }
-
-
-
-
 
     };
 
@@ -129,11 +126,39 @@ public class ProductListDifferAdapter extends RecyclerView.Adapter<ProductListDi
         }
 
         holder.title.setText(getItem(position).getName());
-        String sale_price = getItem(position).getSalePrice();
+        String sale_price = getItem(position).getPrice();
+//        if (sale_price.equals("") || sale_price.isEmpty()) {
+//            holder.price.setText(getItem(position).getPrice() + "৳");
+//        } else {
+//            holder.price.setText(getItem(position).getSalePrice() + "৳");
+//        }
+
         if (sale_price.equals("") || sale_price.isEmpty()) {
+            // there is no sale
+
+            holder.price.setVisibility(View.VISIBLE);
+            holder.discountedPrice.setVisibility(View.INVISIBLE);
             holder.price.setText(getItem(position).getPrice() + "৳");
-        } else {
-            holder.price.setText(getItem(position).getSalePrice() + "৳");
+        }
+        else {
+            if(sale_price.equals(getItem(position).getRegularPrice())){
+                holder.price.setVisibility(View.VISIBLE);
+                holder.discountedPrice.setVisibility(View.INVISIBLE);
+                holder.price.setText(getItem(position).getPrice() + "৳");
+            }
+            else {
+                holder.price.setVisibility(View.VISIBLE);
+                holder.discountedPrice.setVisibility(View.VISIBLE);
+            /*
+            there is discount cut thrught the price
+             */
+
+                holder.discountedPrice.setText(getItem(position).getPrice() + "৳");
+                holder.price.setText(getItem(position).getRegularPrice() + "৳");
+
+                holder.price.setPaintFlags(holder.price.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+            }
+
         }
 
         holder.cartImage.setOnClickListener(new View.OnClickListener() {
@@ -145,8 +170,35 @@ public class ProductListDifferAdapter extends RecyclerView.Adapter<ProductListDi
 
                 } else {
 
+                    if(!model.getStockStatus().equals("instock")){
+                        Toasty.error(context, "Product Out Of Stock", Toasty.LENGTH_SHORT).show();
+                    }else {
+                        int cat_id  ;
+                        try {
+                            List<ProductModel.Category> categoryList = model.getCategories();
+                            if (categoryList.size() == 0) {
+                                cat_id = 0;
+                            } else {
+                                Log.d("TAG", "insertIntoCart: " + categoryList.get(0).getId() + " Last Item " +
+                                        categoryList.get(categoryList.size() - 1).getId());
+                                cat_id = categoryList.get(0).getId();
 
-                    insertTheProduct(model, position, view.getId());
+                            }
+
+                        } catch (Exception e) {
+                            Log.d("TAG", "onClick: "+e.getMessage());
+                            cat_id = 0;
+                        }
+                        if(!checkIfItemCtegoryLogic(cat_id)){
+                            insertTheProduct(model, position, view.getId());
+                        }
+                        else {
+                            Toasty.error(context, "You Can Only Order  Max 2 Items At a time", Toasty.LENGTH_LONG).show();
+
+                        }
+
+                    }
+
 
                 }
 
@@ -161,7 +213,27 @@ public class ProductListDifferAdapter extends RecyclerView.Adapter<ProductListDi
         });
 
     }
+    public boolean checkIfItemCtegoryLogic(int cid) {
+        int count = 0;
+        List<CartDbModel> singleCartItem;
+        if (database != null) {
 
+            singleCartItem = database.dao().fetchCartCountByCatgoryID();
+            count = singleCartItem.size();
+
+        } else {
+            Log.d("TAG", "Count Getting Zero : ");
+            count = 0;
+        }
+
+        Log.d("TAG", "checkIfItemCtegoryLogic:=" + count + " : Cat ID =  " + cid);
+        if (count >= 2) {
+            return true;
+        } else {
+
+            return false;
+        }
+    }
     private void insertTheProduct(ProductModel singelProduct, int pos, int view_id) {
 
         CartDbModel cartDbModel = new CartDbModel();
@@ -170,6 +242,22 @@ public class ProductListDifferAdapter extends RecyclerView.Adapter<ProductListDi
 
         try {
             if (attrList.size() == 0) {
+                int cat_id = 0;
+                List<ProductModel.Category> categoryList = singelProduct.getCategories();
+                try {
+                    if (categoryList.size() == 0) {
+                        cat_id = 0;
+                    } else {
+                        Log.d("TAG", "insertIntoCart: " + categoryList.get(0).getId() + " Last Item " +
+                                categoryList.get(categoryList.size() - 1).getId());
+                        cat_id = categoryList.get(0).getId();
+
+                    }
+
+                } catch (Exception e) {
+                    Log.d("TAG", "onClick: " + e.getMessage());
+                    cat_id = 0;
+                }
                 cartDbModel.title = singelProduct.getName();
                 String sale_price = singelProduct.getSalePrice();
                 double price = 0.0;
@@ -181,10 +269,16 @@ public class ProductListDifferAdapter extends RecyclerView.Adapter<ProductListDi
                 price = Double.parseDouble(sale_price);
                 cartDbModel.unit_price = Double.parseDouble(price + "");
                 cartDbModel.qty = 1;
+                cartDbModel.cat_id = cat_id;
                 cartDbModel.product_image = getItem(pos).getImages().get(0).getSrc();
                 cartDbModel.product_id = singelProduct.getId();
                 cartDbModel.color = "NULL";
                 cartDbModel.size = "NULL";
+                try{
+                    cartDbModel.stock_qty  = singelProduct.getStockQuantity() ;
+                }catch (Exception e  ){
+                    cartDbModel.stock_qty  =200 ;
+                }
                 cartDbModel.variation_id = 0;
                 cartDbModel.sub_total = (double) (price * 1);
 
@@ -199,13 +293,16 @@ public class ProductListDifferAdapter extends RecyclerView.Adapter<ProductListDi
 
                 Toasty.success(context, "Added To Cart", Toasty.LENGTH_SHORT).show();
 
-            } else {
+            }
+            else {
+
                 Toasty.warning(context, "This Product Has Different Type Of Variation\n Plz Choose it ", Toasty.LENGTH_LONG).show();
 
             }
 
         } catch (Exception r) {
-            Toasty.warning(context, "This Product Has Different Type Of Variation\n Plz Choose it ", Toasty.LENGTH_LONG).show();
+
+            Toasty.warning(context, "Please Click On The Product !!", Toasty.LENGTH_LONG).show();
         }
 
 
@@ -238,7 +335,7 @@ public class ProductListDifferAdapter extends RecyclerView.Adapter<ProductListDi
     public class Viewholder extends RecyclerView.ViewHolder {
         public ImageView imageView, cartImage;
         public CardView container;
-        public TextView title, price;
+        public TextView title, price ,discountedPrice;
         ProductListDifferAdapter.ItemClickListener itemClickListener;
 
         public Viewholder(View itemView, ProductListDifferAdapter.ItemClickListener itemClickListener) {
@@ -248,6 +345,7 @@ public class ProductListDifferAdapter extends RecyclerView.Adapter<ProductListDi
             price = itemView.findViewById(R.id.textview_search_price);
             cartImage = itemView.findViewById(R.id.imageview_search_cart_fr);
             container = itemView.findViewById(R.id.container);
+            discountedPrice = itemView.findViewById(R.id.textview_discount_price);
 
 
         }
